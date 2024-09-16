@@ -1,6 +1,9 @@
 import "./index.css";
-import { getApiUrl, getApiUrlBasic } from "./js-modules/getApiUrl.js";
-import getUnit from "./js-modules/getUnit.js";
+import {
+  getApiUrl,
+  getApiUrlBasic,
+} from "./js-modules/api-specific/getApiUrl.js";
+import getUnit from "./js-modules/api-specific/getUnit.js";
 
 // temporary code
 console.log(getApiUrl("Rome"));
