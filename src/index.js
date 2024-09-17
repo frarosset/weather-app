@@ -1,13 +1,13 @@
 import "./index.css";
-import {
-  getApiUrl,
-  getApiUrlBasic,
-} from "./js-modules/api-specific/getApiUrl.js";
-import getUnit from "./js-modules/api-specific/getUnit.js";
+import getUnit from "./js-modules/api-dependant/getUnit.js";
+import getData from "./js-modules/api-dependant/getData.js";
 
 // temporary code
-console.log(getApiUrl("Rome"));
-console.log(getApiUrlBasic("New York"));
 
 console.log(getUnit("temp", "base"));
 console.log(getUnit("visibility", "us"));
+
+getData("Rome");
+getData("New York"); // encoding space needed
+getData(""); // error: missing location
+getData("xyz"); // error: location not found
