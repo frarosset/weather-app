@@ -4,9 +4,10 @@
 //                https://www.visualcrossing.com/resources/documentation/weather-api/how-to-load-weather-data-in-javascript/
 
 import { getApiUrl, getApiUrlBasic } from "./getApiUrl.js";
+import processResponseData from "./processResponseData.js";
 
 const locationDefault = "London"; // todo: get location from ip
-const unitGroupDefault = "metric"; // us, metric, uk, base, todo: get units
+const unitGroupDefault = "metric"; // us, metric, uk, base
 
 export default function getData(
   location = locationDefault,
@@ -22,13 +23,14 @@ export default function getData(
   fetch(apiUrl, { mode: "cors" })
     .then(function (response) {
       if (!response.ok) {
-        return handleResponseError(response); //returns a Promise that throws an Error when resolved
+        return handleError(response); //returns a Promise that throws an Error when resolved
       }
       return response.json(); //returns a Promise
     })
-    .then(function (response) {
-      console.log(response);
-      // todo: process data
+    .then(function (responseObj) {
+      console.log(responseObj);
+      const dataObj = processResponseData(responseObj, unitGroup, full);
+      console.log(dataObj);
     })
     .catch(function (error) {
       console.log(error);
@@ -36,7 +38,9 @@ export default function getData(
     });
 }
 
-function handleResponseError(response) {
+// Error handling ---------------------------------------------------------------------------
+
+function handleError(response) {
   const errorData = {
     status: response.status,
     text: response.statusText,
@@ -51,7 +55,7 @@ function handleResponseError(response) {
     throw err;
   };
 
-  if (response) {
+  if (response.text) {
     //additional error information
     return response.text().then((errorMessage) => {
       errorData.message = errorMessage;
