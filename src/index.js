@@ -1,6 +1,5 @@
 import "./index.css";
-import getData from "./js-modules/api-dependant/getData.js";
-
+import renderSelectLocationPage from "./js-modules/dom/renderSelectLocationPage.js";
 // temporary code
 
-getData("Rome");
+renderSelectLocationPage(document.body);
