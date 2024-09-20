@@ -6,7 +6,10 @@ import PubSub from "pubsub-js";
 
 renderSelectLocationPage(document.body);
 
+const resultsDiv = document.createElement("div");
+document.body.appendChild(resultsDiv);
+
 PubSub.subscribe("RENDER WEATHER DATA", (msg, data) => {
   console.log(msg, `[${data.current.datetime}, ${data.location}]`);
-  renderWeatherDataPage(document.body, data);
+  renderWeatherDataPage(resultsDiv, data);
 });
