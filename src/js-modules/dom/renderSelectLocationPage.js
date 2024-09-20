@@ -1,4 +1,5 @@
 import { initDiv, initInput } from "../../js-utilities/commonDomComponents.js";
+import { resetContent } from "../../js-utilities/commonDomUtilities.js";
 import getData from "../api-dependant/getData.js";
 import PubSub from "pubsub-js";
 
@@ -10,7 +11,7 @@ const cssClass = {
 const getCssClass = (element) => `${blockName}__${cssClass[element]}`;
 
 export default function renderSelectLocationPage(parentDiv) {
-  // todo: clear current parentDiv;
+  resetContent(parentDiv);
 
   parentDiv.append(createSelectLocationPage());
 }

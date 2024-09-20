@@ -4,6 +4,7 @@ import {
   initHeader,
   initH2,
 } from "../../js-utilities/commonDomComponents.js";
+import { resetContent } from "../../js-utilities/commonDomUtilities.js";
 
 const blockName = "weather-data-page";
 const cssClass = {
@@ -20,7 +21,7 @@ const cssClass = {
 const getCssClass = (element) => `${blockName}__${cssClass[element]}`;
 
 export default function renderWeatherDataPage(parentDiv, data) {
-  // todo: clear current parentDiv;
+  resetContent(parentDiv);
 
   parentDiv.append(createWeatherDataPage(data));
 }
