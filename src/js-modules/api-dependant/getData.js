@@ -18,9 +18,7 @@ export default function getData(
     ? getApiUrl(location, unitGroup)
     : getApiUrlBasic(location, unitGroup);
 
-  console.log(apiUrl);
-
-  fetch(apiUrl, { mode: "cors" })
+  return fetch(apiUrl, { mode: "cors" })
     .then(function (response) {
       if (!response.ok) {
         return handleError(response); //returns a Promise that throws an Error when resolved
@@ -28,9 +26,9 @@ export default function getData(
       return response.json(); //returns a Promise
     })
     .then(function (responseObj) {
-      console.log(responseObj);
       const dataObj = processResponseData(responseObj, unitGroup, full);
-      console.log(dataObj);
+      console.log("FETCHED:", responseObj, "PROCESSED:", dataObj);
+      return dataObj;
     })
     .catch(function (error) {
       console.log(error);
