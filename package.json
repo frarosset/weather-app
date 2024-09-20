@@ -40,6 +40,7 @@
     "xml-loader": "^1.2.1"
   },
   "dependencies": {
+    "lottie-web": "^5.12.2",
     "pubsub-js": "^1.9.4",
     "webfontloader": "^1.6.28"
   }
