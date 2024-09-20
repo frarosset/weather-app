@@ -5,6 +5,7 @@ import {
   initH2,
 } from "../../js-utilities/commonDomComponents.js";
 import { resetContent } from "../../js-utilities/commonDomUtilities.js";
+import { setAnimation, weatherIcons } from "./animations.js";
 
 const blockName = "weather-data-page";
 const cssClass = {
@@ -14,7 +15,7 @@ const cssClass = {
   locationH2: "location-h2",
   conditionsP: "conditions-p",
   tempP: "temp-p",
-  iconP: "icon-p",
+  iconDiv: "icon-div",
   feelsLikeP: "feels-like-p",
   highLowTempP: "high-low-temp-p",
 };
@@ -54,7 +55,9 @@ function initMainCurrentConditionsDiv(data) {
 
   const conditionsP = initP("conditionsP", null, data.current.conditionsStr);
   const tempP = initP("tempP", null, data.current.tempStr);
-  const iconP = initP("iconP", null, data.current.icon);
+  const iconDiv = initDiv("iconDiv");
+  setAnimation(iconDiv, weatherIcons[data.current.icon]);
+
   const feelsLikeP = initP(
     "feelsLikeP",
     null,
@@ -66,7 +69,7 @@ function initMainCurrentConditionsDiv(data) {
     `High: ${data.days[0].tempmaxStr} - Low: ${data.days[0].tempminStr}`
   );
 
-  div.append(conditionsP, tempP, iconP, feelsLikeP, highLowTempP);
+  div.append(conditionsP, tempP, iconDiv, feelsLikeP, highLowTempP);
 
   return div;
 }
