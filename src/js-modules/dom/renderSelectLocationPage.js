@@ -1,5 +1,6 @@
 import { initDiv, initInput } from "../../js-utilities/commonDomComponents.js";
 import getData from "../api-dependant/getData.js";
+import PubSub from "pubsub-js";
 
 const blockName = "select-location-page";
 const cssClass = {
@@ -39,7 +40,9 @@ function initSearchDiv() {
   searchInput.addEventListener("change", (e) => {
     const location = e.currentTarget.value;
     if (location !== "") {
-      getData(location).then((dataObj) => console.log(dataObj));
+      getData(location).then((dataObj) => {
+        PubSub.publish("RENDER WEATHER DATA", dataObj);
+      });
     }
   });
 
