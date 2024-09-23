@@ -24,6 +24,8 @@ import thunderShowersNight from "../../assets/Meteocons/weather/thunder-showers-
 import rainSnowShowersNight from "../../assets/Meteocons/weather/rain-snow-showers-night.json";
 import wind from "../../assets/Meteocons/weather/wind.json";
 
+import alert from "../../assets/LottieFiles/alert.json";
+
 export const weatherIcons = {
   "clear-day": clearDay,
   "showers-day": showersDay,
@@ -47,6 +49,10 @@ export const weatherIcons = {
   "thunder-showers-night": thunderShowersNight,
   "rain-snow-showers-night": rainSnowShowersNight,
   wind: wind,
+};
+
+export const icons = {
+  alert: alert,
 };
 
 export function setAnimation(
