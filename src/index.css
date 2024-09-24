@@ -334,3 +334,21 @@ a:visited {
   font-size: var(--txt-small-fontsize);
   padding: var(--block-gap-larger) 0 var(--block-gap);
 }
+
+/* Customize scrollbars */
+::-webkit-scrollbar {
+  width: 4px; /* width of the entire scrollbar */
+  height: 4px; /* height of the entire scrollbar */
+}
+
+::-webkit-scrollbar-track {
+  background: transparent; /* color of the tracking area */
+}
+
+::-webkit-scrollbar-thumb {
+  background: #888; /* color of the scroll thumb */
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: #555; /* color of the scroll thumb on hover */
+}
