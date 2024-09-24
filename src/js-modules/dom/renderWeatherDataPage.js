@@ -172,6 +172,19 @@ function initNext24HoursDiv(data) {
 
   const hourlyForecastList = initOl(getCssClass("hourlyForecastList"));
 
+  // Allow horizontal scrolling through mouse scroll
+  hourlyForecastList.addEventListener("wheel", (e) => {
+    const noScrollLeft = e.currentTarget.scrollLeft === 0 && e.deltaY < 0;
+    const noScrollRight =
+      e.currentTarget.scrollLeft === e.currentTarget.scrollWidth &&
+      e.deltaY > 0;
+
+    if (noScrollLeft || noScrollRight) return;
+
+    e.currentTarget.scrollLeft += e.deltaY;
+    e.preventDefault();
+  });
+
   data.next24Hours.forEach((hourForecast, idx) => {
     const hourForecastLi = initLiAsChildInList(
       hourlyForecastList,
