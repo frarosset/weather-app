@@ -6,6 +6,7 @@ import {
   initH3,
   initH4,
   initUl,
+  initOl,
   initLiAsChildInList,
 } from "../../js-utilities/commonDomComponents.js";
 import { resetContent } from "../../js-utilities/commonDomUtilities.js";
@@ -33,6 +34,14 @@ const cssClass = {
   weatherInsightDiv: "weather-insight-div",
   weatherInsightH3: "weather-insight-h3",
   weatherInsightP: "weather-insight-p",
+  hourlyForecastDiv: "hourly-forecasts-div",
+  hourlyForecastH3: "hourly-forecasts-h3",
+  hourlyForecastList: "hourly-forecasts-list",
+  hourForecastLi: "hour-forecasts-li",
+  hourForecastHour: "hour-forecasts-hour",
+  hourForecastTemp: "hour-forecasts-temp",
+  hourForecastIconDiv: "hour-forecasts-icon-div",
+  hourForecastPrecipProb: "hour-forecasts-precip-prob",
 };
 const getCssClass = (element) => `${blockName}__${cssClass[element]}`;
 
@@ -52,7 +61,7 @@ export function createWeatherDataPage(data) {
     div.append(alertDiv);
   }
 
-  div.append(initWeatherInsightDiv(data));
+  div.append(initWeatherInsightDiv(data), initNext24HoursDiv(data));
 
   return div;
 }
@@ -148,6 +157,57 @@ function initWeatherInsightDiv(data) {
   );
 
   div.append(weatherInsightH3, weatherInsightP);
+
+  return div;
+}
+
+function initNext24HoursDiv(data) {
+  const div = initDiv(getCssClass("hourlyForecastDiv"));
+
+  const hourlyForecastH3 = initH3(
+    getCssClass("hourlyForecastH3"),
+    null,
+    "Hourly forecast"
+  );
+
+  const hourlyForecastList = initOl(getCssClass("hourlyForecastList"));
+
+  data.next24Hours.forEach((hourForecast, idx) => {
+    const hourForecastLi = initLiAsChildInList(
+      hourlyForecastList,
+      getCssClass("hourForecastLi")
+    );
+
+    const hourForecastHour = initP(
+      getCssClass("hourForecastHour"),
+      null,
+      idx === 0 ? "Now" : hourForecast.datetime
+    );
+
+    const hourForecastTemp = initP(
+      getCssClass("hourForecastTemp"),
+      null,
+      hourForecast.tempStr
+    );
+
+    const hourForecastIconDiv = initDiv(getCssClass("hourForecastIconDiv"));
+    setAnimation(hourForecastIconDiv, weatherIcons[hourForecast.icon]);
+
+    const hourForecastPrecipProb = initP(
+      getCssClass("hourForecastPrecipProb"),
+      null,
+      hourForecast.precipprob > 0 ? hourForecast.precipprobStr : ""
+    );
+
+    hourForecastLi.append(
+      hourForecastHour,
+      hourForecastTemp,
+      hourForecastIconDiv,
+      hourForecastPrecipProb
+    );
+  });
+
+  div.append(hourlyForecastH3, hourlyForecastList);
 
   return div;
 }
