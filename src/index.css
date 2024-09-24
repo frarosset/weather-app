@@ -12,7 +12,7 @@
   /* rgb(161, 19, 26, var(--alpha)); */
 
   /* Colors (background)*/
-  --bg-col: var(--col-white);
+  --bg-col: rgb(200, 200, 200);
   --block-bg-color: var(--col-white-alpha);
 
   /* Colors (text/icons)*/
@@ -28,9 +28,10 @@
   --txt-fontsize: 18px;
   --txt-lineheight: 1.2;
   --h2-font-size: 2em;
-  --h3-font-size: 2em;
+  --h3-font-size: 1.1em;
+  --h3-alert-font-size: 2em;
   --h3-icon-size: 3em;
-  --h4-font-size: 1.2em;
+  --h4-alert-font-size: var(--h3-font-size);
   --date-font-size: 0.8em;
   --weather-icon-size: 9em;
   --temp-font-size: 5em;
@@ -44,9 +45,12 @@
 
   /*Margins, gaps and paddings (+widths)*/
   --page-padding: 1em;
-  --block-padding: 1em;
-  --block-half-padding: calc(var(--block-padding) / 2);
-  --sub-block-padding: 0.6em;
+  --page-gap: var(--page-padding);
+  --block-alt-padding: 1em;
+  --block-half-alt-padding: calc(var(--block-alt-padding) / 2);
+  --block-alt-gap: var(--block-half-alt-padding);
+  --block-padding: 0.8em 1.2em;
+  --block-gap: 0.4em;
 
   /* Images / icons size */
 
@@ -141,7 +145,7 @@ a:visited {
   padding: var(--page-padding);
   display: flex;
   flex-direction: column;
-  gap: var(--page-padding);
+  gap: var(--page-gap);
 }
 
 .weather-data-page__header {
@@ -172,8 +176,8 @@ a:visited {
     "lowhightemp lowhightemp";
   grid-template-rows: max-content max-content max-content max-content;
   grid-template-columns: max-content max-content;
-  padding: var(--block-padding);
-  gap: var(--block-half-padding) 0px;
+  padding: var(--block-alt-padding);
+  gap: var(--block-alt-gap) 0px;
   align-items: center;
   justify-items: center;
   justify-content: center;
@@ -218,8 +222,8 @@ a:visited {
   grid-template-columns: max-content 1fr;
   background-color: var(--col-alert-bg);
   border-radius: var(--radius);
-  padding: var(--block-padding);
-  gap: var(--block-padding) var(--block-half-padding);
+  padding: var(--block-alt-padding);
+  gap: var(--block-alt-padding) var(--block-alt-gap);
 }
 
 .weather-data-page__alerts-icon-div {
@@ -232,7 +236,7 @@ a:visited {
 .weather-data-page__alerts-h3 {
   grid-area: titleh3;
   color: var(--col-alert);
-  font-size: var(--h3-font-size);
+  font-size: var(--h3-alert-font-size);
   line-height: 1;
   align-self: center;
 }
@@ -241,17 +245,20 @@ a:visited {
   grid-area: list;
   display: flex;
   flex-direction: column;
-  gap: var(--block-padding);
+  gap: var(--block-alt-gap);
 }
 
 .weather-data-page__alert-li {
+  display: flex;
+  flex-direction: column;
   background-color: var(--block-bg-color);
   border-radius: var(--radius);
-  padding: var(--sub-block-padding);
+  padding: var(--block-padding);
+  gap: var(--block-gap);
 }
 
 .weather-data-page__alert-h4 {
-  font-size: var(--h4-font-size);
+  font-size: var(--h4-alert-font-size);
 }
 
 .weather-data-page__alert-date-p {
@@ -259,4 +266,19 @@ a:visited {
   font-size: var(--date-font-size);
   text-align: right;
   text-wrap: balance;
+}
+
+/* WEATHER INSIGHT */
+
+.weather-data-page__weather-insight-div {
+  display: flex;
+  flex-direction: column;
+  background-color: var(--block-bg-color);
+  border-radius: var(--radius);
+  padding: var(--block-padding);
+  gap: var(--block-gap);
+}
+
+.weather-data-page__weather-insight-h3 {
+  font-size: var(--h3-font-size);
 }
