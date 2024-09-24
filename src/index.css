@@ -347,6 +347,7 @@ a:visited {
 
 ::-webkit-scrollbar-thumb {
   background: #888; /* color of the scroll thumb */
+  border-radius: 2px;
 }
 
 ::-webkit-scrollbar-thumb:hover {
