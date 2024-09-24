@@ -282,6 +282,7 @@ a:visited {
   border-radius: var(--radius);
   padding: var(--block-padding);
   gap: var(--block-gap);
+  user-select: none;
 }
 
 .weather-data-page__weather-insight-h3,
@@ -296,6 +297,7 @@ a:visited {
   gap: var(--block-gap);
   overflow-x: auto;
   overflow-y: hidden;
+  /* scroll-behavior: smooth; */
 }
 
 .weather-data-page__hour-forecasts-li {
