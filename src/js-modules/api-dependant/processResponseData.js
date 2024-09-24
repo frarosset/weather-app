@@ -46,6 +46,12 @@ export default function processResponseData(response, unitGroup) {
   // Day forecast
   data.days = processDailyConditions(response.days, unitGroup);
 
+  // Extract info on next 24 hours
+  data.next24Hours = extractNext24HoursConditions(
+    data.current.datetime,
+    data.days
+  );
+
   // Alerts info (array of objects)
   data.alerts = processAlerts(response.alerts);
 
@@ -118,6 +124,19 @@ function processHourlyConditions(hourlyResponseArr, unitGroup, dayObj) {
 
     arr.push(obj);
   });
+
+  return arr;
+}
+
+function extractNext24HoursConditions(now, dailyData) {
+  const nowHour = now.getHours();
+  const todayHourly = dailyData[0].hours;
+  const tomorrowHourly = dailyData[1].hours;
+
+  const arr = [
+    ...todayHourly.slice(nowHour),
+    ...tomorrowHourly.slice(0, nowHour + 1),
+  ];
 
   return arr;
 }
