@@ -1,0 +1,190 @@
+@import url("https://fonts.googleapis.com/css2?family=Nunito&display=swap");
+
+:root {
+  /* Colors (palette)*/
+  --alpha: 0.3;
+  --col-black: rgb(20, 20, 20);
+  --col-dark-grey: rgb(80, 80, 80);
+  --col-white: rgb(255, 255, 255);
+  --col-white-alpha: rgb(255, 255, 255, var(--alpha));
+  --col-alert: rgb(161, 19, 26);
+  --col-alert-bg: #fad9d4;
+  /* rgb(161, 19, 26, var(--alpha)); */
+
+  /* Colors (background)*/
+  --bg-col: var(--col-white);
+  --block-bg-color: var(--col-white-alpha);
+
+  /* Colors (text/icons)*/
+  --col-txt: var(--col-black);
+  --col-txt-alt: var(--col-white);
+
+  /* Colors (icons)*/
+
+  /* Font family */
+  --main-font: "Nunito", sans-serif;
+
+  /* Font sizes */
+  --txt-fontsize: 18px;
+  --txt-lineheight: 1.2;
+  --h3-font-size: 2em;
+  --h3-icon-size: 3em;
+  --h4-font-size: 1.2em;
+  --date-font-size: 0.8em;
+
+  /* Text clamping: number of lines */
+  /* --main-itm-project-description-max-lines: 6;
+    --main-itm-announcements-description-max-lines: 3; */
+
+  /* Maximum width (including dashboard margin) */
+  /* --max-width: min(1440px, 100%); */
+
+  /*Margins, gaps and paddings (+widths)*/
+  --page-padding: 1em;
+  --block-padding: 1em;
+  --sub-block-padding: 0.6em;
+
+  /* Images / icons size */
+
+  /* Radius */
+  --radius: 10px;
+
+  /* Shadows */
+  /* --outset-shadow: 2px 2px 8px var(--col-accent-medium);
+    --outset-shadow-btn-active: 2px 2px 5px var(--col-accent-medium);
+    --inset-shadow: 2px 2px 2px var(--col-accent-light) inset; */
+
+  /* Animations on hover / active / ...*/
+  /* --transition-time: 0.8s; */
+}
+
+html {
+  background-color: var(--bg-col);
+  color: var(--col-txt);
+  font-family: var(--main-font), sans-serif;
+  font-weight: 400;
+  font-size: var(--txt-fontsize);
+  line-height: var(--txt-lineheight);
+}
+
+*,
+*:before,
+*:after {
+  font-family: inherit;
+  font-size: inherit; /* 100% */
+  line-height: inherit;
+  color: inherit;
+  box-sizing: border-box;
+  padding: 0;
+  margin: 0;
+  vertical-align: baseline;
+}
+
+body {
+  margin: 0 auto;
+  height: 100vh; /*it is assumed the same for <html>*/
+  height: 100dvh; /* if supported */
+
+  /* if you want to allow scroll: */
+  /* min-height: 100vh; */
+  /* height: 100%; */
+
+  width: 100%;
+  /* or max-width -- this avoids horizontal scroll bars */
+
+  touch-action: manipulation; /* disable double tap to zoom on some browsers*/
+}
+
+/*****************************************************/
+
+/* || Generic */
+
+body {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+body > * {
+  width: 100%;
+}
+
+.header-container,
+.main-container {
+  width: 100%;
+  max-width: var(--max-width);
+  margin: 0 auto;
+}
+
+p {
+  text-wrap: pretty;
+}
+
+ul {
+  list-style: none;
+}
+
+a,
+a:hover,
+a:active,
+a:visited {
+  text-decoration: none;
+}
+
+/* WEATHER DATA PAGE */
+
+.weather-data-page {
+  padding: var(--page-padding);
+}
+
+/* ALERTS */
+
+.weather-data-page__alerts-div {
+  display: grid;
+  grid-template-areas:
+    "icon titleh3"
+    "list list";
+  grid-template-rows: max(var(--h3-icon-size), var(--h3-font-size)) 1fr;
+  grid-template-columns: max(var(--h3-icon-size), var(--h3-font-size)) 1fr;
+  background-color: var(--col-alert-bg);
+  border-radius: var(--radius);
+  padding: var(--block-padding);
+  gap: var(--block-padding) calc(var(--block-padding) / 2);
+}
+
+.weather-data-page__alerts-icon-div {
+  grid-area: icon;
+  align-self: center;
+}
+
+.weather-data-page__alerts-h3 {
+  grid-area: titleh3;
+  color: var(--col-alert);
+  font-size: var(--h3-font-size);
+  line-height: 1;
+  align-self: center;
+}
+
+.weather-data-page__alerts-list {
+  grid-area: list;
+  display: flex;
+  flex-direction: column;
+  gap: var(--block-padding);
+}
+
+.weather-data-page__alert-li {
+  background-color: var(--block-bg-color);
+  border-radius: var(--radius);
+  padding: var(--sub-block-padding);
+}
+
+.weather-data-page__alert-h4 {
+  font-size: var(--h4-font-size);
+}
+
+.weather-data-page__alert-date-p {
+  color: var(--col-dark-grey);
+  font-size: var(--date-font-size);
+  text-align: right;
+  text-wrap: balance;
+}
