@@ -30,6 +30,9 @@ const cssClass = {
   alertH4: "alert-h4",
   alertDateP: "alert-date-p",
   alertDescrP: "alert-descr-p",
+  weatherInsightDiv: "weather-insight-div",
+  weatherInsightH3: "weather-insight-h3",
+  weatherInsightP: "weather-insight-p",
 };
 const getCssClass = (element) => `${blockName}__${cssClass[element]}`;
 
@@ -48,6 +51,8 @@ export function createWeatherDataPage(data) {
   if (alertDiv != null) {
     div.append(alertDiv);
   }
+
+  div.append(initWeatherInsightDiv(data));
 
   return div;
 }
@@ -123,6 +128,26 @@ function initAlertsDiv(data) {
   });
 
   div.append(alertsIconDiv, alertsH3, alertsList);
+
+  return div;
+}
+
+function initWeatherInsightDiv(data) {
+  const div = initDiv(getCssClass("weatherInsightDiv"));
+
+  const weatherInsightH3 = initH3(
+    getCssClass("weatherInsightH3"),
+    null,
+    "Weather insight"
+  );
+
+  const weatherInsightP = initP(
+    getCssClass("weatherInsightP"),
+    null,
+    data.descriptionWeek
+  );
+
+  div.append(weatherInsightH3, weatherInsightP);
 
   return div;
 }
