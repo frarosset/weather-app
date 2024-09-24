@@ -11,6 +11,7 @@ import {
 } from "../../js-utilities/commonDomComponents.js";
 import { resetContent } from "../../js-utilities/commonDomUtilities.js";
 import { setAnimation, weatherIcons, icons } from "./animations.js";
+import { format, formatRelative } from "date-fns";
 
 const blockName = "weather-data-page";
 const cssClass = {
@@ -124,7 +125,7 @@ function initAlertsDiv(data) {
     const alertLi = initLiAsChildInList(alertsList, getCssClass("alertLi"));
 
     const alertH4 = initH4(getCssClass("alertH4"), null, alert.event);
-    const alertDateStr = `${alert.onset} - ${alert.ends}`;
+    const alertDateStr = `${formatRelative(alert.onset, data.current.datetime)} ➜ ${formatRelative(alert.ends, data.current.datetime)}`;
     const alertDateP = initP(getCssClass("alertDateP"), null, alertDateStr);
     const alertDescrP = initP(
       getCssClass("alertDescrP"),
@@ -179,7 +180,9 @@ function initNext24HoursDiv(data) {
       e.currentTarget.scrollLeft === e.currentTarget.scrollWidth &&
       e.deltaY > 0;
 
-    if (noScrollLeft || noScrollRight) return;
+    if (noScrollLeft || noScrollRight) {
+      return;
+    }
 
     e.currentTarget.scrollLeft += e.deltaY;
     e.preventDefault();
@@ -194,7 +197,7 @@ function initNext24HoursDiv(data) {
     const hourForecastHour = initP(
       getCssClass("hourForecastHour"),
       null,
-      idx === 0 ? "Now" : hourForecast.datetime
+      idx === 0 ? "Now" : format(hourForecast.datetime, "H:mm")
     );
 
     const hourForecastTemp = initP(

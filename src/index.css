@@ -294,10 +294,9 @@ a:visited {
 
 .weather-data-page__hourly-forecasts-list {
   display: flex;
-  gap: var(--block-gap);
+  gap: var(--block-gap-larger);
   overflow-x: auto;
   overflow-y: hidden;
-  /* scroll-behavior: smooth; */
 }
 
 .weather-data-page__hour-forecasts-li {
