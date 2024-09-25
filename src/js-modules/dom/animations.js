@@ -24,6 +24,9 @@ import thunderShowersNight from "../../assets/Meteocons/weather/thunder-showers-
 import rainSnowShowersNight from "../../assets/Meteocons/weather/rain-snow-showers-night.json";
 import wind from "../../assets/Meteocons/weather/wind.json";
 
+// Other Conditions
+import solarRadiation from "../../assets/Meteocons/solar-radiation.json";
+
 // UV index
 import uvIndex0 from "../../assets/Meteocons/uvindex/uv-index-0.json";
 import uvIndex1 from "../../assets/Meteocons/uvindex/uv-index-1.json";
@@ -80,6 +83,8 @@ export const uvindexIcons = {
   "uv-index-10": uvIndex10,
   "uv-index-11": uvIndex11,
 };
+
+export const solarRadiationIcon = solarRadiation;
 
 export const icons = {
   alert: alert,

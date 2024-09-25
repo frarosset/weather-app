@@ -1,7 +1,7 @@
 Meteoicons - Animated weather icons 
 Source: https://github.com/basmilius/weather-icons
 
-Some files have been renamed in accordance to Visual Crossing API icon format:
+Some files have been renamed in accordance to Visual Crossing API icon format or for other purposes:
 
 rain-snow-showers-day    <-->  partly-cloudy-day-sleet
 rain-snow-showers-night  <-->  partly-cloudy-night-sleet
@@ -15,6 +15,6 @@ thunder-showers-day      <-->  thunderstorms-day-rain
 thunder-showers-night    <-->  thunderstorms-night-rain
 thunder-rain             <-->  thunderstorms-rain
 
-
+solar-radiation          <-->  dust-day
 
 

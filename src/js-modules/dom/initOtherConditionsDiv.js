@@ -1,10 +1,15 @@
 import {
   initDiv,
   initH3,
+  initP,
   initUl,
   initLiAsChildInList,
 } from "../../js-utilities/commonDomComponents.js";
-import { setAnimation, uvindexIcons } from "./animations.js";
+import {
+  setAnimation,
+  uvindexIcons,
+  solarRadiationIcon,
+} from "./animations.js";
 
 const blockName = "weather-data-page";
 const cssClass = {
@@ -12,7 +17,11 @@ const cssClass = {
   otherConditionsList: "other-conditions-list",
   otherConditionLi: "other-condition-li",
   otherConditionH3: "other-condition-h3",
-  uvIndexIconDiv: "uv-index-icon-div",
+  otherConditionContent: "other-condition-content",
+  otherConditionIconDiv: "other-condition-icon-div",
+  otherConditionValueDiv: "other-condition-value-div",
+  otherConditionValue: "other-condition-value",
+  otherConditionValueUnit: "other-condition-value-unit",
 };
 const getCssClass = (element) => `${blockName}__${cssClass[element]}`;
 
@@ -25,7 +34,10 @@ function initOtherConditionsDiv(subdata, prestr) {
 
   const otherConditionsList = initUl(getCssClass("otherConditionsList"));
 
-  const otherConditionsDiv = [["UV Index", initUvIndexContent]];
+  const otherConditionsDiv = [
+    ["UV Index", initUvIndexContent],
+    ["Solar Radiation", initSolarRadiationContent],
+  ];
 
   otherConditionsDiv.forEach(([title, callback]) => {
     const div = callback(subdata);
@@ -50,10 +62,43 @@ function initOtherConditionsDiv(subdata, prestr) {
   return div;
 }
 
+// Init Specific Other Info Content
+
 function initUvIndexContent(subdata) {
   const uvIndex = subdata.uvindex;
   if (uvIndex == null) return null;
-  const div = initDiv(getCssClass("uvIndexIconDiv"));
-  setAnimation(div, uvindexIcons[`uv-index-${uvIndex}`]);
+
+  const div = initDiv(getCssClass("otherConditionContent", "uv-index"));
+  div.append(initIcon(uvindexIcons[`uv-index-${uvIndex}`]));
+  return div;
+}
+
+function initSolarRadiationContent(subdata) {
+  const solarRadiation = subdata.solarradiationStr;
+  if (solarRadiation == null) return null;
+
+  const div = initDiv(getCssClass("otherConditionContent", "solar-radiation"));
+  div.append(initIcon(solarRadiationIcon), initValue(solarRadiation));
+  return div;
+}
+
+// Helper functions
+
+function initIcon(icon) {
+  const div = initDiv(getCssClass("otherConditionIconDiv"));
+  setAnimation(div, icon);
+  return div;
+}
+
+function initValue(valStr) {
+  const div = initDiv(getCssClass("otherConditionValueDiv"));
+
+  const [value, ...units] = valStr.split(" ");
+
+  div.append(
+    initP(getCssClass("otherConditionValue"), null, value),
+    initP(getCssClass("otherConditionValueUnit"), null, units)
+  );
+
   return div;
 }
