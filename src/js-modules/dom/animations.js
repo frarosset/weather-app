@@ -24,6 +24,21 @@ import thunderShowersNight from "../../assets/Meteocons/weather/thunder-showers-
 import rainSnowShowersNight from "../../assets/Meteocons/weather/rain-snow-showers-night.json";
 import wind from "../../assets/Meteocons/weather/wind.json";
 
+// UV index
+import uvIndex0 from "../../assets/Meteocons/uvindex/uv-index-0.json";
+import uvIndex1 from "../../assets/Meteocons/uvindex/uv-index-1.json";
+import uvIndex2 from "../../assets/Meteocons/uvindex/uv-index-2.json";
+import uvIndex3 from "../../assets/Meteocons/uvindex/uv-index-3.json";
+import uvIndex4 from "../../assets/Meteocons/uvindex/uv-index-4.json";
+import uvIndex5 from "../../assets/Meteocons/uvindex/uv-index-5.json";
+import uvIndex6 from "../../assets/Meteocons/uvindex/uv-index-6.json";
+import uvIndex7 from "../../assets/Meteocons/uvindex/uv-index-7.json";
+import uvIndex8 from "../../assets/Meteocons/uvindex/uv-index-8.json";
+import uvIndex9 from "../../assets/Meteocons/uvindex/uv-index-9.json";
+import uvIndex10 from "../../assets/Meteocons/uvindex/uv-index-10.json";
+import uvIndex11 from "../../assets/Meteocons/uvindex/uv-index-11.json";
+
+// Icons
 import alert from "../../assets/LottieFiles/alert.json";
 
 export const weatherIcons = {
@@ -49,6 +64,21 @@ export const weatherIcons = {
   "thunder-showers-night": thunderShowersNight,
   "rain-snow-showers-night": rainSnowShowersNight,
   wind: wind,
+};
+
+export const uvindexIcons = {
+  "uv-index-0": uvIndex0,
+  "uv-index-1": uvIndex1,
+  "uv-index-2": uvIndex2,
+  "uv-index-3": uvIndex3,
+  "uv-index-4": uvIndex4,
+  "uv-index-5": uvIndex5,
+  "uv-index-6": uvIndex6,
+  "uv-index-7": uvIndex7,
+  "uv-index-8": uvIndex8,
+  "uv-index-9": uvIndex9,
+  "uv-index-10": uvIndex10,
+  "uv-index-11": uvIndex11,
 };
 
 export const icons = {

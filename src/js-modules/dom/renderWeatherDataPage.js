@@ -12,6 +12,7 @@ import {
 import { resetContent } from "../../js-utilities/commonDomUtilities.js";
 import { setAnimation, weatherIcons, icons } from "./animations.js";
 import { format, formatRelative } from "date-fns";
+import { initOtherCurrentConditionsDiv } from "./initOtherConditionsDiv.js";
 
 const blockName = "weather-data-page";
 const cssClass = {
@@ -75,7 +76,8 @@ export function createWeatherDataPage(data) {
   div.append(
     initWeatherInsightDiv(data),
     initNext24HoursDiv(data),
-    initNextDaysDiv(data)
+    initNextDaysDiv(data),
+    initOtherCurrentConditionsDiv(data)
   );
 
   return div;
