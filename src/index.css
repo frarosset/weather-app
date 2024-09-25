@@ -132,7 +132,8 @@ p {
   text-wrap: pretty;
 }
 
-ul {
+ul,
+ol {
   list-style: none;
 }
 
@@ -275,7 +276,8 @@ a:visited {
 /* GENERIC BLOCKS */
 
 .weather-data-page__weather-insight-div,
-.weather-data-page__hourly-forecasts-div {
+.weather-data-page__hourly-forecasts-div,
+.weather-data-page__daily-forecasts-div {
   display: flex;
   flex-direction: column;
   background-color: var(--block-bg-color);
@@ -286,55 +288,98 @@ a:visited {
 }
 
 .weather-data-page__weather-insight-h3,
-.weather-data-page__hourly-forecasts-h3 {
+.weather-data-page__hourly-forecasts-h3,
+.weather-data-page__daily-forecasts-h3 {
   font-size: var(--h3-font-size);
 }
 
-/* WEATHER INSIGHT */
+/* HOURLY / DAILY FORECASTS */
 
-.weather-data-page__hourly-forecasts-list {
+.weather-data-page__hourly-forecasts-list,
+.weather-data-page__daily-forecasts-list {
   display: flex;
   gap: var(--block-gap-larger);
   overflow-x: auto;
   overflow-y: hidden;
+  padding-bottom: var(--block-gap);
 }
 
-.weather-data-page__hour-forecasts-li {
+.weather-data-page__hour-forecasts-li,
+.weather-data-page__day-forecasts-li {
   display: grid;
-  grid-template-areas:
-    "temp"
-    "icon"
-    "precipprob"
-    "hour";
-  grid-template-rows: max-content max-content max-content max-content;
-  grid-template-columns: repeat(24, min-content);
   align-items: start;
   justify-items: center;
 }
 
-.weather-data-page__hour-forecasts-temp {
+.weather-data-page__hour-forecasts-li {
+  grid-template-areas:
+    "temp"
+    "icon"
+    "precipprob"
+    "time";
+  grid-template-rows: repeat(4, max-content);
+  grid-template-columns: repeat(24, min-content);
+}
+
+.weather-data-page__day-forecasts-li {
+  grid-template-areas:
+    "temp"
+    "templow"
+    "icon"
+    "precipprob"
+    "time"
+    "date";
+  grid-template-rows: repeat(6, max-content);
+  grid-template-columns: repeat(15, min-content);
+  background-color: var(--col-white-alpha);
+  border-radius: var(--radius);
+  padding: var(--block-padding);
+}
+
+.weather-data-page__hour-forecasts-temp,
+.weather-data-page__day-forecasts-temp-high {
   grid-area: temp;
   font-weight: bold;
 }
 
-.weather-data-page__hour-forecasts-icon-div {
+.weather-data-page__day-forecasts-temp-low {
+  grid-area: templow;
+  font-size: var(--txt-small-fontsize);
+}
+
+.weather-data-page__hour-forecasts-icon-div,
+.weather-data-page__day-forecasts-icon-div {
   grid-area: icon;
   width: var(--weather-icon-mini-size);
   height: var(--weather-icon-mini-size);
 }
 
-.weather-data-page__hour-forecasts-precip-prob {
+.weather-data-page__hour-forecasts-precip-prob,
+.weather-data-page__day-forecasts-precip-prob {
   grid-area: precipprob;
   color: var(--col-rain);
   font-size: var(--txt-smaller-fontsize);
   height: calc(var(--txt-smaller-fontsize) * var(--txt-lineheight));
 }
 
-.weather-data-page__hour-forecasts-hour {
-  grid-area: hour;
+.weather-data-page__hour-forecasts-hour,
+.weather-data-page__day-forecasts-day {
+  grid-area: time;
   font-size: var(--txt-small-fontsize);
-  padding: var(--block-gap-larger) 0 var(--block-gap);
+  padding-top: var(--block-gap-larger);
 }
+
+.weather-data-page__day-forecasts-date {
+  grid-area: date;
+  font-size: var(--txt-smaller-fontsize);
+}
+
+/* DAILY FORECASTS */
+
+/*   
+  dayForecastLi: "day-forecasts-li",
+  dayForecastTempLow: "day-forecasts-temp-low",
+ */
 
 /* Customize scrollbars */
 ::-webkit-scrollbar {
