@@ -68,5 +68,9 @@ export function setAnimation(
     loop: loop,
     autoplay: autoplay,
     animationData: clonedData,
+    useFrameInterpolation: false,
+    renderConfig: {
+      devicePixelRatio: 1, // Lower values improve performance but may reduce animation quality
+    },
   });
 }
