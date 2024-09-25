@@ -20,7 +20,6 @@ const properties = [
   "winddir",
   "moonphase",
   "solarradiation",
-  "solarenergy",
   "uvindex",
   "conditions",
   "description",
