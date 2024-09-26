@@ -109,3 +109,11 @@ export function setAnimation(
     },
   });
 }
+
+export function freezeAllAnimations(unfreeze = false) {
+  if (unfreeze) {
+    lottie.unfreeze();
+  } else {
+    lottie.freeze();
+  }
+}
