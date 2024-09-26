@@ -9,8 +9,10 @@ import {
   setAnimation,
   uvindexIcons,
   solarRadiationIcon,
+  astroIcons,
   moonphaseIcons,
 } from "./animations.js";
+import { format } from "date-fns";
 
 const blockName = "weather-data-page";
 const cssClass = {
@@ -19,10 +21,13 @@ const cssClass = {
   otherConditionLi: "other-condition-li",
   otherConditionH3: "other-condition-h3",
   otherConditionContent: "other-condition-content",
+  otherConditionContentMany: "other-condition-content-many",
   otherConditionIconDiv: "other-condition-icon-div",
   otherConditionValueDiv: "other-condition-value-div",
   otherConditionValue: "other-condition-value",
   otherConditionValueUnit: "other-condition-value-unit",
+  otherConditionIconWithValueDiv: "other-condition-icon-with-value-div",
+  otherConditionIconWithValueValue: "other-condition-icon-with-value-value",
 };
 const getCssClass = (element) => `${blockName}__${cssClass[element]}`;
 
@@ -38,13 +43,15 @@ function initOtherConditionsDiv(subdata, prestr) {
   const otherConditionsDiv = [
     ["UV Index", initUvIndexContent],
     ["Solar Radiation", initSolarRadiationContent],
+    ["Sunrise & Sunset", initSunriseAndSunsetContent],
+    ["Moonrise & Moonset", initMoonriseAndMoonsetContent],
     ["Moonphase", initMoonPhaseContent],
   ];
 
   otherConditionsDiv.forEach(([title, callback]) => {
     const div = callback(subdata);
 
-    if (subdata == null) return;
+    if (subdata == null || div == null) return;
 
     const otherConditionLi = initLiAsChildInList(
       otherConditionsList,
@@ -70,7 +77,7 @@ function initUvIndexContent(subdata) {
   const uvIndex = subdata.uvindex;
   if (uvIndex == null) return null;
 
-  const div = initDiv(getCssClass("otherConditionContent", "uv-index"));
+  const div = initDiv([getCssClass("otherConditionContent"), "uv-index"]);
   div.append(initIcon(uvindexIcons[`uv-index-${uvIndex}`]));
   return div;
 }
@@ -79,7 +86,10 @@ function initSolarRadiationContent(subdata) {
   const solarRadiation = subdata.solarradiationStr;
   if (solarRadiation == null) return null;
 
-  const div = initDiv(getCssClass("otherConditionContent", "solar-radiation"));
+  const div = initDiv([
+    getCssClass("otherConditionContent"),
+    "solar-radiation",
+  ]);
   div.append(initIcon(solarRadiationIcon), initValue(solarRadiation));
   return div;
 }
@@ -87,8 +97,48 @@ function initSolarRadiationContent(subdata) {
 function initMoonPhaseContent(subdata) {
   const moonphase = subdata.moonphaseIconStr;
   if (moonphase == null) return null;
-  const div = initDiv(getCssClass("otherConditionContent", "moonphase"));
+  const div = initDiv([getCssClass("otherConditionContent"), "moonphase"]);
   div.append(initIcon(moonphaseIcons[`${moonphase}`]));
+  return div;
+}
+
+function initSunriseAndSunsetContent(subdata) {
+  const sunrise = subdata.sunrise;
+  const sunset = subdata.sunset;
+
+  if (sunrise == null || sunset == null) return null;
+
+  const div = initDiv([
+    getCssClass("otherConditionContent"),
+    getCssClass("otherConditionContentMany"),
+    "sunrise-and-sunset",
+  ]);
+
+  div.append(
+    initIconWithValue(astroIcons["sunrise"], format(sunrise, "HH:mm")),
+    initIconWithValue(astroIcons["sunset"], format(sunset, "HH:mm"))
+  );
+
+  return div;
+}
+
+function initMoonriseAndMoonsetContent(subdata) {
+  const moonrise = subdata.moonrise;
+  const moonset = subdata.moonset;
+
+  if (moonrise == null || moonset == null) return null;
+
+  const div = initDiv([
+    getCssClass("otherConditionContent"),
+    getCssClass("otherConditionContentMany"),
+    "sunriseAndSunset",
+  ]);
+
+  div.append(
+    initIconWithValue(astroIcons["moonrise"], format(moonrise, "HH:mm")),
+    initIconWithValue(astroIcons["moonset"], format(moonset, "HH:mm"))
+  );
+
   return div;
 }
 
@@ -113,4 +163,13 @@ function initValue(valStr) {
   div.classList.add(`x${Math.min(5, value.length)}`);
 
   return div;
+}
+
+function initIconWithValue(icon, value) {
+  const dataDiv = initDiv(getCssClass("otherConditionIconWithValueDiv"));
+  dataDiv.append(
+    initIcon(icon),
+    initP(getCssClass("otherConditionIconWithValueValue"), null, value)
+  );
+  return dataDiv;
 }

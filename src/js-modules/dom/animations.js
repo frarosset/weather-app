@@ -41,6 +41,12 @@ import uvIndex9 from "../../assets/Meteocons/uvindex/uv-index-9.json";
 import uvIndex10 from "../../assets/Meteocons/uvindex/uv-index-10.json";
 import uvIndex11 from "../../assets/Meteocons/uvindex/uv-index-11.json";
 
+// Astro
+import sunrise from "../../assets/Meteocons/astro/sunrise.json";
+import sunset from "../../assets/Meteocons/astro/sunset.json";
+import moonrise from "../../assets/Meteocons/astro/moonrise.json";
+import moonset from "../../assets/Meteocons/astro/moonset.json";
+
 // Moonphase
 import moonFirstQuarter from "../../assets/Meteocons/moonphase/moon-first-quarter.json";
 import moonFull from "../../assets/Meteocons/moonphase/moon-full.json";
@@ -92,6 +98,13 @@ export const uvindexIcons = {
   "uv-index-9": uvIndex9,
   "uv-index-10": uvIndex10,
   "uv-index-11": uvIndex11,
+};
+
+export const astroIcons = {
+  sunrise: sunrise,
+  sunset: sunset,
+  moonrise: moonrise,
+  moonset: moonset,
 };
 
 export const moonphaseIcons = {

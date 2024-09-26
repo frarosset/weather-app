@@ -15,7 +15,7 @@ thunder-showers-day      <-->  thunderstorms-day-rain
 thunder-showers-night    <-->  thunderstorms-night-rain
 thunder-rain             <-->  thunderstorms-rain
 
-solar-radiation          <-->  dust-day
+solar-radiation          <-->  sun-hot
 
 
 Some files have been created modifying existing files
