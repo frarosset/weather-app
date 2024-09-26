@@ -432,8 +432,26 @@ a:visited {
   font-size: var(--other-condition-value-fontsize);
 }
 
+.x3 .weather-data-page__other-condition-value,
+.x4 .weather-data-page__other-condition-value {
+  font-size: calc(var(--other-condition-value-fontsize) / 2);
+}
+
+.x5 .weather-data-page__other-condition-value {
+  font-size: calc(var(--other-condition-value-fontsize) / 4);
+}
+
 .weather-data-page__other-condition-value-unit {
   font-size: var(--other-condition-unit-fontsize);
+}
+
+.x3 .weather-data-page__other-condition-value-unit,
+.x4 .weather-data-page__other-condition-value-unit {
+  font-size: calc(var(--other-condition-unit-fontsize) / 1);
+}
+
+.x5 .weather-data-page__other-condition-value-unit {
+  font-size: calc(var(--other-condition-unit-fontsize) / 2);
 }
 
 /* Customize scrollbars */
