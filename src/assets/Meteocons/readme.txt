@@ -20,3 +20,6 @@ solar-radiation          <-->  sun-hot
 
 Some files have been created modifying existing files
 uv-index-0
+
+
+Some animations have been trimmed using the tool found at https://dealfonso.github.io/simplelottieplayer/lottietrimmer.html
