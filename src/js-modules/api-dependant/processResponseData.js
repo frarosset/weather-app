@@ -25,7 +25,7 @@ const properties = [
   "description",
   "icon",
 ];
-const dates = ["datetime", "sunrise", "sunset"];
+const dates = ["datetime", "sunrise", "sunset", "moonrise", "moonset"];
 
 const alertProperties = ["event", "headline", "link", "description"];
 const alertDates = ["onset", "ends"];

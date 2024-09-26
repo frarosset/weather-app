@@ -411,7 +411,8 @@ a:visited {
 
 .weather-data-page__other-condition-icon-div {
   width: var(--weather-icon-mid-size);
-  height: var(--weather-icon-mid-size);
+  height: min-content;
+  /* var(--weather-icon-mid-size); */
 }
 
 .weather-data-page__other-condition-value-div {
