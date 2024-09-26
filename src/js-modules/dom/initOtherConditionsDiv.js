@@ -22,14 +22,13 @@ const cssClass = {
   otherConditionLi: "other-condition-li",
   otherConditionH3: "other-condition-h3",
   otherConditionContent: "other-condition-content",
-  otherConditionContentMany: "other-condition-content-many",
   otherConditionIconDiv: "other-condition-icon-div",
   otherConditionValueDiv: "other-condition-value-div",
   otherConditionValue: "other-condition-value",
   otherConditionValueUnit: "other-condition-value-unit",
   otherConditionIconWithValueDiv: "other-condition-icon-with-value-div",
   otherConditionIconWithValueValue: "other-condition-icon-with-value-value",
-  otherConditionValueSmallDiv: "other-conditionvalue-small-div",
+  otherConditionValueSmallDiv: "other-condition-value-small-div",
   otherConditionValueSmallPre: "other-condition-value-small-pre",
   otherConditionValueSmall: "other-condition-value-small",
   otherConditionValueSmallPost: "other-condition-value-small-post",
@@ -89,7 +88,11 @@ function initPrecipitationContent(subdata) {
 
   if (precip == null) return null;
 
-  const div = initDiv([getCssClass("otherConditionContent"), "precip"]);
+  const div = initDiv([
+    getCssClass("otherConditionContent"),
+    "grid-icon-and-three-values",
+    "precip",
+  ]);
 
   if (preciptype != null) {
     div.append(
@@ -98,7 +101,7 @@ function initPrecipitationContent(subdata) {
     );
   }
 
-  div.append(initValue(precip), initValueSmall(precipprob));
+  div.append(initValue(precip), initValueSmall(precipprob, "Chances: "));
 
   return div;
 }
@@ -118,6 +121,7 @@ function initSolarRadiationContent(subdata) {
 
   const div = initDiv([
     getCssClass("otherConditionContent"),
+    "grid-icon-and-value",
     "solar-radiation",
   ]);
   div.append(initIcon(solarRadiationIcon), initValue(solarRadiation));
@@ -140,7 +144,7 @@ function initSunriseAndSunsetContent(subdata) {
 
   const div = initDiv([
     getCssClass("otherConditionContent"),
-    getCssClass("otherConditionContentMany"),
+    "flex-list",
     "sunrise-and-sunset",
   ]);
 
@@ -160,7 +164,7 @@ function initMoonriseAndMoonsetContent(subdata) {
 
   const div = initDiv([
     getCssClass("otherConditionContent"),
-    getCssClass("otherConditionContentMany"),
+    "flex-list",
     "sunriseAndSunset",
   ]);
 
