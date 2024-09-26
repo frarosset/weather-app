@@ -7,6 +7,7 @@ import {
 } from "../../js-utilities/commonDomComponents.js";
 import {
   setAnimation,
+  precipIcons,
   uvindexIcons,
   solarRadiationIcon,
   astroIcons,
@@ -28,6 +29,10 @@ const cssClass = {
   otherConditionValueUnit: "other-condition-value-unit",
   otherConditionIconWithValueDiv: "other-condition-icon-with-value-div",
   otherConditionIconWithValueValue: "other-condition-icon-with-value-value",
+  otherConditionValueSmallDiv: "other-conditionvalue-small-div",
+  otherConditionValueSmallPre: "other-condition-value-small-pre",
+  otherConditionValueSmall: "other-condition-value-small",
+  otherConditionValueSmallPost: "other-condition-value-small-post",
 };
 const getCssClass = (element) => `${blockName}__${cssClass[element]}`;
 
@@ -41,6 +46,7 @@ function initOtherConditionsDiv(subdata, prestr) {
   const otherConditionsList = initUl(getCssClass("otherConditionsList"));
 
   const otherConditionsDiv = [
+    ["Precipitation", initPrecipitationContent],
     ["UV Index", initUvIndexContent],
     ["Solar Radiation", initSolarRadiationContent],
     ["Sunrise & Sunset", initSunriseAndSunsetContent],
@@ -72,6 +78,30 @@ function initOtherConditionsDiv(subdata, prestr) {
 }
 
 // Init Specific Other Info Content
+
+function initPrecipitationContent(subdata) {
+  const precip = subdata.precipStr;
+  const preciptype = subdata.preciptypeStr;
+  const preciptypeIcon = subdata.preciptypeIconStr;
+  const precipprob = subdata.precipprobStr;
+
+  console.log(precip, preciptype, precipprob);
+
+  if (precip == null) return null;
+
+  const div = initDiv([getCssClass("otherConditionContent"), "precip"]);
+
+  if (preciptype != null) {
+    div.append(
+      initValueSmall(preciptype),
+      initIcon(precipIcons[preciptypeIcon])
+    );
+  }
+
+  div.append(initValue(precip), initValueSmall(precipprob));
+
+  return div;
+}
 
 function initUvIndexContent(subdata) {
   const uvIndex = subdata.uvindex;
@@ -172,4 +202,14 @@ function initIconWithValue(icon, value) {
     initP(getCssClass("otherConditionIconWithValueValue"), null, value)
   );
   return dataDiv;
+}
+
+function initValueSmall(valueStr, pretext = "", posttext = "") {
+  const div = initDiv(getCssClass("otherConditionValueSmallDiv"));
+  div.append(
+    initP(getCssClass("otherConditionValueSmallPre"), null, pretext),
+    initP(getCssClass("otherConditionValueSmall"), null, valueStr),
+    initP(getCssClass("otherConditionValueSmallPost"), null, posttext)
+  );
+  return div;
 }

@@ -24,6 +24,12 @@ import thunderShowersNight from "../../assets/Meteocons/weather/thunder-showers-
 import rainSnowShowersNight from "../../assets/Meteocons/weather/rain-snow-showers-night.json";
 import wind from "../../assets/Meteocons/weather/wind.json";
 
+// Precip
+import precipRain from "../../assets/Meteocons/precipitation/rain.json";
+import precipSnow from "../../assets/Meteocons/precipitation/snow.json";
+import precipSleet from "../../assets/Meteocons/precipitation/sleet.json";
+import precipRainAndSnow from "../../assets/Meteocons/precipitation/rain-and-snow.json";
+
 // Other Conditions
 import solarRadiation from "../../assets/Meteocons/solar-radiation.json";
 
@@ -83,6 +89,13 @@ export const weatherIcons = {
   "thunder-showers-night": thunderShowersNight,
   "rain-snow-showers-night": rainSnowShowersNight,
   wind: wind,
+};
+
+export const precipIcons = {
+  rain: precipRain,
+  snow: precipSnow,
+  sleet: precipSleet,
+  rainAndSnow: precipRainAndSnow,
 };
 
 export const uvindexIcons = {

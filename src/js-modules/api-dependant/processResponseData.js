@@ -171,6 +171,38 @@ function processProperties(propArr, responseSubObj, isDate, unitGroup = null) {
             responseSubObj.moonphase
           );
           return obj;
+        } else if (prop == "preciptype") {
+          const type = responseSubObj.preciptype;
+          let typeStr;
+          let typeStrIcon;
+
+          if (type.length === 1) {
+            if (type[0] == "rain" || type[0] == "snow" || type == "sleet") {
+              typeStr = type[0];
+              typeStrIcon = type[0];
+            } else if (type[0] == "hail") {
+              typeStr = type[0];
+              typeStrIcon = "sleet";
+            } else {
+              // Freezing Rain and Ice
+              typeStr = type[0];
+              typeStrIcon = "rain-and-snow";
+            }
+          } else if (
+            type.length === 2 &&
+            type.includes("rain") &&
+            type.includes("snow")
+          ) {
+            typeStr = "Rain and Snow";
+            typeStrIcon = "rain-and-snow";
+          } else {
+            typeStr = type.join(", ");
+            typeStrIcon = "rain";
+          }
+
+          obj[propName] = typeStr;
+          obj["preciptypeIconStr"] = typeStrIcon;
+          return obj;
         }
       }
 
@@ -179,6 +211,13 @@ function processProperties(propArr, responseSubObj, isDate, unitGroup = null) {
       if (isDate) {
         obj[`${propName}Min`] =
           obj[propName].getHours() * 60 + obj[propName].getMinutes();
+      } else if (prop == "precipprob" && responseSubObj["precip"] == null) {
+        if (unitGroup != null) {
+          const unit = getUnit("precip", unitGroup);
+          return (obj[`precipStr`] = `0 ${unit}`);
+        } else {
+          return (obj[`precip`] = `0`);
+        }
       }
     }
   });
