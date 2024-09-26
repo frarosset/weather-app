@@ -41,6 +41,8 @@
   --temp-font-size: 5em;
   --other-condition-value-fontsize: 3.5em;
   --other-condition-unit-fontsize: 1em;
+  --other-condition-small-fontsize: 0.8em;
+  --other-condition-smaller-fontsize: 0.6em;
 
   /* Text clamping: number of lines */
   /* --main-itm-project-description-max-lines: 6;
@@ -406,30 +408,24 @@ a:visited {
 }
 
 .weather-data-page__other-condition-content {
-  position: relative;
+  flex: 1;
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
 }
 
 .weather-data-page__other-condition-icon-div {
   width: var(--weather-icon-mid-size);
   height: min-content;
-  /* var(--weather-icon-mid-size); */
+  z-index: -1;
 }
 
 .weather-data-page__other-condition-value-div {
-  position: absolute;
-  left: 0;
-  right: 0;
-  top: 0;
-  bottom: 0;
-  margin: auto;
   width: fit-content;
   height: fit-content;
   display: flex;
   align-items: baseline;
-}
-
-.weather-data-page__other-condition-content-many {
-  display: flex;
 }
 
 .weather-data-page__other-condition-value {
@@ -459,6 +455,12 @@ a:visited {
   font-size: calc(var(--other-condition-unit-fontsize) / 2);
 }
 
+.weather-data-page__other-condition-value-small-div {
+  font-size: var(--other-condition-small-fontsize);
+  display: flex;
+  gap: 0.2em;
+}
+
 .weather-data-page__other-condition-icon-with-value-div {
   display: flex;
   flex-direction: column;
@@ -467,6 +469,69 @@ a:visited {
 .weather-data-page__other-condition-icon-with-value-value {
   text-align: center;
   font-weight: bold;
+}
+
+/* Specific layouts */
+.weather-data-page__other-condition-content.flex-list {
+  display: flex;
+}
+
+.weather-data-page__other-condition-content.grid-icon-and-value,
+.weather-data-page__other-condition-content.grid-icon-and-three-values {
+  display: grid;
+  align-items: center;
+  justify-items: center;
+  width: 100%;
+}
+
+.weather-data-page__other-condition-content.grid-icon-and-three-values {
+  grid-template-columns: min-content 1fr;
+}
+
+.grid-icon-and-value .weather-data-page__other-condition-icon-div {
+  grid-column: 1;
+  grid-row: 1;
+}
+
+.grid-icon-and-value .weather-data-page__other-condition-value-div {
+  grid-column: 2;
+  grid-row: 1;
+}
+
+.grid-icon-and-three-values .weather-data-page__other-condition-icon-div {
+  grid-column: 1;
+  grid-row: 1/3;
+}
+
+.grid-icon-and-three-values .weather-data-page__other-condition-value-div {
+  grid-column: 2;
+  grid-row: 1;
+  align-self: end;
+}
+
+.grid-icon-and-three-values
+  .weather-data-page__other-condition-value-small-div:first-of-type {
+  grid-column: 2;
+  grid-row: 2;
+  align-self: start;
+  width: 100%;
+  border-top: 1px solid var(--col-dark-grey);
+  display: flex;
+  justify-content: center;
+}
+
+.grid-icon-and-three-values
+  .weather-data-page__other-condition-value-small-div:last-of-type {
+  grid-column: 1/3;
+  grid-row: 3;
+  justify-self: start;
+  align-self: end;
+}
+
+.grid-icon-and-three-values
+  .weather-data-page__other-condition-value-small-div:last-of-type
+  .weather-data-page__other-condition-value-small {
+  color: var(--col-rain);
 }
 
 /* Customize scrollbars */
