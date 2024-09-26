@@ -110,5 +110,7 @@ function initValue(valStr) {
     initP(getCssClass("otherConditionValueUnit"), null, units)
   );
 
+  div.classList.add(`x${Math.min(5, value.length)}`);
+
   return div;
 }
