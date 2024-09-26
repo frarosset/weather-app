@@ -428,6 +428,10 @@ a:visited {
   align-items: baseline;
 }
 
+.weather-data-page__other-condition-content-many {
+  display: flex;
+}
+
 .weather-data-page__other-condition-value {
   font-weight: bold;
   font-size: var(--other-condition-value-fontsize);
@@ -453,6 +457,16 @@ a:visited {
 
 .x5 .weather-data-page__other-condition-value-unit {
   font-size: calc(var(--other-condition-unit-fontsize) / 2);
+}
+
+.weather-data-page__other-condition-icon-with-value-div {
+  display: flex;
+  flex-direction: column;
+}
+
+.weather-data-page__other-condition-icon-with-value-value {
+  text-align: center;
+  font-weight: bold;
 }
 
 /* Customize scrollbars */
