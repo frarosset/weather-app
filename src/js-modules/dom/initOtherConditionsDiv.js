@@ -9,6 +9,7 @@ import {
   setAnimation,
   uvindexIcons,
   solarRadiationIcon,
+  moonphaseIcons,
 } from "./animations.js";
 
 const blockName = "weather-data-page";
@@ -37,6 +38,7 @@ function initOtherConditionsDiv(subdata, prestr) {
   const otherConditionsDiv = [
     ["UV Index", initUvIndexContent],
     ["Solar Radiation", initSolarRadiationContent],
+    ["Moonphase", initMoonPhaseContent],
   ];
 
   otherConditionsDiv.forEach(([title, callback]) => {
@@ -79,6 +81,14 @@ function initSolarRadiationContent(subdata) {
 
   const div = initDiv(getCssClass("otherConditionContent", "solar-radiation"));
   div.append(initIcon(solarRadiationIcon), initValue(solarRadiation));
+  return div;
+}
+
+function initMoonPhaseContent(subdata) {
+  const moonphase = subdata.moonphaseIconStr;
+  if (moonphase == null) return null;
+  const div = initDiv(getCssClass("otherConditionContent", "moonphase"));
+  div.append(initIcon(moonphaseIcons[`${moonphase}`]));
   return div;
 }
 

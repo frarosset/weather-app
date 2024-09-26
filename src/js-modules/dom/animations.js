@@ -41,6 +41,16 @@ import uvIndex9 from "../../assets/Meteocons/uvindex/uv-index-9.json";
 import uvIndex10 from "../../assets/Meteocons/uvindex/uv-index-10.json";
 import uvIndex11 from "../../assets/Meteocons/uvindex/uv-index-11.json";
 
+// Moonphase
+import moonFirstQuarter from "../../assets/Meteocons/moonphase/moon-first-quarter.json";
+import moonFull from "../../assets/Meteocons/moonphase/moon-full.json";
+import moonLastQuarter from "../../assets/Meteocons/moonphase/moon-last-quarter.json";
+import moonNew from "../../assets/Meteocons/moonphase/moon-new.json";
+import moonWaningCrescent from "../../assets/Meteocons/moonphase/moon-waning-crescent.json";
+import moonWaningGibbous from "../../assets/Meteocons/moonphase/moon-waning-gibbous.json";
+import moonWaxingCrescent from "../../assets/Meteocons/moonphase/moon-waxing-crescent.json";
+import moonWaxingGibbous from "../../assets/Meteocons/moonphase/moon-waxing-gibbous.json";
+
 // Icons
 import alert from "../../assets/LottieFiles/alert.json";
 
@@ -82,6 +92,17 @@ export const uvindexIcons = {
   "uv-index-9": uvIndex9,
   "uv-index-10": uvIndex10,
   "uv-index-11": uvIndex11,
+};
+
+export const moonphaseIcons = {
+  "moon-first-quarter": moonFirstQuarter,
+  "moon-full": moonFull,
+  "moon-last-quarter": moonLastQuarter,
+  "moon-new": moonNew,
+  "moon-waning-crescent": moonWaningCrescent,
+  "moon-waning-gibbous": moonWaningGibbous,
+  "moon-waxing-crescent": moonWaxingCrescent,
+  "moon-waxing-gibbous": moonWaxingGibbous,
 };
 
 export const solarRadiationIcon = solarRadiation;
