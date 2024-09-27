@@ -34,6 +34,8 @@ import precipSnowflake from "../../assets/Meteocons/precipitation/snowflake.json
 // Other Conditions
 import solarRadiation from "../../assets/Meteocons/other/solar-radiation.json";
 import compass from "../../assets/Meteocons/other/compass.json";
+import pressureHigh from "../../assets/Meteocons/other/pressure-high-alt.json";
+import pressureLow from "../../assets/Meteocons/other/pressure-low-alt.json";
 
 // UV index
 import uvIndex0 from "../../assets/Meteocons/uvindex/uv-index-0.json";
@@ -137,6 +139,8 @@ export const moonphaseIcons = {
 export const otherIcons = {
   solarRadiation: solarRadiation,
   compass: compass,
+  pressurehigh: pressureHigh,
+  pressurelow: pressureLow,
 };
 
 export const icons = {

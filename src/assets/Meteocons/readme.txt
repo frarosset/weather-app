@@ -20,6 +20,8 @@ solar-radiation          <-->  sun-hot
 
 Some files have been created modifying existing files
 uv-index-0
-
+compass
+pressure-high-alt
+pressure-low-alt
 
 Some animations have been trimmed using the tool found at https://dealfonso.github.io/simplelottieplayer/lottietrimmer.html
