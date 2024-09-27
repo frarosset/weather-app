@@ -9,7 +9,7 @@ import {
   setAnimation,
   precipIcons,
   uvindexIcons,
-  solarRadiationIcon,
+  otherIcons,
   astroIcons,
   moonphaseIcons,
 } from "./animations.js";
@@ -45,6 +45,7 @@ function initOtherConditionsDiv(subdata, prestr) {
   const otherConditionsList = initUl(getCssClass("otherConditionsList"));
 
   const otherConditionsDiv = [
+    ["Wind", initWindContent],
     ["Precipitation", initPrecipitationContent],
     ["Snow", initSnowContent],
     ["UV Index", initUvIndexContent],
@@ -78,6 +79,32 @@ function initOtherConditionsDiv(subdata, prestr) {
 }
 
 // Init Specific Other Info Content
+
+function initWindContent(subdata) {
+  const windspeed = subdata.windspeedStr;
+  const winddirDeg = subdata.winddir;
+  const winddir = subdata.winddirStr;
+  const windgust = subdata.windgustStr;
+
+  if (windspeed == null) return null;
+
+  const div = initDiv([
+    getCssClass("otherConditionContent"),
+    "grid-icon-and-three-values",
+    "wind",
+  ]);
+
+  const icon = initIcon(otherIcons["compass"]);
+  icon.style.transform = `rotate(${180 + winddirDeg}deg)`;
+
+  div.append(initValueSmall(winddir, "from"), icon, initValue(windspeed));
+
+  if (windgust != null) {
+    div.append(initValueSmall(windgust, "Gust:"));
+  }
+
+  return div;
+}
 
 function initPrecipitationContent(subdata) {
   const precip = subdata.precipStr;
@@ -144,7 +171,7 @@ function initSolarRadiationContent(subdata) {
     "grid-icon-and-value",
     "solar-radiation",
   ]);
-  div.append(initIcon(solarRadiationIcon), initValue(solarRadiation));
+  div.append(initIcon(otherIcons.solarRadiation), initValue(solarRadiation));
   return div;
 }
 

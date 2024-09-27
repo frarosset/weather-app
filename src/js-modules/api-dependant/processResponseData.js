@@ -214,7 +214,7 @@ function processProperties(propArr, responseSubObj, isDate, unitGroup = null) {
       } else if (prop == "precipprob" && responseSubObj["precip"] == null) {
         if (unitGroup != null) {
           const unit = getUnit("precip", unitGroup);
-          return (obj[`precipStr`] = `0 ${unit}`);
+          return (obj[`precipStr`] = `0${unit}`);
         } else {
           return (obj[`precip`] = `0`);
         }
