@@ -32,7 +32,8 @@ import precipRainAndSnow from "../../assets/Meteocons/precipitation/rain-and-sno
 import precipSnowflake from "../../assets/Meteocons/precipitation/snowflake.json";
 
 // Other Conditions
-import solarRadiation from "../../assets/Meteocons/solar-radiation.json";
+import solarRadiation from "../../assets/Meteocons/other/solar-radiation.json";
+import compass from "../../assets/Meteocons/other/compass.json";
 
 // UV index
 import uvIndex0 from "../../assets/Meteocons/uvindex/uv-index-0.json";
@@ -133,7 +134,10 @@ export const moonphaseIcons = {
   "moon-waxing-gibbous": moonWaxingGibbous,
 };
 
-export const solarRadiationIcon = solarRadiation;
+export const otherIcons = {
+  solarRadiation: solarRadiation,
+  compass: compass,
+};
 
 export const icons = {
   alert: alert,
