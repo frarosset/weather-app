@@ -16,7 +16,7 @@ thunder-showers-night    <-->  thunderstorms-night-rain
 thunder-rain             <-->  thunderstorms-rain
 visibility               <-->  pollen-tree
 solar-radiation          <-->  sun-hot
-
+cloudcoverage            <-->  overcast
 
 Some files have been created modifying existing files
 uv-index-0

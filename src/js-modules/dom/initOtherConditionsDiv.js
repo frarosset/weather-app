@@ -48,6 +48,7 @@ function initOtherConditionsDiv(subdata, prestr) {
     ["Wind", initWindContent],
     ["Precipitation", initPrecipitationContent],
     ["Snow", initSnowContent],
+    ["Cloud Cover", initCloudCoverContent],
     ["Pressure", initPressureContent],
     ["Visibility", initVisibilityContent],
     ["UV Index", initUvIndexContent],
@@ -174,6 +175,24 @@ function initPressureContent(subdata) {
   } else if (pressureVal < 1013) {
     div.append(initIcon(otherIcons["pressurelow"]));
   }
+
+  return div;
+}
+
+function initCloudCoverContent(subdata) {
+  const cloudCover = subdata.cloudcoverStr;
+
+  if (cloudCover == null) return null;
+
+  const div = initDiv([
+    getCssClass("otherConditionContent"),
+    "grid-icon-and-value",
+    "cloudcover",
+  ]);
+
+  div.append(initValue(cloudCover));
+
+  div.append(initIcon(otherIcons["cloudcover"]));
 
   return div;
 }
