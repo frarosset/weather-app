@@ -37,6 +37,7 @@ import compass from "../../assets/Meteocons/other/compass.json";
 import pressureHigh from "../../assets/Meteocons/other/pressure-high-alt.json";
 import pressureLow from "../../assets/Meteocons/other/pressure-low-alt.json";
 import visibility from "../../assets/Meteocons/other/visibility.json";
+import cloudcover from "../../assets/Meteocons/other/cloudcover.json";
 
 // UV index
 import uvIndex0 from "../../assets/Meteocons/uvindex/uv-index-0.json";
@@ -143,6 +144,7 @@ export const otherIcons = {
   pressurehigh: pressureHigh,
   pressurelow: pressureLow,
   visibility: visibility,
+  cloudcover: cloudcover,
 };
 
 export const icons = {
