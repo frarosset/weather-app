@@ -48,6 +48,7 @@ function initOtherConditionsDiv(subdata, prestr) {
     ["Wind", initWindContent],
     ["Precipitation", initPrecipitationContent],
     ["Snow", initSnowContent],
+    ["Pressure", initPressureContent],
     ["UV Index", initUvIndexContent],
     ["Solar Radiation", initSolarRadiationContent],
     ["Sunrise & Sunset", initSunriseAndSunsetContent],
@@ -148,6 +149,29 @@ function initSnowContent(subdata) {
 
   if (snowdepth != null) {
     div.append(initValueSmall(snowdepth, "", "on floor"));
+  }
+
+  return div;
+}
+
+function initPressureContent(subdata) {
+  const pressure = subdata.pressureStr;
+  const pressureVal = subdata.pressure;
+
+  if (pressure == null) return null;
+
+  const div = initDiv([
+    getCssClass("otherConditionContent"),
+    "grid-icon-and-value",
+    "pressure",
+  ]);
+
+  div.append(initValue(pressure));
+
+  if (pressureVal > 1013) {
+    div.append(initIcon(otherIcons["pressurehigh"]));
+  } else if (pressureVal < 1013) {
+    div.append(initIcon(otherIcons["pressurelow"]));
   }
 
   return div;
