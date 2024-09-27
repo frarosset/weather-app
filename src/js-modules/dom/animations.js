@@ -29,6 +29,7 @@ import precipRain from "../../assets/Meteocons/precipitation/rain.json";
 import precipSnow from "../../assets/Meteocons/precipitation/snow.json";
 import precipSleet from "../../assets/Meteocons/precipitation/sleet.json";
 import precipRainAndSnow from "../../assets/Meteocons/precipitation/rain-and-snow.json";
+import precipSnowflake from "../../assets/Meteocons/precipitation/snowflake.json";
 
 // Other Conditions
 import solarRadiation from "../../assets/Meteocons/solar-radiation.json";
@@ -96,6 +97,7 @@ export const precipIcons = {
   snow: precipSnow,
   sleet: precipSleet,
   rainAndSnow: precipRainAndSnow,
+  snowflake: precipSnowflake,
 };
 
 export const uvindexIcons = {

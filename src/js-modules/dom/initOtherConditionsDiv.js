@@ -46,6 +46,7 @@ function initOtherConditionsDiv(subdata, prestr) {
 
   const otherConditionsDiv = [
     ["Precipitation", initPrecipitationContent],
+    ["Snow", initSnowContent],
     ["UV Index", initUvIndexContent],
     ["Solar Radiation", initSolarRadiationContent],
     ["Sunrise & Sunset", initSunriseAndSunsetContent],
@@ -84,8 +85,6 @@ function initPrecipitationContent(subdata) {
   const preciptypeIcon = subdata.preciptypeIconStr;
   const precipprob = subdata.precipprobStr;
 
-  console.log(precip, preciptype, precipprob);
-
   if (precip == null) return null;
 
   const div = initDiv([
@@ -102,6 +101,27 @@ function initPrecipitationContent(subdata) {
   }
 
   div.append(initValue(precip), initValueSmall(precipprob, "Chances: "));
+
+  return div;
+}
+
+function initSnowContent(subdata) {
+  const snow = subdata.snowSrt;
+  const snowdepth = subdata.snowdepthStr;
+
+  if (snow == null) return null;
+
+  const div = initDiv([
+    getCssClass("otherConditionContent"),
+    "grid-icon-and-two-values",
+    "snow",
+  ]);
+
+  div.append(initIcon(precipIcons["snowflake"]), initValue(snow));
+
+  if (snowdepth != null) {
+    div.append(initValueSmall(snowdepth, "", "on floor"));
+  }
 
   return div;
 }
