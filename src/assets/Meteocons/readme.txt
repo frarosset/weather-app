@@ -14,7 +14,7 @@ thunder                  <-->  thunderstorms
 thunder-showers-day      <-->  thunderstorms-day-rain
 thunder-showers-night    <-->  thunderstorms-night-rain
 thunder-rain             <-->  thunderstorms-rain
-
+visibility               <-->  pollen-tree
 solar-radiation          <-->  sun-hot
 
 
@@ -23,5 +23,6 @@ uv-index-0
 compass
 pressure-high-alt
 pressure-low-alt
+visibility
 
 Some animations have been trimmed using the tool found at https://dealfonso.github.io/simplelottieplayer/lottietrimmer.html

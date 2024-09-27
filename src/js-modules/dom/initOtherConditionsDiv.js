@@ -49,6 +49,7 @@ function initOtherConditionsDiv(subdata, prestr) {
     ["Precipitation", initPrecipitationContent],
     ["Snow", initSnowContent],
     ["Pressure", initPressureContent],
+    ["Visibility", initVisibilityContent],
     ["UV Index", initUvIndexContent],
     ["Solar Radiation", initSolarRadiationContent],
     ["Sunrise & Sunset", initSunriseAndSunsetContent],
@@ -172,6 +173,31 @@ function initPressureContent(subdata) {
     div.append(initIcon(otherIcons["pressurehigh"]));
   } else if (pressureVal < 1013) {
     div.append(initIcon(otherIcons["pressurelow"]));
+  }
+
+  return div;
+}
+
+function initVisibilityContent(subdata) {
+  const visibility = subdata.visibilityStr;
+  const visibilityVal = subdata.visibility;
+
+  if (visibility == null) return null;
+
+  const div = initDiv([
+    getCssClass("otherConditionContent"),
+    "grid-icon-and-value",
+    "visibility",
+  ]);
+
+  div.append(initValue(visibility));
+
+  const icon = initIcon(otherIcons["visibility"]);
+  div.append(icon);
+
+  const visibilityReduced = 5; // reduce opacity when below this value
+  if (visibilityVal < visibilityReduced) {
+    icon.style.opacity = `${(visibilityVal / visibilityReduced) * 100}%`;
   }
 
   return div;
