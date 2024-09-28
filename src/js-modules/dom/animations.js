@@ -4,6 +4,7 @@ import * as lottie from "lottie-web";
 import alert from "../../assets/LottieFiles/alert.json";
 
 // Page animations
+import fetchingAnimation from "../../assets/LottieFiles/fetching.json";
 import errorAnimation from "../../assets/LottieFiles/error.json";
 
 // Weather icons
@@ -156,7 +157,7 @@ export const icons = {
   alert: alert,
 };
 
-export { errorAnimation };
+export { errorAnimation, fetchingAnimation };
 
 export function setAnimation(
   parentContainer,

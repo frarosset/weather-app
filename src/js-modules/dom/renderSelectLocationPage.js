@@ -41,6 +41,7 @@ function initSearchDiv() {
   searchInput.addEventListener("change", (e) => {
     const location = e.currentTarget.value;
     if (location !== "") {
+      PubSub.publish("RENDER FETCHING DATA", location);
       getData(location)
         .then((dataObj) => {
           searchInput.value = "";
