@@ -47,6 +47,7 @@ function initOtherConditionsDiv(subdata, prestr) {
   const otherConditionsDiv = [
     ["Wind", initWindContent],
     ["Precipitation", initPrecipitationContent],
+    ["Humidity", initHumidityContent],
     ["Snow", initSnowContent],
     ["Cloud Cover", initCloudCoverContent],
     ["Pressure", initPressureContent],
@@ -103,7 +104,7 @@ function initWindContent(subdata) {
   div.append(initValueSmall(winddir, "from"), icon, initValue(windspeed));
 
   if (windgust != null) {
-    div.append(initValueSmall(windgust, "Gust:"));
+    div.append(initValueSmall(windgust, "", "gust"));
   }
 
   return div;
@@ -130,7 +131,7 @@ function initPrecipitationContent(subdata) {
     );
   }
 
-  div.append(initValue(precip), initValueSmall(precipprob, "Chances: "));
+  div.append(initValue(precip), initValueSmall(precipprob, "", "chance"));
 
   return div;
 }
@@ -175,6 +176,32 @@ function initPressureContent(subdata) {
   } else if (pressureVal < 1013) {
     div.append(initIcon(otherIcons["pressurelow"]));
   }
+
+  return div;
+}
+
+function initHumidityContent(subdata) {
+  const humidity = subdata.humidityStr;
+  const humidityVal = subdata.humidity;
+  const dew = subdata.dewStr;
+
+  if (humidity == null) return null;
+
+  const div = initDiv([
+    getCssClass("otherConditionContent"),
+    "grid-icon-and-three-values",
+    "humidity",
+  ]);
+
+  const humidityStr =
+    humidityVal > 60 ? "too humid" : humidityVal < 40 ? "too dry" : "optimal";
+
+  div.append(
+    initValueSmall(humidityStr),
+    initIcon(otherIcons["humidity"]),
+    initValue(humidity),
+    initValueSmall(dew, "", "dew point")
+  );
 
   return div;
 }
