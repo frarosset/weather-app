@@ -13,7 +13,7 @@
   /* rgb(161, 19, 26, var(--alpha)); */
 
   /* Colors (background)*/
-  --bg-col: rgb(200, 200, 200);
+  --bg-col: rgb(227, 248, 242);
   --block-bg-color: var(--col-white-alpha);
 
   /* Colors (text/icons)*/
@@ -583,6 +583,52 @@ a:visited {
   .weather-data-page__other-condition-value-small-div:last-of-type
   .weather-data-page__other-condition-value-small {
   font-weight: bold;
+}
+
+/* WEATHER ERROR PAGE ------------------------------------------------------------ */
+
+body > div:nth-child(2):has(> .error-page) {
+  flex: 1;
+  overflow: hidden;
+}
+
+.error-page {
+  padding: var(--page-padding);
+  display: flex;
+  flex-direction: column;
+  gap: var(--page-gap);
+  height: 100%;
+}
+
+.error-page__header {
+  display: flex;
+  justify-content: center;
+  line-height: 1;
+}
+
+.error-page__error-div {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  overflow: hidden;
+}
+
+.error-page__icon-div {
+  height: 100%;
+  flex-grow: 1;
+  min-height: 0;
+}
+
+.error-page__icon-div svg {
+  height: 100%;
+  width: 100%;
+  font-size: 3rem;
+}
+
+.error-page__error-msg {
+  font-size: var(--txt-smaller-fontsize);
+  text-wrap: balance;
+  text-align: center;
 }
 
 /* Customize scrollbars */
