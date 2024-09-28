@@ -1,5 +1,11 @@
 import * as lottie from "lottie-web";
 
+// Icons
+import alert from "../../assets/LottieFiles/alert.json";
+
+// Page animations
+import errorAnimation from "../../assets/LottieFiles/error.json";
+
 // Weather icons
 import clearDay from "../../assets/Meteocons/weather/clear-day.json";
 import showersDay from "../../assets/Meteocons/weather/showers-day.json";
@@ -69,9 +75,6 @@ import moonWaningCrescent from "../../assets/Meteocons/moonphase/moon-waning-cre
 import moonWaningGibbous from "../../assets/Meteocons/moonphase/moon-waning-gibbous.json";
 import moonWaxingCrescent from "../../assets/Meteocons/moonphase/moon-waxing-crescent.json";
 import moonWaxingGibbous from "../../assets/Meteocons/moonphase/moon-waxing-gibbous.json";
-
-// Icons
-import alert from "../../assets/LottieFiles/alert.json";
 
 export const weatherIcons = {
   "clear-day": clearDay,
@@ -153,6 +156,8 @@ export const icons = {
   alert: alert,
 };
 
+export { errorAnimation };
+
 export function setAnimation(
   parentContainer,
   data,
@@ -167,6 +172,9 @@ export function setAnimation(
     autoplay: autoplay,
     animationData: clonedData,
     useFrameInterpolation: false,
+    rendererSettings: {
+      viewBoxOnly: true,
+    },
     renderConfig: {
       devicePixelRatio: 1, // Lower values improve performance but may reduce animation quality
     },
