@@ -11,9 +11,9 @@ const cssClass = {
 const getCssClass = (element) => `${blockName}__${cssClass[element]}`;
 
 export default function renderSelectLocationPage(parentDiv) {
+  const div = createSelectLocationPage();
   resetContent(parentDiv);
-
-  parentDiv.append(createSelectLocationPage());
+  parentDiv.append(div);
 }
 
 export function createSelectLocationPage() {
@@ -41,9 +41,15 @@ function initSearchDiv() {
   searchInput.addEventListener("change", (e) => {
     const location = e.currentTarget.value;
     if (location !== "") {
-      getData(location).then((dataObj) => {
-        PubSub.publish("RENDER WEATHER DATA", dataObj);
-      });
+      getData(location)
+        .then((dataObj) => {
+          searchInput.value = "";
+          PubSub.publish("RENDER WEATHER DATA", dataObj);
+        })
+        .catch((errorObj) => {
+          searchInput.value = "";
+          PubSub.publish("RENDER ERROR PAGE", errorObj);
+        });
     }
   });
 
