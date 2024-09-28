@@ -53,9 +53,9 @@ function initOtherConditionsDiv(subdata, prestr) {
     ["Visibility", initVisibilityContent],
     ["UV Index", initUvIndexContent],
     ["Solar Radiation", initSolarRadiationContent],
+    ["Moonphase", initMoonPhaseContent],
     ["Sunrise & Sunset", initSunriseAndSunsetContent],
     ["Moonrise & Moonset", initMoonriseAndMoonsetContent],
-    ["Moonphase", initMoonPhaseContent],
   ];
 
   otherConditionsDiv.forEach(([title, callback]) => {

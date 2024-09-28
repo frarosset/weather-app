@@ -5,7 +5,7 @@ const properties = [
   "tempmin",
   "temp",
   "feelslike",
-  "umidity",
+  "humidity",
   "dew",
   "precip",
   "precipprob",
