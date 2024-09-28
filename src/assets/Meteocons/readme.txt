@@ -17,6 +17,7 @@ thunder-rain             <-->  thunderstorms-rain
 visibility               <-->  pollen-tree
 solar-radiation          <-->  sun-hot
 cloudcoverage            <-->  overcast
+humidity                 <-->  raindrop
 
 Some files have been created modifying existing files
 uv-index-0

@@ -38,6 +38,7 @@ import pressureHigh from "../../assets/Meteocons/other/pressure-high-alt.json";
 import pressureLow from "../../assets/Meteocons/other/pressure-low-alt.json";
 import visibility from "../../assets/Meteocons/other/visibility.json";
 import cloudcover from "../../assets/Meteocons/other/cloudcover.json";
+import humidity from "../../assets/Meteocons/other/humidity.json";
 
 // UV index
 import uvIndex0 from "../../assets/Meteocons/uvindex/uv-index-0.json";
@@ -145,6 +146,7 @@ export const otherIcons = {
   pressurelow: pressureLow,
   visibility: visibility,
   cloudcover: cloudcover,
+  humidity: humidity,
 };
 
 export const icons = {
