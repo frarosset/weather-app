@@ -32,7 +32,7 @@ export default function getData(
     })
     .catch(function (error) {
       console.log(error);
-      // todo: handle error
+      throw error;
     });
 }
 

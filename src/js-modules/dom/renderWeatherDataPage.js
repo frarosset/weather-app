@@ -58,9 +58,9 @@ const cssClass = {
 const getCssClass = (element) => `${blockName}__${cssClass[element]}`;
 
 export default function renderWeatherDataPage(parentDiv, data) {
+  const div = createWeatherDataPage(data);
   resetContent(parentDiv);
-
-  parentDiv.append(createWeatherDataPage(data));
+  parentDiv.append(div);
 }
 
 export function createWeatherDataPage(data) {
