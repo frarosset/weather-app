@@ -2,6 +2,16 @@ export function getCssRgb(rgbArr) {
   return `rgb(${rgbArr.join(",")})`;
 }
 
+export function getCssGradient(rgbGradient) {
+  const gradientString = rgbGradient
+    .map((stop) => {
+      const [rgbArr, perc] = stop;
+      return `${getCssRgb(rgbArr)} ${perc}%`;
+    })
+    .join(",");
+  return `linear-gradient(to bottom, ${gradientString})`;
+}
+
 export function rgbToHsv([r, g, b]) {
   r /= 255;
   g /= 255;

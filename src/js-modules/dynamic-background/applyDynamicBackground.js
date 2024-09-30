@@ -1,5 +1,5 @@
-import { getCssRgb } from "./colorUtilities.js";
-import { adjustRgbColorBasedOnWeather } from "./adjustBasedOnWeather.js";
+import { getCssGradient } from "./colorUtilities.js";
+//import { adjustRgbColorBasedOnWeather } from "./adjustBasedOnWeather.js";
 
 export default function applyDynamicBackground(propertyName, data) {
   const background = computeDynamicBackground(data);
@@ -7,15 +7,24 @@ export default function applyDynamicBackground(propertyName, data) {
 }
 
 function computeDynamicBackground(data) {
-  const rgbColor = data.current.isDay ? [255, 215, 0] : [0, 128, 128]; // todo
+  const rgbGradient = data.current.isDay
+    ? [
+        [[255, 215, 0], 0],
+        [[200, 128, 128], 90],
+      ]
+    : [
+        [[0, 128, 128], 30],
+        [[200, 128, 128], 90],
+      ]; // todo
 
   // adjust the color based on weather conditions
-  const weatherData = {
-    cloudcover: data.current.cloudcover,
-    precipitation: data.current.precipitation,
-    visibility: data.current.visibility,
-  };
-  const adjustedRgbColor = adjustRgbColorBasedOnWeather(rgbColor, weatherData);
+  //   const weatherData = {
+  //     cloudcover: data.current.cloudcover,
+  //     precipitation: data.current.precipitation,
+  //     visibility: data.current.visibility,
+  //   };
+  const adjustedRgbGradient = rgbGradient; // todo
+  //const adjustedRgbColor = adjustRgbColorBasedOnWeather(rgbColor, weatherData);
 
-  return getCssRgb(adjustedRgbColor);
+  return getCssGradient(adjustedRgbGradient);
 }
