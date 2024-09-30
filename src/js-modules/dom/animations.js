@@ -106,7 +106,7 @@ export const precipIcons = {
   rain: precipRain,
   snow: precipSnow,
   sleet: precipSleet,
-  rainAndSnow: precipRainAndSnow,
+  "rain-and-snow": precipRainAndSnow,
   snowflake: precipSnowflake,
 };
 
