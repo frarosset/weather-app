@@ -14,6 +14,11 @@
 
   /* Colors (background)*/
   --bg-col: rgb(227, 248, 242);
+  --weather-data-page-bg: linear-gradient(
+    to bottom,
+    var(--bg-col),
+    var(--col-dark-grey)
+  );
   --block-bg-color: var(--col-white-alpha);
 
   /* Colors (text/icons)*/
@@ -84,6 +89,11 @@ html {
   font-weight: 400;
   font-size: var(--txt-fontsize);
   line-height: var(--txt-lineheight);
+}
+
+html:has(.weather-data-page) {
+  background: var(--weather-data-page-bg);
+  background-attachment: fixed;
 }
 
 *,
