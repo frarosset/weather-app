@@ -13,6 +13,7 @@ import { resetContent } from "../../js-utilities/commonDomUtilities.js";
 import { setAnimation, weatherIcons, icons } from "./animations.js";
 import { format, formatRelative } from "date-fns";
 import { initOtherCurrentConditionsDiv } from "./initOtherConditionsDiv.js";
+import applyDynamicBackground from "../dynamic-background/applyDynamicBackground.js";
 
 const blockName = "weather-data-page";
 const cssClass = {
@@ -59,6 +60,7 @@ const getCssClass = (element) => `${blockName}__${cssClass[element]}`;
 
 export default function renderWeatherDataPage(parentDiv, data) {
   const div = createWeatherDataPage(data);
+  applyDynamicBackground(`--${blockName}-bg`, data);
   resetContent(parentDiv);
   parentDiv.append(div);
 }
