@@ -18,15 +18,28 @@ import { rgbToHsv, hsvToRgb } from "./colorUtilities.js";
 // so if we have a given reduction (factor) we both scale it by a given reductionScalingFactor
 // and cap it to a given maxReduction.
 // These values can be, in general, different between s and v computation.
+//
+// When we have a gradient, the reduction is made for every stop color indipendently
 
 const reductionScalingFactorS = 0.8; // Proportional scaling reduction
 const maxReductionS = 0.8; // Capping reduction
 
-const reductionScalingFactorV = 0.4; // scaling reduction
-const maxReductionV = 0.4; // Capping reduction
+const reductionScalingFactorV = 0.3; // scaling reduction
+const maxReductionV = 0.3; // Capping reduction
 
 const precipitation100 = 20; // mm or inches where the precipitation reduction factor is 1.
 const visibility100 = 5; // km or miles where the visibility reduction factor is 1. Beyond this value there is no reduction.
+
+export function adjustRgbGradientBasedOnWeather(rgbGradient, weatherData) {
+  return rgbGradient.map((stop) => {
+    const [rgbColor, percentage] = stop;
+    const adjustedRgbColor = adjustRgbColorBasedOnWeather(
+      rgbColor,
+      weatherData
+    );
+    return [adjustedRgbColor, percentage];
+  });
+}
 
 export function adjustRgbColorBasedOnWeather(rgbColor, weatherData) {
   const hsvColor = rgbToHsv(rgbColor);
