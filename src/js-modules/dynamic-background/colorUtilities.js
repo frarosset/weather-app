@@ -79,3 +79,7 @@ export function hsvToRgb([h, s, v]) {
 
   return [r, g, b].map((x) => Math.round(x * 255));
 }
+
+export function interpolateColor(col1, col2, factor) {
+  return col1.map((c, i) => c + factor * (col2[i] - c));
+}
