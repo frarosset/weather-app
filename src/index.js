@@ -13,7 +13,10 @@ const resultsDiv = document.createElement("div");
 document.body.appendChild(resultsDiv);
 
 PubSub.subscribe("RENDER WEATHER DATA", (msg, data) => {
-  console.log(msg, `[${data.current.datetime}, ${data.location}]`);
+  console.log(
+    msg,
+    `[${data.formatTz(data.current.datetime, "EEE, d MMM yyyy, HH:mm")}, ${data.location}]`
+  );
   renderWeatherDataPage(resultsDiv, data);
 });
 
