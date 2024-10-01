@@ -1,4 +1,6 @@
 import getUnit from "./getUnit.js";
+import { tz } from "@date-fns/tz";
+import { format, formatRelative, getHours, getMinutes } from "date-fns";
 
 const properties = [
   "tempmax",
@@ -30,11 +32,25 @@ const dates = ["datetime", "sunrise", "sunset", "moonrise", "moonset"];
 const alertProperties = ["event", "headline", "link", "description"];
 const alertDates = ["onset", "ends"];
 
+let dateTzOptions = null; // used to specify the timezone in the computation
+
 export default function processResponseData(response, unitGroup) {
   const data = {};
 
   data.location = response.resolvedAddress;
   data.descriptionWeek = response.description; // a seven day outlook description
+
+  dateTzOptions = { in: tz(response.timezone) }; // temporary
+  data.tz = response.timezone;
+  // add a method to be able to format the date without worring about the timezone (it is specified within it)
+  data.formatTz = (date, formatStr) =>
+    format(date, formatStr, {
+      in: tz(data.tz),
+    });
+  data.formatRelativeTz = (date1, date2) =>
+    formatRelative(date1, date2, {
+      in: tz(data.tz),
+    });
 
   // Current conditions
   data.current = processCurrentConditions(
@@ -53,6 +69,9 @@ export default function processResponseData(response, unitGroup) {
 
   // Alerts info (array of objects)
   data.alerts = processAlerts(response.alerts);
+
+  // reset global timezone
+  dateTzOptions = null;
 
   return data;
 }
@@ -128,7 +147,7 @@ function processHourlyConditions(hourlyResponseArr, unitGroup, dayObj) {
 }
 
 function extractNext24HoursConditions(now, dailyData) {
-  const nowHour = now.getHours();
+  const nowHour = getHours(now, dateTzOptions);
   const todayHourly = dailyData[0].hours;
   const tomorrowHourly = dailyData[1].hours;
 
@@ -209,8 +228,10 @@ function processProperties(propArr, responseSubObj, isDate, unitGroup = null) {
       obj[propName] = propTransform(responseProp);
 
       if (isDate) {
+        // get the minute of the day
         obj[`${propName}Min`] =
-          obj[propName].getHours() * 60 + obj[propName].getMinutes();
+          getHours(obj[propName], dateTzOptions) * 60 +
+          getMinutes(obj[propName], dateTzOptions);
       } else if (prop == "precipprob" && responseSubObj["precip"] == null) {
         if (unitGroup != null) {
           const unit = getUnit("precip", unitGroup);
