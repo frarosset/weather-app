@@ -11,7 +11,6 @@ import {
 } from "../../js-utilities/commonDomComponents.js";
 import { resetContent } from "../../js-utilities/commonDomUtilities.js";
 import { setAnimation, weatherIcons, icons } from "./animations.js";
-import { format, formatRelative } from "date-fns";
 import { initOtherCurrentConditionsDiv } from "./initOtherConditionsDiv.js";
 import applyDynamicBackground from "../dynamic-background/applyDynamicBackground.js";
 
@@ -58,11 +57,18 @@ const cssClass = {
 };
 const getCssClass = (element) => `${blockName}__${cssClass[element]}`;
 
+let formatTz = null;
+let formatRelativeTz = null;
+
 export default function renderWeatherDataPage(parentDiv, data) {
+  formatTz = data.formatTz;
+  formatRelativeTz = data.formatRelativeTz;
   const div = createWeatherDataPage(data);
   applyDynamicBackground(`--${blockName}-bg`, data);
   resetContent(parentDiv);
   parentDiv.append(div);
+  formatTz = null;
+  formatRelativeTz = null;
 }
 
 export function createWeatherDataPage(data) {
@@ -143,7 +149,7 @@ function initAlertsDiv(data) {
     const alertLi = initLiAsChildInList(alertsList, getCssClass("alertLi"));
 
     const alertH4 = initH4(getCssClass("alertH4"), null, alert.event);
-    const alertDateStr = `${formatRelative(alert.onset, data.current.datetime)} ➜ ${formatRelative(alert.ends, data.current.datetime)}`;
+    const alertDateStr = `${formatRelativeTz(alert.onset, data.current.datetime)} ➜ ${formatRelativeTz(alert.ends, data.current.datetime)}`;
     const alertDateP = initP(getCssClass("alertDateP"), null, alertDateStr);
     const alertDescrP = initP(
       getCssClass("alertDescrP"),
@@ -203,7 +209,7 @@ function initNext24HoursDiv(data) {
     const hourForecastHour = initP(
       getCssClass("hourForecastHour"),
       null,
-      idx === 0 ? "Now" : format(hourForecast.datetime, "H:mm")
+      idx === 0 ? "Now" : formatTz(hourForecast.datetime, "H:mm")
     );
 
     const hourForecastTemp = initP(
@@ -257,13 +263,13 @@ function initNextDaysDiv(data) {
     const dayForecastDay = initP(
       getCssClass("dayForecastDay"),
       null,
-      idx === 0 ? "Today" : format(dayForecast.datetime, "E")
+      idx === 0 ? "Today" : formatTz(dayForecast.datetime, "E")
     );
 
     const dayForecastDate = initP(
       getCssClass("dayForecastDate"),
       null,
-      idx === 0 ? "" : format(dayForecast.datetime, "d LLL")
+      idx === 0 ? "" : formatTz(dayForecast.datetime, "d LLL")
     );
 
     const dayForecastTempHigh = initP(

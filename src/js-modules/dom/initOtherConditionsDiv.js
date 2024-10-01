@@ -13,7 +13,6 @@ import {
   astroIcons,
   moonphaseIcons,
 } from "./animations.js";
-import { format } from "date-fns";
 
 const blockName = "weather-data-page";
 const cssClass = {
@@ -35,8 +34,13 @@ const cssClass = {
 };
 const getCssClass = (element) => `${blockName}__${cssClass[element]}`;
 
+let formatTz = null;
+
 export function initOtherCurrentConditionsDiv(data) {
-  return initOtherConditionsDiv(data.current, "");
+  formatTz = data.formatTz;
+  const div = initOtherConditionsDiv(data.current, "");
+  formatTz = null;
+  return div;
 }
 
 function initOtherConditionsDiv(subdata, prestr) {
@@ -292,8 +296,8 @@ function initSunriseAndSunsetContent(subdata) {
   ]);
 
   div.append(
-    initIconWithValue(astroIcons["sunrise"], format(sunrise, "HH:mm")),
-    initIconWithValue(astroIcons["sunset"], format(sunset, "HH:mm"))
+    initIconWithValue(astroIcons["sunrise"], formatTz(sunrise, "HH:mm")),
+    initIconWithValue(astroIcons["sunset"], formatTz(sunset, "HH:mm"))
   );
 
   return div;
@@ -312,8 +316,8 @@ function initMoonriseAndMoonsetContent(subdata) {
   ]);
 
   div.append(
-    initIconWithValue(astroIcons["moonrise"], format(moonrise, "HH:mm")),
-    initIconWithValue(astroIcons["moonset"], format(moonset, "HH:mm"))
+    initIconWithValue(astroIcons["moonrise"], formatTz(moonrise, "HH:mm")),
+    initIconWithValue(astroIcons["moonset"], formatTz(moonset, "HH:mm"))
   );
 
   return div;
