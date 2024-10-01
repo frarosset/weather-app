@@ -83,3 +83,13 @@ export function hsvToRgb([h, s, v]) {
 export function interpolateColor(col1, col2, factor) {
   return col1.map((c, i) => c + factor * (col2[i] - c));
 }
+
+export function interpolateGradient(gradient1, gradient2, factor) {
+  // this assumes the stop percentages match between the colors
+  return gradient1.map(([color1, percentage1], idx) => {
+    const [color2, percentage2] = gradient2[idx];
+    const interpolatedColor = interpolateColor(color1, color2, factor);
+    if (percentage1 != percentage2) throw new Error();
+    return [interpolatedColor, percentage1];
+  });
+}
