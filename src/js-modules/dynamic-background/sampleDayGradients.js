@@ -3,8 +3,12 @@ import { interpolateColor } from "./colorUtilities.js";
 // The following gradient defines the colort of the sky from midnight to midnight of the next day
 // It assumes clear sky conditions (eg, no cloud cover, no precipitation and maximum visibility).
 // Also, there are fixed times between stops: if there are 24 stops, there is a color for each hour
+// The sunrise and sunset 'stop' colors are to be specified
 
 // gradients values are from: https://codepen.io/zessx/pen/kyEEBK
+
+export const srIdx = 7; // sunrise stop index in initialGradient
+export const ssIdx = 17; // sunset stop index in initialGradient
 
 const initialGradients = [
   [[[0, 0, 12], 100]], // .sky-gradient-00, .sky-gradient-24
