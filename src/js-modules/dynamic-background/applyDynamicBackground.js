@@ -10,7 +10,12 @@ export default function applyDynamicBackground(propertyName, data) {
 
 export function computeDynamicBackground(data) {
   // Get the background color assuming weather conditions
-  const rgbGradient = getCurrentRgbGradient(data.current);
+  const timeData = {
+    m: data.current.datetimeMin,
+    sr: data.current.sunriseMin,
+    ss: data.current.sunsetMin,
+  };
+  const rgbGradient = getCurrentRgbGradient(timeData);
 
   // adjust the color based on weather conditions
   const weatherData = {
@@ -27,7 +32,7 @@ export function computeDynamicBackground(data) {
 }
 
 // test function
-function testDynamicBackground(data, deltaM = 15) {
+function testDynamicBackground(data, deltaM = 10) {
   // save current datetimeMin (it will be modified)
   const oldCurrentDatetimeMin = data.current.datetimeMin;
 
