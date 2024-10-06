@@ -8,11 +8,17 @@ import {
   initUl,
   initOl,
   initLiAsChildInList,
+  initButton,
 } from "../../js-utilities/commonDomComponents.js";
 import { resetContent } from "../../js-utilities/commonDomUtilities.js";
 import { setAnimation, weatherIcons, icons } from "./animations.js";
 import { initOtherCurrentConditionsDiv } from "./initOtherConditionsDiv.js";
 import applyDynamicBackground from "../dynamic-background/applyDynamicBackground.js";
+import {
+  getHomeLocation,
+  setHomeLocation,
+  resetHomeLocation,
+} from "../../appData.js";
 
 const blockName = "weather-data-page";
 const cssClass = {
@@ -20,6 +26,8 @@ const cssClass = {
   currentConditions: "current-condition-div",
   locationDiv: "location-div",
   locationH2: "location-h2",
+  btnDiv: "btn-div",
+  toggleHomeBtn: "toggle-home-btn",
   conditionsP: "conditions-p",
   tempP: "temp-p",
   iconDiv: "icon-div",
@@ -100,11 +108,39 @@ function initPageHeader(data) {
   const locationH2 = initH2(getCssClass("locationH2"), null, data.location);
   locationDiv.append(locationH2);
 
+  // Toggle home button
+  const btnDiv = initDiv(getCssClass("btnDiv"));
+  const homeBtn = initToggleHomeButton(data);
+  btnDiv.append(homeBtn);
+
   // todo: back, like
 
-  header.append(locationDiv);
+  header.append(locationDiv, btnDiv);
 
   return header;
+}
+
+function initToggleHomeButton(data) {
+  const isHome = data.location === getHomeLocation();
+
+  const toggleHomeBtnCallback = () => {
+    if (data.location === getHomeLocation()) {
+      toggleHomeBtn.textContent = "set home";
+      resetHomeLocation();
+    } else {
+      toggleHomeBtn.textContent = "remove home";
+      setHomeLocation(data.location);
+    }
+  };
+
+  const toggleHomeBtn = initButton(
+    getCssClass("toggleHomeBtn"),
+    toggleHomeBtnCallback
+  );
+
+  toggleHomeBtn.textContent = isHome ? "remove home" : "set home";
+
+  return toggleHomeBtn;
 }
 
 function initMainCurrentConditionsDiv(data) {
