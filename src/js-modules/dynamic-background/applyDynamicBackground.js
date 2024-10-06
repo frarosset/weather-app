@@ -5,7 +5,7 @@ import { adjustRgbGradientBasedOnWeather } from "./adjustBasedOnWeather.js";
 export default function applyDynamicBackground(propertyName, data) {
   const background = computeDynamicBackground(data);
   document.documentElement.style.setProperty(propertyName, background);
-  testDynamicBackground(data);
+  // testDynamicBackground(data);
 }
 
 export function computeDynamicBackground(data) {
@@ -32,7 +32,7 @@ export function computeDynamicBackground(data) {
 }
 
 // test function
-function testDynamicBackground(data, deltaM = 10) {
+export function testDynamicBackground(data, deltaM = 10) {
   // save current datetimeMin (it will be modified)
   const oldCurrentDatetimeMin = data.current.datetimeMin;
 
