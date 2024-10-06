@@ -1,11 +1,18 @@
-import { initDiv, initInput } from "../../js-utilities/commonDomComponents.js";
+import {
+  initDiv,
+  initInput,
+  initButton,
+} from "../../js-utilities/commonDomComponents.js";
 import { resetContent } from "../../js-utilities/commonDomUtilities.js";
 import { showWeatherDataFor } from "../showWeatherDataFor.js";
+import { showHomeLocation } from "../../appData.js";
 
 const blockName = "select-location-page";
 const cssClass = {
   searchDiv: "search-div",
   searchInput: "search-input",
+  homeDiv: "home-div",
+  homeButton: "home-button",
 };
 const getCssClass = (element) => `${blockName}__${cssClass[element]}`;
 
@@ -19,7 +26,7 @@ export function createSelectLocationPage() {
   const div = initDiv(blockName);
 
   // Search div
-  div.append(initSearchDiv());
+  div.append(initSearchDiv(), initHomeLocationDiv());
 
   return div;
 }
@@ -49,4 +56,19 @@ function initSearchDiv() {
   searchDiv.append(searchInput);
 
   return searchDiv;
+}
+
+function initHomeLocationDiv() {
+  const homeDiv = initDiv(getCssClass("homeDiv"));
+
+  const homeBtn = initButton(
+    getCssClass("homeButton"),
+    showHomeLocation,
+    null,
+    "Home"
+  );
+
+  homeDiv.append(homeBtn);
+
+  return homeDiv;
 }
