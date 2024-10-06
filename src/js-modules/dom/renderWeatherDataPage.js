@@ -64,6 +64,7 @@ export default function renderWeatherDataPage(parentDiv, data) {
   formatTz = data.formatTz;
   formatRelativeTz = data.formatRelativeTz;
   const div = createWeatherDataPage(data);
+  div.classList.toggle("night", !data.current.isDay);
   applyDynamicBackground(`--${blockName}-bg`, data);
   resetContent(parentDiv);
   parentDiv.append(div);

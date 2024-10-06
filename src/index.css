@@ -189,6 +189,17 @@ a:visited {
 
 /* CURRENT CONDITION */
 
+.weather-data-page.night {
+  --alpha: 0.5;
+  --col-white-alpha: rgb(255, 255, 255, var(--alpha));
+  --block-bg-color: var(--col-white-alpha);
+}
+
+.weather-data-page.night .weather-data-page__header,
+.weather-data-page.night .weather-data-page__current-condition-div {
+  color: var(--col-txt-alt);
+}
+
 .weather-data-page__current-condition-div {
   display: grid;
   grid-template-areas:
