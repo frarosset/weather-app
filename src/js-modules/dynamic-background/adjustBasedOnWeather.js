@@ -24,8 +24,8 @@ import { rgbToHsv, hsvToRgb } from "./colorUtilities.js";
 const reductionScalingFactorS = 0.8; // Proportional scaling reduction
 const maxReductionS = 0.8; // Capping reduction
 
-const reductionScalingFactorV = 0.3; // scaling reduction
-const maxReductionV = 0.3; // Capping reduction
+const reductionScalingFactorV = 0.2; // scaling reduction
+const maxReductionV = 0.2; // Capping reduction
 
 const precipitation100 = 20; // mm or inches where the precipitation reduction factor is 1.
 const visibility100 = 5; // km or miles where the visibility reduction factor is 1. Beyond this value there is no reduction.
