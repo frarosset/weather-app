@@ -740,6 +740,7 @@ body > div:nth-child(1):has(> .fetching-page) {
 }
 
 /* Icons */
+.select-location-page__search-icon,
 .select-location-page__remove-home-btn,
 .select-location-page__remove-bookmarked-btn,
 .error-page__back-btn,
@@ -752,6 +753,7 @@ body > div:nth-child(1):has(> .fetching-page) {
   background: none;
 }
 
+.select-location-page__search-icon svg,
 .select-location-page__remove-home-btn svg,
 .select-location-page__remove-bookmarked-btn svg,
 .error-page__back-btn svg,
@@ -768,6 +770,7 @@ body > div:nth-child(1):has(> .fetching-page) {
   stroke: red;
 }
 
+.select-location-page__search-icon path,
 .select-location-page__remove-bookmarked-btn path,
 .error-page__back-btn path,
 .weather-data-page__back-btn path,
