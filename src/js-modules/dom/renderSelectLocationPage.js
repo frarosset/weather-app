@@ -19,12 +19,12 @@ const cssClass = {
   searchDiv: "search-div",
   searchInput: "search-input",
   homeDiv: "home-div",
-  homeButton: "home-btn",
-  removeHomeButton: "remove-home-btn",
+  homeBtn: "home-btn",
+  removeHomeBtn: "remove-home-btn",
   bookmarkedDiv: "bookmarked-div",
   bookmarkedList: "bookmarked-list",
   bookmarkedBtn: "bookmarked-btn",
-  removeBookmarkedButton: "remove-bookmarked-btn",
+  removeBookmarkedBtn: "remove-bookmarked-btn",
 };
 const getCssClass = (element) => `${blockName}__${cssClass[element]}`;
 
@@ -82,7 +82,7 @@ function initHomeLocationDiv() {
     const removeBtn = initRemoveHomeButton(div);
 
     const btn = initButton(
-      getCssClass("homeButton"),
+      getCssClass("homeBtn"),
       showHomeLocation,
       null,
       location
@@ -101,10 +101,7 @@ function initRemoveHomeButton(parentDiv) {
     resetContent(parentDiv);
   };
 
-  const removeBtn = initButton(
-    getCssClass("removeHomeButton"),
-    removeBtnCallback
-  );
+  const removeBtn = initButton(getCssClass("removeHomeBtn"), removeBtnCallback);
   const animation = setAnimation(removeBtn, icons.heart, false, false);
   forcePlayAnimation(animation, 1);
 
@@ -130,7 +127,7 @@ function initBookmarkedLocationDiv() {
     const removeBtn = initRemoveBookmarkedButton(div, location);
 
     const btn = initButton(
-      getCssClass("bookmarkedButton"),
+      getCssClass("bookmarkedBtn"),
       () => {
         showWeatherDataFor(location);
       },
@@ -153,7 +150,7 @@ function initRemoveBookmarkedButton(parentDiv, location) {
   };
 
   const removeBtn = initButton(
-    getCssClass("removeBookmarkedButton"),
+    getCssClass("removeBookmarkedBtn"),
     removeBtnCallback
   );
   const animation = setAnimation(removeBtn, icons.bookmark, false, false);

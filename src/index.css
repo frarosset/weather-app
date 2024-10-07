@@ -4,6 +4,7 @@
   /* Colors (palette)*/
   --alpha: 0.3;
   --col-black: rgb(20, 20, 20);
+  --col-grey: rgb(180, 180, 180);
   --col-dark-grey: rgb(80, 80, 80);
   --col-white: rgb(255, 255, 255);
   --col-rain: rgb(100, 160, 240);
@@ -13,6 +14,7 @@
 
   /* Colors (background)*/
   --bg-col: rgb(227, 248, 242);
+  --block-bg-col: rgb(215, 240, 233);
   --weather-data-page-bg: linear-gradient(
     to bottom,
     var(--bg-col),
@@ -48,6 +50,7 @@
   --other-condition-small-fontsize: 0.8em;
   --other-condition-smaller-fontsize: 0.6em;
   --generic-icon-size: 2rem;
+  --select-location-text-size: 1.2em;
 
   /* Text clamping: number of lines */
   /* --main-itm-project-description-max-lines: 6;
@@ -70,6 +73,8 @@
   --block-padding-inner: calc(var(--radius-inner) / 2);
   --block-gap: 0.4em;
   --block-gap-larger: 0.8em;
+  --select-location-padding: 0.5em 1em;
+  --select-location-gap: 1em;
 
   /* Images / icons size */
 
@@ -159,6 +164,59 @@ a:hover,
 a:active,
 a:visited {
   text-decoration: none;
+}
+
+/* SELECT LOCATION PAGE --------------------------------------------------------- */
+
+.select-location-page {
+  padding: var(--page-padding);
+  display: flex;
+  flex-direction: column;
+  gap: var(--page-gap);
+}
+
+.select-location-page__bookmarked-list {
+  display: flex;
+  flex-direction: column;
+  gap: var(--block-gap);
+}
+
+.select-location-page__search-div,
+.select-location-page__home-div,
+.select-location-page__bookmarked-div {
+  background-color: var(--block-bg-col);
+  border-radius: var(--radius);
+  padding: var(--block-padding);
+  gap: var(--block-gap);
+  display: flex;
+}
+
+.select-location-page__search-input,
+.select-location-page__home-btn,
+.select-location-page__bookmarked-btn {
+  font-size: var(--select-location-text-size);
+  border: none;
+  background: none;
+  text-align: left;
+  justify-content: pretty;
+}
+
+.select-location-page__search-input {
+  width: 100%;
+  border-bottom: 1px solid var(--bg-col);
+}
+.select-location-page__search-input::placeholder {
+  color: var(--col-grey);
+}
+.select-location-page__search-input:focus {
+  /* border: none; */
+  outline: none;
+}
+
+.select-location-page__remove-home-btn,
+.select-location-page__remove-bookmarked-btn {
+  flex-basis: calc(var(--generic-icon-size));
+  flex-shrink: 0;
 }
 
 /* WEATHER DATA PAGE ------------------------------------------------------------ */
@@ -635,6 +693,14 @@ body > div:nth-child(1):has(> .fetching-page) {
   flex-direction: column;
   /* gap: var(--page-gap); */
   height: 100%;
+  position: relative;
+}
+
+.error-page__header,
+.fetching-page__header {
+  position: absolute;
+  left: 0;
+  top: 0;
 }
 
 .error-page__header,
