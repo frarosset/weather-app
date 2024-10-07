@@ -20,9 +20,12 @@ import {
 import { initOtherCurrentConditionsDiv } from "./initOtherConditionsDiv.js";
 import applyDynamicBackground from "../dynamic-background/applyDynamicBackground.js";
 import {
-  getHomeLocation,
+  isHomeLocation,
   setHomeLocation,
   resetHomeLocation,
+  isInBookmarkedLocations,
+  addBookmarkedLocation,
+  removeBookmarkedLocation,
 } from "../../appData.js";
 
 const blockName = "weather-data-page";
@@ -33,6 +36,7 @@ const cssClass = {
   locationH2: "location-h2",
   btnDiv: "btn-div",
   toggleHomeBtn: "toggle-home-btn",
+  toggleBookmarkedBtn: "toggle-bookmarked-btn",
   conditionsP: "conditions-p",
   tempP: "temp-p",
   iconDiv: "icon-div",
@@ -115,8 +119,7 @@ function initPageHeader(data) {
 
   // Toggle home button
   const btnDiv = initDiv(getCssClass("btnDiv"));
-  const homeBtn = initToggleHomeButton(data);
-  btnDiv.append(homeBtn);
+  btnDiv.append(initToggleHomeButton(data), initToggleBookmarkedButton(data));
 
   // todo: back, like
 
@@ -126,14 +129,12 @@ function initPageHeader(data) {
 }
 
 function initToggleHomeButton(data) {
-  const isHome = data.location === getHomeLocation();
-
   const toggleHomeBtnCallback = () => {
-    if (data.location === getHomeLocation()) {
-      forcePlayAnimation(animationMenu, -1);
+    if (isHomeLocation(data.location)) {
+      forcePlayAnimation(animation, -1);
       resetHomeLocation();
     } else {
-      forcePlayAnimation(animationMenu, 1);
+      forcePlayAnimation(animation, 1);
       setHomeLocation(data.location);
     }
   };
@@ -142,13 +143,43 @@ function initToggleHomeButton(data) {
     getCssClass("toggleHomeBtn"),
     toggleHomeBtnCallback
   );
-  const animationMenu = setAnimation(toggleHomeBtn, icons.heart, false, false);
+  const animation = setAnimation(toggleHomeBtn, icons.heart, false, false);
 
-  if (isHome) {
-    forcePlayAnimation(animationMenu, 1);
+  if (isHomeLocation(data.location)) {
+    forcePlayAnimation(animation, 1);
   }
 
   return toggleHomeBtn;
+}
+
+function initToggleBookmarkedButton(data) {
+  const toggleBookmarkedBtnCallback = () => {
+    console.log(isInBookmarkedLocations(data.location));
+    if (isInBookmarkedLocations(data.location)) {
+      forcePlayAnimation(animation, -1);
+      removeBookmarkedLocation(data.location);
+    } else {
+      forcePlayAnimation(animation, 1);
+      addBookmarkedLocation(data.location);
+    }
+  };
+
+  const toggleBookmarkedBtn = initButton(
+    getCssClass("toggleBookmarkedBtn"),
+    toggleBookmarkedBtnCallback
+  );
+  const animation = setAnimation(
+    toggleBookmarkedBtn,
+    icons.bookmark,
+    false,
+    false
+  );
+
+  if (isInBookmarkedLocations(data.location)) {
+    forcePlayAnimation(animation, 1);
+  }
+
+  return toggleBookmarkedBtn;
 }
 
 function initMainCurrentConditionsDiv(data) {
