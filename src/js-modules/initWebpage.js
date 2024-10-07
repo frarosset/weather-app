@@ -10,10 +10,15 @@ import { freezeAllAnimations } from "./dom/animations.js";
 export default function initWebpage() {
   initAppData();
 
-  renderSelectLocationPage(document.body);
+  // renderSelectLocationPage(document.body);
 
   const resultsDiv = document.createElement("div");
   document.body.appendChild(resultsDiv);
+
+  PubSub.subscribe("RENDER SELECT LOCATION DATA", (msg) => {
+    console.log(msg);
+    renderSelectLocationPage(resultsDiv);
+  });
 
   PubSub.subscribe("RENDER WEATHER DATA", (msg, data) => {
     console.log(
@@ -33,7 +38,7 @@ export default function initWebpage() {
     renderFetchingDataPage(resultsDiv, locationStr);
   });
 
-  showHomeLocation();
+  if (!showHomeLocation()) renderSelectLocationPage(resultsDiv);
 
   freezeAllAnimations();
 }

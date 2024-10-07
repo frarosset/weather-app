@@ -172,8 +172,21 @@ a:visited {
 
 .weather-data-page__header {
   display: flex;
-  justify-content: center;
+  flex-direction: column;
+  align-items: center;
   line-height: 1;
+}
+
+.weather-data-page__back-btn {
+  margin-right: auto;
+  /* margin-right: var(--generic-icon-size);
+  flex-basis: calc(var(--generic-icon-size));
+  flex-shrink: 0; */
+}
+.weather-data-page__btn-div {
+  display: flex;
+  align-items: flex-start;
+  width: 100%;
 }
 
 .weather-data-page__location {
@@ -609,8 +622,8 @@ a:visited {
 
 /* WEATHER ERROR PAGE ------------------------------------------------------------ */
 
-body > div:nth-child(2):has(> .error-page),
-body > div:nth-child(2):has(> .fetching-page) {
+body > div:nth-child(1):has(> .error-page),
+body > div:nth-child(1):has(> .fetching-page) {
   flex: 1;
   overflow: hidden;
 }
@@ -661,7 +674,7 @@ body > div:nth-child(2):has(> .fetching-page) {
 }
 
 /* Icons */
-
+.weather-data-page__back-btn,
 .weather-data-page__toggle-home-btn,
 .weather-data-page__toggle-bookmarked-btn {
   width: var(--generic-icon-size);
@@ -670,6 +683,7 @@ body > div:nth-child(2):has(> .fetching-page) {
   background: none;
 }
 
+.weather-data-page__back-btn svg,
 .weather-data-page__toggle-home-btn svg,
 .weather-data-page__toggle-bookmarked-btn svg {
   height: 100%;
@@ -679,10 +693,13 @@ body > div:nth-child(2):has(> .fetching-page) {
   fill: red;
   stroke: red;
 }
+.weather-data-page__back-btn path,
 .weather-data-page__toggle-bookmarked-btn path {
   fill: var(--col-txt);
   stroke: var(--col-txt);
 }
+
+.weather-data-page.night .weather-data-page__back-btn path,
 .weather-data-page.night .weather-data-page__toggle-bookmarked-btn path {
   fill: var(--col-txt-alt);
   stroke: var(--col-txt-alt);

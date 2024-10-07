@@ -4,6 +4,7 @@ import * as lottie from "lottie-web";
 import alert from "../../assets/LottieFiles/alert.json";
 import heart from "../../assets/useAnimations/heart.json";
 import bookmark from "../../assets/useAnimations/bookmark.json";
+import chevronLeft from "../../assets/useAnimations/chevron-left.json";
 
 // Page animations
 import fetchingAnimation from "../../assets/LottieFiles/fetching.json";
@@ -159,6 +160,7 @@ export const icons = {
   alert: alert,
   heart: heart,
   bookmark: bookmark,
+  chevronLeft: chevronLeft,
 };
 
 export { errorAnimation, fetchingAnimation };
