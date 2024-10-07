@@ -2,7 +2,7 @@ import renderSelectLocationPage from "./dom/renderSelectLocationPage.js";
 import renderWeatherDataPage from "./dom/renderWeatherDataPage.js";
 import renderErrorPage from "./dom/renderErrorPage.js";
 import renderFetchingDataPage from "./dom/renderFetchingDataPage.js";
-import { setHomeLocation, showHomeLocation } from "../appData.js";
+import { initAppData, showHomeLocation } from "../appData.js";
 import PubSub from "pubsub-js";
 // temporary code
 import { freezeAllAnimations } from "./dom/animations.js";
@@ -31,7 +31,7 @@ export default function initWebpage() {
     renderFetchingDataPage(resultsDiv, locationStr);
   });
 
-  setHomeLocation("London");
+  initAppData();
   showHomeLocation();
 
   freezeAllAnimations();
