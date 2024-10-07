@@ -5,7 +5,7 @@ import {
 } from "../../js-utilities/commonDomComponents.js";
 import { resetContent } from "../../js-utilities/commonDomUtilities.js";
 import { showWeatherDataFor } from "../showWeatherDataFor.js";
-import { showHomeLocation } from "../../appData.js";
+import { showHomeLocation, getBookmarkedLocations } from "../../appData.js";
 
 const blockName = "select-location-page";
 const cssClass = {
@@ -13,6 +13,9 @@ const cssClass = {
   searchInput: "search-input",
   homeDiv: "home-div",
   homeButton: "home-button",
+  bookmarkedDiv: "bookmarked-div",
+  bookmarkedList: "bookmarked-list",
+  bookmarkedBtn: "bookmarked-btn",
 };
 const getCssClass = (element) => `${blockName}__${cssClass[element]}`;
 
@@ -26,7 +29,11 @@ export function createSelectLocationPage() {
   const div = initDiv(blockName);
 
   // Search div
-  div.append(initSearchDiv(), initHomeLocationDiv());
+  div.append(
+    initSearchDiv(),
+    initHomeLocationDiv(),
+    initBookmarkedLocationDiv()
+  );
 
   return div;
 }
@@ -59,16 +66,39 @@ function initSearchDiv() {
 }
 
 function initHomeLocationDiv() {
-  const homeDiv = initDiv(getCssClass("homeDiv"));
+  const div = initDiv(getCssClass("homeDiv"));
 
-  const homeBtn = initButton(
+  const btn = initButton(
     getCssClass("homeButton"),
     showHomeLocation,
     null,
     "Home"
   );
 
-  homeDiv.append(homeBtn);
+  div.append(btn);
 
-  return homeDiv;
+  return div;
+}
+
+function initBookmarkedLocationDiv() {
+  const div = initDiv(getCssClass("bookmarkedDiv"));
+
+  const bookmarkedLocations = getBookmarkedLocations();
+  const list = initDiv(getCssClass("bookmarkedList"));
+
+  bookmarkedLocations.forEach((location) => {
+    const btn = initButton(
+      getCssClass("bookmarkedButton"),
+      () => {
+        showWeatherDataFor(location);
+      },
+      null,
+      location
+    );
+    list.append(btn);
+  });
+
+  div.append(list);
+
+  return div;
 }
