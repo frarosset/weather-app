@@ -2,6 +2,7 @@ import * as lottie from "lottie-web";
 
 // Icons
 import alert from "../../assets/LottieFiles/alert.json";
+import heart from "../../assets/useAnimations/heart.json";
 
 // Page animations
 import fetchingAnimation from "../../assets/LottieFiles/fetching.json";
@@ -155,6 +156,7 @@ export const otherIcons = {
 
 export const icons = {
   alert: alert,
+  heart: heart,
 };
 
 export { errorAnimation, fetchingAnimation };
@@ -166,7 +168,7 @@ export function setAnimation(
   autoplay = true
 ) {
   const clonedData = JSON.parse(JSON.stringify(data)); // if there are repeaters
-  lottie.loadAnimation({
+  return lottie.loadAnimation({
     container: parentContainer,
     renderer: "svg",
     loop: loop,
@@ -182,10 +184,25 @@ export function setAnimation(
   });
 }
 
+let isFrozen = false;
 export function freezeAllAnimations(unfreeze = false) {
   if (unfreeze) {
     lottie.unfreeze();
+    isFrozen = false;
   } else {
     lottie.freeze();
+    isFrozen = true;
+  }
+}
+
+export function forcePlayAnimation(animation, direction = 1) {
+  animation.setDirection(direction);
+
+  if (isFrozen) {
+    const goToFrame =
+      direction == 1 ? animation.totalFrames - 1 : animation.firstFrame;
+    animation.goToAndStop(goToFrame, true);
+  } else {
+    animation.play();
   }
 }
