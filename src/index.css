@@ -633,14 +633,14 @@ body > div:nth-child(1):has(> .fetching-page) {
   padding: var(--page-padding);
   display: flex;
   flex-direction: column;
-  gap: var(--page-gap);
+  /* gap: var(--page-gap); */
   height: 100%;
 }
 
 .error-page__header,
 .fetching-page__header {
   display: flex;
-  justify-content: center;
+  justify-content: flex-start;
   line-height: 1;
 }
 
@@ -674,6 +674,7 @@ body > div:nth-child(1):has(> .fetching-page) {
 }
 
 /* Icons */
+.error-page__back-btn,
 .weather-data-page__back-btn,
 .weather-data-page__toggle-home-btn,
 .weather-data-page__toggle-bookmarked-btn {
@@ -683,16 +684,20 @@ body > div:nth-child(1):has(> .fetching-page) {
   background: none;
 }
 
+.error-page__back-btn svg,
 .weather-data-page__back-btn svg,
 .weather-data-page__toggle-home-btn svg,
 .weather-data-page__toggle-bookmarked-btn svg {
   height: 100%;
   width: 100%;
 }
+
 .weather-data-page__toggle-home-btn path {
   fill: red;
   stroke: red;
 }
+
+.error-page__back-btn path,
 .weather-data-page__back-btn path,
 .weather-data-page__toggle-bookmarked-btn path {
   fill: var(--col-txt);
