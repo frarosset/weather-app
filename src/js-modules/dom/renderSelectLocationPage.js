@@ -9,6 +9,7 @@ import {
   showHomeLocation,
   getBookmarkedLocations,
   getHomeLocation,
+  removeBookmarkedLocation,
 } from "../../appData.js";
 import { setAnimation, icons, forcePlayAnimation } from "./animations.js";
 import { resetHomeLocation } from "../../appData.js";
@@ -23,6 +24,7 @@ const cssClass = {
   bookmarkedDiv: "bookmarked-div",
   bookmarkedList: "bookmarked-list",
   bookmarkedBtn: "bookmarked-btn",
+  removeBookmarkedButton: "remove-bookmarked-btn",
 };
 const getCssClass = (element) => `${blockName}__${cssClass[element]}`;
 
@@ -118,12 +120,15 @@ function initRemoveHomeButton(parentDiv) {
 }
 
 function initBookmarkedLocationDiv() {
-  const div = initDiv(getCssClass("bookmarkedDiv"));
-
-  const bookmarkedLocations = getBookmarkedLocations();
   const list = initDiv(getCssClass("bookmarkedList"));
 
+  const bookmarkedLocations = getBookmarkedLocations();
+
   bookmarkedLocations.forEach((location) => {
+    const div = initDiv(getCssClass("bookmarkedDiv"));
+
+    const removeBtn = initRemoveBookmarkedButton(div, location);
+
     const btn = initButton(
       getCssClass("bookmarkedButton"),
       () => {
@@ -132,10 +137,35 @@ function initBookmarkedLocationDiv() {
       null,
       location
     );
-    list.append(btn);
+
+    div.append(removeBtn, btn);
+    list.append(div);
   });
 
-  div.append(list);
+  return list;
+}
 
-  return div;
+function initRemoveBookmarkedButton(parentDiv, location) {
+  const removeBtnCallback = () => {
+    forcePlayAnimation(animation, -1);
+    removeBookmarkedLocation(location);
+    resetContent(parentDiv);
+  };
+
+  const removeBtn = initButton(
+    getCssClass("removeBookmarkedButton"),
+    removeBtnCallback
+  );
+  const animation = setAnimation(removeBtn, icons.bookmark, false, false);
+  forcePlayAnimation(animation, 1);
+
+  removeBtn.addEventListener("mouseenter", () => {
+    forcePlayAnimation(animation, -1);
+  });
+
+  removeBtn.addEventListener("mouseleave", () => {
+    forcePlayAnimation(animation, 1);
+  });
+
+  return removeBtn;
 }
