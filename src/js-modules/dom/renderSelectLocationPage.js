@@ -18,6 +18,7 @@ const blockName = "select-location-page";
 const cssClass = {
   searchDiv: "search-div",
   searchInput: "search-input",
+  searchIcon: "search-icon",
   homeDiv: "home-div",
   homeBtn: "home-btn",
   removeHomeBtn: "remove-home-btn",
@@ -50,6 +51,9 @@ export function createSelectLocationPage() {
 function initSearchDiv() {
   const searchDiv = initDiv(getCssClass("searchDiv"));
 
+  const searchIcon = initDiv(getCssClass("searchIcon"));
+  setAnimation(searchIcon, icons.search, false, false);
+
   const searchInput = initInput(
     getCssClass("searchInput"),
     getCssClass("searchInput"),
@@ -69,7 +73,7 @@ function initSearchDiv() {
     }
   });
 
-  searchDiv.append(searchInput);
+  searchDiv.append(searchIcon, searchInput);
 
   return searchDiv;
 }
