@@ -675,6 +675,7 @@ body > div:nth-child(1):has(> .fetching-page) {
 
 /* Icons */
 .select-location-page__remove-home-btn,
+.select-location-page__remove-bookmarked-btn,
 .error-page__back-btn,
 .weather-data-page__back-btn,
 .weather-data-page__toggle-home-btn,
@@ -686,6 +687,7 @@ body > div:nth-child(1):has(> .fetching-page) {
 }
 
 .select-location-page__remove-home-btn svg,
+.select-location-page__remove-bookmarked-btn svg,
 .error-page__back-btn svg,
 .weather-data-page__back-btn svg,
 .weather-data-page__toggle-home-btn svg,
@@ -700,6 +702,7 @@ body > div:nth-child(1):has(> .fetching-page) {
   stroke: red;
 }
 
+.select-location-page__remove-bookmarked-btn path,
 .error-page__back-btn path,
 .weather-data-page__back-btn path,
 .weather-data-page__toggle-bookmarked-btn path {
