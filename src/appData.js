@@ -20,10 +20,6 @@ function getFromLocalStorage() {
 
 export function initAppData() {
   getFromLocalStorage();
-
-  addBookmarkedLocation("sydney");
-  addBookmarkedLocation("rome");
-  addBookmarkedLocation("dubai");
 }
 
 // Functions related to location
@@ -35,6 +31,10 @@ export function setHomeLocation(str) {
 
 export function getHomeLocation() {
   return appData.location.home;
+}
+
+export function isHomeLocation(str) {
+  return str === appData.location.home;
 }
 
 export function showHomeLocation() {
@@ -86,6 +86,7 @@ export function removeBookmarkedLocation(str) {
   bookmarkedSet.delete(str);
   appData.location.bookmarked = [...bookmarkedSet].sort();
   saveToLocalStorage();
+  console.log(str, appData.location.bookmarked);
 }
 
 export function getBookmarkedLocations() {
@@ -95,4 +96,8 @@ export function getBookmarkedLocations() {
 export function resetBookmarkedLocations() {
   appData.location.bookmarked = [];
   saveToLocalStorage();
+}
+
+export function isInBookmarkedLocations(str) {
+  return appData.location.bookmarked.includes(str);
 }

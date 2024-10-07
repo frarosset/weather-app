@@ -3,6 +3,7 @@ import * as lottie from "lottie-web";
 // Icons
 import alert from "../../assets/LottieFiles/alert.json";
 import heart from "../../assets/useAnimations/heart.json";
+import bookmark from "../../assets/useAnimations/bookmark.json";
 
 // Page animations
 import fetchingAnimation from "../../assets/LottieFiles/fetching.json";
@@ -157,6 +158,7 @@ export const otherIcons = {
 export const icons = {
   alert: alert,
   heart: heart,
+  bookmark: bookmark,
 };
 
 export { errorAnimation, fetchingAnimation };

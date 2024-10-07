@@ -662,27 +662,31 @@ body > div:nth-child(2):has(> .fetching-page) {
 
 /* Icons */
 
-.weather-data-page__toggle-home-btn {
+.weather-data-page__toggle-home-btn,
+.weather-data-page__toggle-bookmarked-btn {
   width: var(--generic-icon-size);
   height: min-content;
   border: none;
   background: none;
 }
 
-.weather-data-page__toggle-home-btn svg {
+.weather-data-page__toggle-home-btn svg,
+.weather-data-page__toggle-bookmarked-btn svg {
   height: 100%;
   width: 100%;
 }
 .weather-data-page__toggle-home-btn path {
-  /* fill: var(--col-txt);
-  stroke: var(--col-txt); */
   fill: red;
   stroke: red;
 }
-/* .weather-data-page .weather-data-page__toggle-home-btn path {
+.weather-data-page__toggle-bookmarked-btn path {
+  fill: var(--col-txt);
+  stroke: var(--col-txt);
+}
+.weather-data-page.night .weather-data-page__toggle-bookmarked-btn path {
   fill: var(--col-txt-alt);
   stroke: var(--col-txt-alt);
-} */
+}
 
 /* Customize scrollbars */
 ::-webkit-scrollbar {
