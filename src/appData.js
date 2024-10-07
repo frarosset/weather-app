@@ -41,7 +41,9 @@ export function showHomeLocation() {
   const location = appData.location.home;
   if (location !== null) {
     showWeatherDataFor(location);
+    return true;
   }
+  return false;
 }
 
 export function resetHomeLocation() {
@@ -64,7 +66,9 @@ export function showLastLocation() {
   const location = appData.location.last;
   if (location !== null) {
     showWeatherDataFor(location);
+    return true;
   }
+  return false;
 }
 
 export function resetLastLocation() {
@@ -86,7 +90,6 @@ export function removeBookmarkedLocation(str) {
   bookmarkedSet.delete(str);
   appData.location.bookmarked = [...bookmarkedSet].sort();
   saveToLocalStorage();
-  console.log(str, appData.location.bookmarked);
 }
 
 export function getBookmarkedLocations() {

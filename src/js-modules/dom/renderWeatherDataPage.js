@@ -27,6 +27,7 @@ import {
   addBookmarkedLocation,
   removeBookmarkedLocation,
 } from "../../appData.js";
+import PubSub from "pubsub-js";
 
 const blockName = "weather-data-page";
 const cssClass = {
@@ -36,6 +37,7 @@ const cssClass = {
   locationH2: "location-h2",
   btnDiv: "btn-div",
   toggleHomeBtn: "toggle-home-btn",
+  backBtn: "back-btn",
   toggleBookmarkedBtn: "toggle-bookmarked-btn",
   conditionsP: "conditions-p",
   tempP: "temp-p",
@@ -112,20 +114,42 @@ export function createWeatherDataPage(data) {
 function initPageHeader(data) {
   const header = initHeader(getCssClass("header"));
 
+  // Toggle back, home, bookmarked button
+  const btnDiv = initDiv(getCssClass("btnDiv"));
+  btnDiv.append(
+    initBackButton(),
+    initToggleHomeButton(data),
+    initToggleBookmarkedButton(data)
+  );
+
   // Info about location
   const locationDiv = initDiv(getCssClass("locationDiv"));
   const locationH2 = initH2(getCssClass("locationH2"), null, data.location);
   locationDiv.append(locationH2);
 
-  // Toggle home button
-  const btnDiv = initDiv(getCssClass("btnDiv"));
-  btnDiv.append(initToggleHomeButton(data), initToggleBookmarkedButton(data));
-
-  // todo: back, like
-
-  header.append(locationDiv, btnDiv);
+  header.append(btnDiv, locationDiv);
 
   return header;
+}
+
+function initBackButton() {
+  const backBtnCallback = () => {
+    forcePlayAnimation(animation, 1);
+    PubSub.publish("RENDER SELECT LOCATION DATA");
+  };
+
+  const backBtn = initButton(getCssClass("backBtn"), backBtnCallback);
+  const animation = setAnimation(backBtn, icons.chevronLeft, false, false);
+
+  backBtn.addEventListener("mouseenter", () => {
+    forcePlayAnimation(animation, 1);
+  });
+
+  backBtn.addEventListener("mouseleave", () => {
+    forcePlayAnimation(animation, -1);
+  });
+
+  return backBtn;
 }
 
 function initToggleHomeButton(data) {
@@ -154,7 +178,6 @@ function initToggleHomeButton(data) {
 
 function initToggleBookmarkedButton(data) {
   const toggleBookmarkedBtnCallback = () => {
-    console.log(isInBookmarkedLocations(data.location));
     if (isInBookmarkedLocations(data.location)) {
       forcePlayAnimation(animation, -1);
       removeBookmarkedLocation(data.location);
