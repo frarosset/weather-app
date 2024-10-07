@@ -8,10 +8,25 @@ const appData = {
   },
 };
 
+// Local storage
+function saveToLocalStorage() {
+  localStorage.setItem("appData", JSON.stringify(appData));
+}
+
+function getFromLocalStorage() {
+  const jsonStr = localStorage.getItem("appData");
+  Object.assign(appData, JSON.parse(jsonStr));
+}
+
+export function initAppData() {
+  getFromLocalStorage();
+}
+
 // Functions related to location
 
 export function setHomeLocation(str) {
   appData.location.home = str;
+  saveToLocalStorage();
 }
 
 export function getHomeLocation() {
@@ -27,12 +42,14 @@ export function showHomeLocation() {
 
 export function resetHomeLocation() {
   appData.location.home = null;
+  saveToLocalStorage();
 }
 
 // Functions related to last
 
 export function setLastLocation(str) {
   appData.location.last = str;
+  saveToLocalStorage();
 }
 
 export function getLastLocation() {
@@ -48,4 +65,5 @@ export function showLastLocation() {
 
 export function resetLastLocation() {
   appData.location.last = null;
+  saveToLocalStorage();
 }
