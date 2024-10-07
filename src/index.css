@@ -674,6 +674,7 @@ body > div:nth-child(1):has(> .fetching-page) {
 }
 
 /* Icons */
+.select-location-page__remove-home-btn,
 .error-page__back-btn,
 .weather-data-page__back-btn,
 .weather-data-page__toggle-home-btn,
@@ -684,6 +685,7 @@ body > div:nth-child(1):has(> .fetching-page) {
   background: none;
 }
 
+.select-location-page__remove-home-btn svg,
 .error-page__back-btn svg,
 .weather-data-page__back-btn svg,
 .weather-data-page__toggle-home-btn svg,
@@ -692,6 +694,7 @@ body > div:nth-child(1):has(> .fetching-page) {
   width: 100%;
 }
 
+.select-location-page__remove-home-btn path,
 .weather-data-page__toggle-home-btn path {
   fill: red;
   stroke: red;
