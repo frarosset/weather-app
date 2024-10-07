@@ -11,7 +11,12 @@ import {
   initButton,
 } from "../../js-utilities/commonDomComponents.js";
 import { resetContent } from "../../js-utilities/commonDomUtilities.js";
-import { setAnimation, weatherIcons, icons } from "./animations.js";
+import {
+  setAnimation,
+  weatherIcons,
+  icons,
+  forcePlayAnimation,
+} from "./animations.js";
 import { initOtherCurrentConditionsDiv } from "./initOtherConditionsDiv.js";
 import applyDynamicBackground from "../dynamic-background/applyDynamicBackground.js";
 import {
@@ -125,10 +130,10 @@ function initToggleHomeButton(data) {
 
   const toggleHomeBtnCallback = () => {
     if (data.location === getHomeLocation()) {
-      toggleHomeBtn.textContent = "set home";
+      forcePlayAnimation(animationMenu, -1);
       resetHomeLocation();
     } else {
-      toggleHomeBtn.textContent = "remove home";
+      forcePlayAnimation(animationMenu, 1);
       setHomeLocation(data.location);
     }
   };
@@ -137,8 +142,11 @@ function initToggleHomeButton(data) {
     getCssClass("toggleHomeBtn"),
     toggleHomeBtnCallback
   );
+  const animationMenu = setAnimation(toggleHomeBtn, icons.heart, false, false);
 
-  toggleHomeBtn.textContent = isHome ? "remove home" : "set home";
+  if (isHome) {
+    forcePlayAnimation(animationMenu, 1);
+  }
 
   return toggleHomeBtn;
 }

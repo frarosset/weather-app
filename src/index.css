@@ -47,6 +47,7 @@
   --other-condition-unit-fontsize: 1em;
   --other-condition-small-fontsize: 0.8em;
   --other-condition-smaller-fontsize: 0.6em;
+  --generic-icon-size: 2rem;
 
   /* Text clamping: number of lines */
   /* --main-itm-project-description-max-lines: 6;
@@ -658,6 +659,30 @@ body > div:nth-child(2):has(> .fetching-page) {
   text-wrap: balance;
   text-align: center;
 }
+
+/* Icons */
+
+.weather-data-page__toggle-home-btn {
+  width: var(--generic-icon-size);
+  height: min-content;
+  border: none;
+  background: none;
+}
+
+.weather-data-page__toggle-home-btn svg {
+  height: 100%;
+  width: 100%;
+}
+.weather-data-page__toggle-home-btn path {
+  /* fill: var(--col-txt);
+  stroke: var(--col-txt); */
+  fill: red;
+  stroke: red;
+}
+/* .weather-data-page .weather-data-page__toggle-home-btn path {
+  fill: var(--col-txt-alt);
+  stroke: var(--col-txt-alt);
+} */
 
 /* Customize scrollbars */
 ::-webkit-scrollbar {
