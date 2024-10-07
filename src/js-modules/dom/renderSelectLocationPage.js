@@ -3,7 +3,10 @@ import {
   initInput,
   initButton,
 } from "../../js-utilities/commonDomComponents.js";
-import { resetContent } from "../../js-utilities/commonDomUtilities.js";
+import {
+  resetContent,
+  deleteElement,
+} from "../../js-utilities/commonDomUtilities.js";
 import { showWeatherDataFor } from "../showWeatherDataFor.js";
 import {
   showHomeLocation,
@@ -19,6 +22,7 @@ const cssClass = {
   searchDiv: "search-div",
   searchInput: "search-input",
   searchIcon: "search-icon",
+  homeDivCnt: "home-div-cnt",
   homeDiv: "home-div",
   homeBtn: "home-btn",
   removeHomeBtn: "remove-home-btn",
@@ -79,10 +83,11 @@ function initSearchDiv() {
 }
 
 function initHomeLocationDiv() {
-  const div = initDiv(getCssClass("homeDiv"));
+  const divCnt = initDiv(getCssClass("homeDivCnt"));
 
   const location = getHomeLocation();
   if (location !== null) {
+    const div = initDiv(getCssClass("homeDiv"));
     const removeBtn = initRemoveHomeButton(div);
 
     const btn = initButton(
@@ -93,16 +98,17 @@ function initHomeLocationDiv() {
     );
 
     div.append(removeBtn, btn);
+    divCnt.append(div);
   }
 
-  return div;
+  return divCnt;
 }
 
 function initRemoveHomeButton(parentDiv) {
   const removeBtnCallback = () => {
     forcePlayAnimation(animation, -1);
     resetHomeLocation();
-    resetContent(parentDiv);
+    deleteElement(parentDiv);
   };
 
   const removeBtn = initButton(getCssClass("removeHomeBtn"), removeBtnCallback);
@@ -150,7 +156,7 @@ function initRemoveBookmarkedButton(parentDiv, location) {
   const removeBtnCallback = () => {
     forcePlayAnimation(animation, -1);
     removeBookmarkedLocation(location);
-    resetContent(parentDiv);
+    deleteElement(parentDiv);
   };
 
   const removeBtn = initButton(
