@@ -8,6 +8,8 @@ import PubSub from "pubsub-js";
 import { freezeAllAnimations } from "./dom/animations.js";
 
 export default function initWebpage() {
+  initAppData();
+
   renderSelectLocationPage(document.body);
 
   const resultsDiv = document.createElement("div");
@@ -31,7 +33,6 @@ export default function initWebpage() {
     renderFetchingDataPage(resultsDiv, locationStr);
   });
 
-  initAppData();
   showHomeLocation();
 
   freezeAllAnimations();

@@ -23,15 +23,7 @@ export function initAppData() {
 
   addBookmarkedLocation("sydney");
   addBookmarkedLocation("rome");
-  addBookmarkedLocation("sydney");
   addBookmarkedLocation("dubai");
-  console.log(getBookmarkedLocations());
-  removeBookmarkedLocation("sydney");
-  console.log(getBookmarkedLocations());
-  resetBookmarkedLocations();
-  console.log(getBookmarkedLocations());
-  addBookmarkedLocation("london");
-  console.log(getBookmarkedLocations());
 }
 
 // Functions related to location
