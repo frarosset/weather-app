@@ -250,6 +250,8 @@ export function initRadioItem(
   const label = initLabel(labelClass, inputId, null, labelStr);
 
   element.append(input, label);
+  element.input = input;
+  element.label = label;
 
   return element;
 }
