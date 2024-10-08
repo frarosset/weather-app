@@ -24,7 +24,7 @@ export function showWeatherDataForCurrentPosition() {
     return;
   }
 
-  PubSub.publish("RENDER FETCHING DATA", "your current position");
+  PubSub.publish("RENDER LOCATING");
 
   const successCallback = (position) => {
     const location = `${position.coords.latitude},${position.coords.longitude}`;
