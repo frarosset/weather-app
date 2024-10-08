@@ -173,6 +173,15 @@ function initToggleHomeButton(data) {
     forcePlayAnimation(animation, 1);
   }
 
+  toggleHomeBtn.addEventListener("mouseenter", () => {
+    const direction = isHomeLocation(data.location) ? -1 : 1;
+    forcePlayAnimation(animation, direction);
+  });
+
+  toggleHomeBtn.addEventListener("mouseleave", () => {
+    const direction = isHomeLocation(data.location) ? 1 : -1;
+    forcePlayAnimation(animation, direction);
+  });
   return toggleHomeBtn;
 }
 
@@ -201,6 +210,16 @@ function initToggleBookmarkedButton(data) {
   if (isInBookmarkedLocations(data.location)) {
     forcePlayAnimation(animation, 1);
   }
+
+  toggleBookmarkedBtn.addEventListener("mouseenter", () => {
+    const direction = isInBookmarkedLocations(data.location) ? -1 : 1;
+    forcePlayAnimation(animation, direction);
+  });
+
+  toggleBookmarkedBtn.addEventListener("mouseleave", () => {
+    const direction = isInBookmarkedLocations(data.location) ? 1 : -1;
+    forcePlayAnimation(animation, direction);
+  });
 
   return toggleBookmarkedBtn;
 }
