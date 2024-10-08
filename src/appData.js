@@ -2,7 +2,7 @@ import { showWeatherDataFor } from "./js-modules/showWeatherDataFor.js";
 import { freezeAllAnimations } from "./js-modules/dom/animations.js";
 
 const defaultUnits = "metric";
-const defaultAnimations = true;
+const defaultAnimations = false;
 
 const appData = {
   location: {
