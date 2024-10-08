@@ -3,6 +3,9 @@ import {
   initButton,
   initHeader,
   initH1,
+  initH2,
+  initFieldset,
+  initRadioItem,
 } from "../../js-utilities/commonDomComponents.js";
 import { resetContent } from "../../js-utilities/commonDomUtilities.js";
 import { setAnimation, icons, forcePlayAnimation } from "./animations.js";
@@ -14,6 +17,8 @@ const cssClass = {
   h1: "h1",
   backBtn: "back-btn",
   settingsDiv: "settings-div",
+  unitsFieldset: "units-fieldset",
+  unitsItem: "units-item",
 };
 const getCssClass = (element) => `${blockName}__${cssClass[element]}`;
 
@@ -64,7 +69,27 @@ function initBackButton() {
 function initSettingsDiv() {
   const div = initDiv(getCssClass("settingsDiv"));
 
-  div.textContent = "Settings";
+  const h2 = initH2(getCssClass("settingsDiv"), null, "Settings");
+
+  div.append(h2, initUnitSystem());
 
   return div;
+}
+
+function initUnitSystem() {
+  const fieldset = initFieldset(getCssClass("unitsFieldset"), "Units");
+
+  const units = [
+    ["metric", "Metric"],
+    ["uk", "United Kingdom"],
+    ["us", "United States"],
+  ];
+
+  units.forEach(([value, label]) => {
+    fieldset.append(
+      initRadioItem(getCssClass("unitsItem"), "units", value, label)
+    );
+  });
+
+  return fieldset;
 }
