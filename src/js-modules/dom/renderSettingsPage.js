@@ -64,9 +64,9 @@ function initBackButton() {
     forcePlayAnimation(animation, 1);
   });
 
-  backBtn.addEventListener("mouseleave", () => {
-    forcePlayAnimation(animation, -1);
-  });
+  //   backBtn.addEventListener("mouseleave", () => {
+  //     forcePlayAnimation(animation, -1);
+  //   });
 
   return backBtn;
 }
