@@ -16,8 +16,8 @@ const blockName = "settings-page";
 const cssClass = {
   header: "header",
   h1: "h1",
+  h2: "h2",
   backBtn: "back-btn",
-  settingsDiv: "settings-div",
   unitsFieldset: "units-fieldset",
   unitsItem: "units-item",
 };
@@ -32,7 +32,11 @@ export default function renderSelectLocationPage(parentDiv) {
 export function createSelectLocationPage() {
   const div = initDiv(blockName);
 
-  div.append(initPageHeader(), initSettingsDiv());
+  div.append(
+    initPageHeader(),
+    initH2(getCssClass("h2"), null, "Settings"),
+    initUnitSystem()
+  );
 
   return div;
 }
@@ -65,16 +69,6 @@ function initBackButton() {
   });
 
   return backBtn;
-}
-
-function initSettingsDiv() {
-  const div = initDiv(getCssClass("settingsDiv"));
-
-  const h2 = initH2(getCssClass("settingsDiv"), null, "Settings");
-
-  div.append(h2, initUnitSystem());
-
-  return div;
 }
 
 function initUnitSystem() {
