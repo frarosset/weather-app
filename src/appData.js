@@ -53,8 +53,7 @@ export function showHomeLocation() {
 }
 
 export function resetHomeLocation() {
-  appData.location.home = null;
-  saveToLocalStorage();
+  setHomeLocation(null);
 }
 
 // Functions related to last location
@@ -78,8 +77,7 @@ export function showLastLocation() {
 }
 
 export function resetLastLocation() {
-  appData.location.last = null;
-  saveToLocalStorage();
+  setLastLocation(null);
 }
 
 // Functions related to bookmarked locations
@@ -127,8 +125,7 @@ export function isUnits(str) {
 }
 
 export function resetUnits() {
-  appData.units = defaultUnits;
-  saveToLocalStorage();
+  setUnits(defaultUnits);
 }
 
 // Functions related to animations (enabled/disabled)
