@@ -7,7 +7,10 @@ import {
   resetContent,
   deleteElement,
 } from "../../js-utilities/commonDomUtilities.js";
-import { showWeatherDataFor } from "../showWeatherDataFor.js";
+import {
+  showWeatherDataFor,
+  showWeatherDataForCurrentPosition,
+} from "../showWeatherDataFor.js";
 import {
   showHomeLocation,
   getBookmarkedLocations,
@@ -25,6 +28,10 @@ const cssClass = {
   homeDivCnt: "home-div-cnt",
   homeDiv: "home-div",
   homeBtn: "home-btn",
+  currentLocationDivCnt: "current-location-div-cnt",
+  currentLocationDiv: "current-location-div",
+  currentLocationIcon: "current-location-icon",
+  currentLocationBtn: "current-location-btn",
   removeHomeBtn: "remove-home-btn",
   bookmarkedDiv: "bookmarked-div",
   bookmarkedList: "bookmarked-list",
@@ -45,6 +52,7 @@ export function createSelectLocationPage() {
   // Search div
   div.append(
     initSearchDiv(),
+    initCurrentLocationLocationDiv(),
     initHomeLocationDiv(),
     initBookmarkedLocationDiv()
   );
@@ -80,6 +88,28 @@ function initSearchDiv() {
   searchDiv.append(searchIcon, searchInput);
 
   return searchDiv;
+}
+
+function initCurrentLocationLocationDiv() {
+  const divCnt = initDiv(getCssClass("currentLocationDivCnt"));
+
+  if (navigator.geolocation) {
+    const div = initDiv(getCssClass("currentLocationDiv"));
+    const currentLocationIcon = initDiv(getCssClass("currentLocationIcon"));
+    setAnimation(currentLocationIcon, icons.explore, false, false);
+
+    const btn = initButton(
+      getCssClass("currentLocationBtn"),
+      showWeatherDataForCurrentPosition,
+      null,
+      "Your current location"
+    );
+
+    div.append(currentLocationIcon, btn);
+    divCnt.append(div);
+  }
+
+  return divCnt;
 }
 
 function initHomeLocationDiv() {

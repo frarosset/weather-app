@@ -45,9 +45,7 @@ export default function initWebpage() {
     renderLocatingPage(resultsDiv);
   });
 
-  //if (!showHomeLocation()) renderSelectLocationPage(resultsDiv);
-
-  showWeatherDataForCurrentPosition();
+  if (!showHomeLocation()) renderSelectLocationPage(resultsDiv);
 
   freezeAllAnimations();
 }

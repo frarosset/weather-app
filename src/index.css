@@ -183,7 +183,8 @@ a:visited {
 
 .select-location-page__search-div,
 .select-location-page__home-div,
-.select-location-page__bookmarked-div {
+.select-location-page__bookmarked-div,
+.select-location-page__current-location-div {
   background-color: var(--block-bg-col);
   border-radius: var(--radius);
   padding: var(--block-padding);
@@ -193,7 +194,8 @@ a:visited {
 
 .select-location-page__search-input,
 .select-location-page__home-btn,
-.select-location-page__bookmarked-btn {
+.select-location-page__bookmarked-btn,
+.select-location-page__current-location-btn {
   font-size: var(--select-location-text-size);
   border: none;
   background: none;
@@ -749,6 +751,7 @@ body > div:nth-child(1):has(> .locating-page) {
 
 /* Icons */
 .select-location-page__search-icon,
+.select-location-page__current-location-icon,
 .select-location-page__remove-home-btn,
 .select-location-page__remove-bookmarked-btn,
 .error-page__back-btn,
@@ -762,6 +765,7 @@ body > div:nth-child(1):has(> .locating-page) {
 }
 
 .select-location-page__search-icon svg,
+.select-location-page__remove-current-location-icon svg,
 .select-location-page__remove-home-btn svg,
 .select-location-page__remove-bookmarked-btn svg,
 .error-page__back-btn svg,
@@ -778,6 +782,7 @@ body > div:nth-child(1):has(> .locating-page) {
   stroke: red;
 }
 
+.select-location-page__current-location-icon path,
 .select-location-page__search-icon path,
 .select-location-page__remove-bookmarked-btn path,
 .error-page__back-btn path,
