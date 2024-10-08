@@ -1,11 +1,14 @@
 import { showWeatherDataFor } from "./js-modules/showWeatherDataFor.js";
 
+const defaultUnits = "metric";
+
 const appData = {
   location: {
     home: null,
     bookmarked: [],
     last: null,
   },
+  units: defaultUnits,
 };
 
 // Local storage
@@ -103,4 +106,24 @@ export function resetBookmarkedLocations() {
 
 export function isInBookmarkedLocations(str) {
   return appData.location.bookmarked.includes(str);
+}
+
+// Functions related to units
+
+export function setUnits(str) {
+  appData.units = str;
+  saveToLocalStorage();
+}
+
+export function getUnits() {
+  return appData.units;
+}
+
+export function isUnits(str) {
+  return str === appData.units;
+}
+
+export function resetUnits() {
+  appData.units = defaultUnits;
+  saveToLocalStorage();
 }
