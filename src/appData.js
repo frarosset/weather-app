@@ -1,6 +1,8 @@
 import { showWeatherDataFor } from "./js-modules/showWeatherDataFor.js";
+import { freezeAllAnimations } from "./js-modules/dom/animations.js";
 
 const defaultUnits = "metric";
+const defaultAnimations = true;
 
 const appData = {
   location: {
@@ -9,6 +11,7 @@ const appData = {
     last: null,
   },
   units: defaultUnits,
+  animations: defaultAnimations,
 };
 
 // Local storage
@@ -126,4 +129,24 @@ export function isUnits(str) {
 export function resetUnits() {
   appData.units = defaultUnits;
   saveToLocalStorage();
+}
+
+// Functions related to animations (enabled/disabled)
+
+export function setAnimations(val) {
+  appData.animations = val;
+  freezeAllAnimations(val);
+  saveToLocalStorage();
+}
+
+export function getAnimations() {
+  return appData.animations;
+}
+
+export function isAnimations(val) {
+  return val === appData.animations;
+}
+
+export function resetAnimations() {
+  setAnimations(defaultAnimations);
 }
