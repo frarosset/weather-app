@@ -216,9 +216,17 @@ a:visited {
 .select-location-page__current-location-div {
   background-color: var(--block-bg-col);
   border-radius: var(--radius);
-  padding: var(--block-padding);
+  /* padding: var(--block-padding); */
   gap: var(--block-gap);
   display: flex;
+}
+
+.select-location-page__search-icon,
+.select-location-page__remove-home-btn,
+.select-location-page__remove-bookmarked-btn,
+.select-location-page__current-location-icon {
+  margin: var(--block-padding);
+  margin-right: 0;
 }
 
 .select-location-page__search-input,
@@ -230,6 +238,15 @@ a:visited {
   background: none;
   text-align: left;
   justify-content: pretty;
+  padding: var(--block-padding);
+  padding-left: 0;
+  width: 100%;
+}
+
+.select-location-page__search-input {
+  padding: 0;
+  margin: var(--block-padding);
+  margin-left: 0;
 }
 
 .select-location-page__search-input {

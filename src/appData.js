@@ -26,6 +26,7 @@ function getFromLocalStorage() {
 
 export function initAppData() {
   getFromLocalStorage();
+  freezeAllAnimations(appData.animations);
 }
 
 // Functions related to location
