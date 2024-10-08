@@ -2,6 +2,8 @@ import {
   initDiv,
   initInput,
   initButton,
+  initHeader,
+  initH1,
 } from "../../js-utilities/commonDomComponents.js";
 import {
   resetContent,
@@ -22,6 +24,8 @@ import { resetHomeLocation } from "../../appData.js";
 
 const blockName = "select-location-page";
 const cssClass = {
+  header: "header",
+  h1: "h1",
   searchDiv: "search-div",
   searchInput: "search-input",
   searchIcon: "search-icon",
@@ -51,6 +55,7 @@ export function createSelectLocationPage() {
 
   // Search div
   div.append(
+    initPageHeader(),
     initSearchDiv(),
     initCurrentLocationLocationDiv(),
     initHomeLocationDiv(),
@@ -58,6 +63,15 @@ export function createSelectLocationPage() {
   );
 
   return div;
+}
+
+function initPageHeader() {
+  const header = initHeader(getCssClass("header"));
+
+  const h1 = initH1(getCssClass("h1"), null, "WEATHER APP");
+  header.append(h1);
+
+  return header;
 }
 
 function initSearchDiv() {

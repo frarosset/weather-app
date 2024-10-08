@@ -4,7 +4,7 @@ const appData = {
   location: {
     home: null,
     bookmarked: [],
-    last: "",
+    last: null,
   },
 };
 

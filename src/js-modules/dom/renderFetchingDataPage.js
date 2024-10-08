@@ -2,6 +2,7 @@ import {
   initDiv,
   initP,
   initHeader,
+  initH1,
 } from "../../js-utilities/commonDomComponents.js";
 import { resetContent } from "../../js-utilities/commonDomUtilities.js";
 import { setAnimation, fetchingAnimation } from "./animations.js";
@@ -9,6 +10,7 @@ import { setAnimation, fetchingAnimation } from "./animations.js";
 const blockName = "fetching-page";
 const cssClass = {
   header: "header",
+  h1: "h1",
   fetchingDataDiv: "fetching-data-div",
   fetchingDataMsg: "fetching-data-msg",
   iconDiv: "icon-div",
@@ -30,7 +32,9 @@ export function createFetchingDataPage(locationStr) {
 function initPageHeader() {
   const header = initHeader(getCssClass("header"));
 
-  // todo: back
+  const h1 = initH1(getCssClass("h1"), null, "WEATHER APP");
+
+  header.append(h1);
 
   return header;
 }
