@@ -681,13 +681,15 @@ a:visited {
 /* WEATHER ERROR PAGE ------------------------------------------------------------ */
 
 body > div:nth-child(1):has(> .error-page),
-body > div:nth-child(1):has(> .fetching-page) {
+body > div:nth-child(1):has(> .fetching-page),
+body > div:nth-child(1):has(> .locating-page) {
   flex: 1;
   overflow: hidden;
 }
 
 .error-page,
-.fetching-page {
+.fetching-page,
+.locating-page {
   padding: var(--page-padding);
   display: flex;
   flex-direction: column;
@@ -697,21 +699,24 @@ body > div:nth-child(1):has(> .fetching-page) {
 }
 
 .error-page__header,
-.fetching-page__header {
+.fetching-page__header,
+.locating-page__header {
   position: absolute;
   left: 0;
   top: 0;
 }
 
 .error-page__header,
-.fetching-page__header {
+.fetching-page__header,
+.locating-page__header {
   display: flex;
   justify-content: flex-start;
   line-height: 1;
 }
 
 .error-page__error-div,
-.fetching-page__fetching-data-div {
+.fetching-page__fetching-data-div,
+.locating-page__locating-div {
   flex: 1;
   display: flex;
   flex-direction: column;
@@ -719,21 +724,24 @@ body > div:nth-child(1):has(> .fetching-page) {
 }
 
 .error-page__icon-div,
-.fetching-page__icon-div {
+.fetching-page__icon-div,
+.locating-page__icon-div {
   height: 100%;
   flex-grow: 1;
   min-height: 0;
 }
 
 .error-page__icon-div svg,
-.fetching-page__icon-div svg {
+.fetching-page__icon-div svg,
+.locating-page__icon-div svg {
   height: 100%;
   width: 100%;
   font-size: 3rem;
 }
 
 .error-page__error-msg,
-.fetching-page__fetching-data-msg {
+.fetching-page__fetching-data-msg,
+.locating-page__locating-msg {
   font-size: var(--txt-small-fontsize);
   text-wrap: balance;
   text-align: center;

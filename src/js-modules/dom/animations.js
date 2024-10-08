@@ -10,6 +10,7 @@ import chevronLeft from "../../assets/useAnimations/chevron-left.json";
 // Page animations
 import fetchingAnimation from "../../assets/LottieFiles/fetching.json";
 import errorAnimation from "../../assets/LottieFiles/error.json";
+import locatingAnimation from "../../assets/LottieFiles/locating.json";
 
 // Weather icons
 import clearDay from "../../assets/Meteocons/weather/clear-day.json";
@@ -165,7 +166,7 @@ export const icons = {
   chevronLeft: chevronLeft,
 };
 
-export { errorAnimation, fetchingAnimation };
+export { errorAnimation, fetchingAnimation, locatingAnimation };
 
 export function setAnimation(
   parentContainer,
