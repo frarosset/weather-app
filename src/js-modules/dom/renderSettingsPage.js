@@ -9,6 +9,7 @@ import {
 } from "../../js-utilities/commonDomComponents.js";
 import { resetContent } from "../../js-utilities/commonDomUtilities.js";
 import { setAnimation, icons, forcePlayAnimation } from "./animations.js";
+import { isUnits } from "../../appData.js";
 import PubSub from "pubsub-js";
 
 const blockName = "settings-page";
@@ -79,16 +80,20 @@ function initSettingsDiv() {
 function initUnitSystem() {
   const fieldset = initFieldset(getCssClass("unitsFieldset"), "Units");
 
-  const units = [
+  const unitsArr = [
     ["metric", "Metric"],
     ["uk", "United Kingdom"],
     ["us", "United States"],
   ];
 
-  units.forEach(([value, label]) => {
-    fieldset.append(
-      initRadioItem(getCssClass("unitsItem"), "units", value, label)
-    );
+  unitsArr.forEach(([value, label]) => {
+    const item = initRadioItem(getCssClass("unitsItem"), "units", value, label);
+
+    if (isUnits(value)) {
+      item.input.checked = true;
+    }
+
+    fieldset.append(item);
   });
 
   return fieldset;
