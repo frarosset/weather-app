@@ -4,7 +4,7 @@ import renderErrorPage from "./dom/renderErrorPage.js";
 import renderFetchingDataPage from "./dom/renderFetchingDataPage.js";
 import renderLocatingPage from "./dom/renderLocatingPage.js";
 import renderSettingsPage from "./dom/renderSettingsPage.js";
-import { initAppData, showHomeLocation, setAnimations } from "../appData.js";
+import { initAppData, showHomeLocation } from "../appData.js";
 import PubSub from "pubsub-js";
 
 export default function initWebpage() {
@@ -47,6 +47,4 @@ export default function initWebpage() {
   });
 
   if (!showHomeLocation()) renderSelectLocationPage(resultsDiv);
-
-  setAnimations(true);
 }

@@ -9,7 +9,12 @@ import {
 } from "../../js-utilities/commonDomComponents.js";
 import { resetContent } from "../../js-utilities/commonDomUtilities.js";
 import { setAnimation, icons, forcePlayAnimation } from "./animations.js";
-import { isUnits, setUnits } from "../../appData.js";
+import {
+  isUnits,
+  setUnits,
+  getAnimations,
+  setAnimations,
+} from "../../appData.js";
 import PubSub from "pubsub-js";
 
 const blockName = "settings-page";
@@ -35,7 +40,8 @@ export function createSelectLocationPage() {
   div.append(
     initPageHeader(),
     initH2(getCssClass("h2"), null, "Settings"),
-    initUnitSystem()
+    initUnitSystem(),
+    initEnableAnimations()
   );
 
   return div;
@@ -97,4 +103,24 @@ function initUnitSystem() {
   });
 
   return fieldset;
+}
+
+function initEnableAnimations() {
+  //[value, label]
+
+  const item = initRadioItem(
+    getCssClass("unitsItem"),
+    "animations",
+    "enabled",
+    "Enable animations",
+    "checkbox"
+  );
+
+  item.input.checked = getAnimations();
+
+  item.addEventListener("change", () => {
+    setAnimations(item.input.checked);
+  });
+
+  return item;
 }
