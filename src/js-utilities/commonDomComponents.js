@@ -215,6 +215,45 @@ export function initOptionAsChildInList(
   return element;
 }
 
+export function initFieldset(className = null, legendStr) {
+  const element = document.createElement("fieldset");
+  applyClass(element, className);
+
+  const legend = document.createElement("legend");
+  applyClass(legend, `${className}-legend`);
+  legend.textContent = legendStr;
+
+  element.append(legend);
+
+  return element;
+}
+
+export function initRadioItem(
+  className = null,
+  name,
+  value,
+  labelStr,
+  type = "radio"
+) {
+  const divClass = `${className}-div`;
+  const inputClass = `${className}-input`;
+  const inputId = `${className}-${value}`;
+  const labelClass = `${className}-label`;
+
+  const element = document.createElement("div");
+  applyClass(element, divClass);
+
+  const input = initInput(inputClass, inputId, name);
+  input.type = type;
+  input.value = value;
+
+  const label = initLabel(labelClass, inputId, null, labelStr);
+
+  element.append(input, label);
+
+  return element;
+}
+
 export function initUl(className = null) {
   const element = document.createElement("ul");
   applyClass(element, className);
