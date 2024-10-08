@@ -9,7 +9,7 @@ import {
 } from "../../js-utilities/commonDomComponents.js";
 import { resetContent } from "../../js-utilities/commonDomUtilities.js";
 import { setAnimation, icons, forcePlayAnimation } from "./animations.js";
-import { isUnits } from "../../appData.js";
+import { isUnits, setUnits } from "../../appData.js";
 import PubSub from "pubsub-js";
 
 const blockName = "settings-page";
@@ -92,6 +92,12 @@ function initUnitSystem() {
     if (isUnits(value)) {
       item.input.checked = true;
     }
+
+    item.addEventListener("change", () => {
+      if (item.input.checked) {
+        setUnits(item.input.value);
+      }
+    });
 
     fieldset.append(item);
   });
