@@ -250,6 +250,36 @@ a:visited {
   flex-shrink: 0;
 }
 
+/* SETTINGS PAGE --------------------------------------------------------- */
+
+.settings-page__h2 {
+  text-align: center;
+}
+
+.settings-page__units-fieldset {
+  border-radius: var(--radius);
+  padding: var(--block-padding);
+  background-color: var(--block-bg-col);
+  border: none;
+}
+
+.settings-page__units-fieldset-legend {
+  border-radius: var(--radius);
+  padding: var(--block-padding-inner);
+  background-color: var(--col-white);
+  border: none;
+  font-weight: bold;
+}
+
+.settings-page__units-item-div {
+  display: flex;
+  gap: 0.5em;
+}
+
+.settings-page__units-item-label {
+  font-size: var(--select-location-text-size);
+}
+
 /* WEATHER DATA PAGE ------------------------------------------------------------ */
 
 .weather-data-page {
