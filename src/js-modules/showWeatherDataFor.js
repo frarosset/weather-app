@@ -16,3 +16,34 @@ export function showWeatherDataFor(location) {
       PubSub.publish("RENDER ERROR PAGE", errorObj);
     });
 }
+
+export function showWeatherDataForCurrentPosition() {
+  if (!navigator.geolocation) {
+    const error = new Error("Geolocation is not supported by this browser.");
+    PubSub.publish("RENDER ERROR PAGE", error);
+    return;
+  }
+
+  PubSub.publish("RENDER FETCHING DATA", "your current position");
+
+  const successCallback = (position) => {
+    const location = `${position.coords.latitude},${position.coords.longitude}`;
+    showWeatherDataFor(location);
+  };
+
+  const errorCallback = (errorObj) => {
+    PubSub.publish("RENDER ERROR PAGE", errorObj);
+  };
+
+  const settings = {
+    enableHighAccuracy: true,
+    maximumAge: 60000,
+    timeout: 10000,
+  };
+
+  navigator.geolocation.getCurrentPosition(
+    successCallback,
+    errorCallback,
+    settings
+  );
+}
