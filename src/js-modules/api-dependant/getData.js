@@ -5,15 +5,15 @@
 
 import { getApiUrl, getApiUrlBasic } from "./getApiUrl.js";
 import processResponseData from "./processResponseData.js";
+import { getUnits } from "../../appData.js";
 
-const locationDefault = "London"; // todo: get location from ip
 const unitGroupDefault = "metric"; // us, metric, uk, base
 
-export default function getData(
-  location = locationDefault,
-  unitGroup = unitGroupDefault,
-  full = true
-) {
+export default function getData(location, full = true) {
+  let unitGroup = getUnits();
+
+  if (unitGroup == null) unitGroup = unitGroupDefault;
+
   const apiUrl = full
     ? getApiUrl(location, unitGroup)
     : getApiUrlBasic(location, unitGroup);
