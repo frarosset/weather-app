@@ -2,6 +2,7 @@ import {
   initDiv,
   initP,
   initHeader,
+  initH1,
 } from "../../js-utilities/commonDomComponents.js";
 import { resetContent } from "../../js-utilities/commonDomUtilities.js";
 import { setAnimation, locatingAnimation } from "./animations.js";
@@ -9,6 +10,7 @@ import { setAnimation, locatingAnimation } from "./animations.js";
 const blockName = "locating-page";
 const cssClass = {
   header: "header",
+  h1: "h1",
   locatingDiv: "locating-div",
   locatingMsg: "locating-msg",
   iconDiv: "icon-div",
@@ -30,7 +32,9 @@ export function createLocatingPage() {
 function initPageHeader() {
   const header = initHeader(getCssClass("header"));
 
-  // todo: back
+  const h1 = initH1(getCssClass("h1"), null, "WEATHER APP");
+
+  header.append(h1);
 
   return header;
 }

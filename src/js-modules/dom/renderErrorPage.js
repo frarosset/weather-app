@@ -3,6 +3,7 @@ import {
   initP,
   initHeader,
   initButton,
+  initH1,
 } from "../../js-utilities/commonDomComponents.js";
 import { resetContent } from "../../js-utilities/commonDomUtilities.js";
 import {
@@ -16,6 +17,7 @@ import PubSub from "pubsub-js";
 const blockName = "error-page";
 const cssClass = {
   header: "header",
+  h1: "h1",
   errorDiv: "error-div",
   errorMsg: "error-msg",
   iconDiv: "icon-div",
@@ -38,7 +40,9 @@ export function createErrorPage(error) {
 function initPageHeader() {
   const header = initHeader(getCssClass("header"));
 
-  header.append(initBackButton());
+  const h1 = initH1(getCssClass("h1"), null, "WEATHER APP");
+
+  header.append(initBackButton(), h1);
 
   return header;
 }

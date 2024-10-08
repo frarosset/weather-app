@@ -7,12 +7,9 @@ import { initAppData, showHomeLocation } from "../appData.js";
 import PubSub from "pubsub-js";
 // temporary code
 import { freezeAllAnimations } from "./dom/animations.js";
-import { showWeatherDataForCurrentPosition } from "./showWeatherDataFor.js";
 
 export default function initWebpage() {
   initAppData();
-
-  // renderSelectLocationPage(document.body);
 
   const resultsDiv = document.createElement("div");
   document.body.appendChild(resultsDiv);
