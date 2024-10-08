@@ -170,6 +170,7 @@ a:visited {
 /* HEADERS */
 
 .select-location-page,
+.settings-page,
 .fetching-page,
 .error-page,
 .locating-page {
@@ -180,6 +181,7 @@ a:visited {
 }
 
 .select-location-page__header,
+.settings-page__header,
 .error-page__header,
 .fetching-page__header,
 .locating-page__header {
@@ -192,6 +194,7 @@ a:visited {
 }
 
 .select-location-page__h1,
+.settings-page__h1,
 .fetching-page__h1,
 .error-page__h1,
 .locating-page__h1 {
@@ -775,6 +778,8 @@ body > div:nth-child(1):has(> .locating-page) {
 .select-location-page__current-location-icon,
 .select-location-page__remove-home-btn,
 .select-location-page__remove-bookmarked-btn,
+.select-location-page__settings-btn,
+.settings-page__back-btn,
 .error-page__back-btn,
 .weather-data-page__back-btn,
 .weather-data-page__toggle-home-btn,
@@ -789,6 +794,8 @@ body > div:nth-child(1):has(> .locating-page) {
 .select-location-page__remove-current-location-icon svg,
 .select-location-page__remove-home-btn svg,
 .select-location-page__remove-bookmarked-btn svg,
+.select-location-page__settings-btn svg,
+.settings-page__back-btn svg,
 .error-page__back-btn svg,
 .weather-data-page__back-btn svg,
 .weather-data-page__toggle-home-btn svg,
@@ -806,6 +813,8 @@ body > div:nth-child(1):has(> .locating-page) {
 .select-location-page__current-location-icon path,
 .select-location-page__search-icon path,
 .select-location-page__remove-bookmarked-btn path,
+.select-location-page__settings-btn path,
+.settings-page__back-btn path,
 .error-page__back-btn path,
 .weather-data-page__back-btn path,
 .weather-data-page__toggle-bookmarked-btn path {
