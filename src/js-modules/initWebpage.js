@@ -3,6 +3,7 @@ import renderWeatherDataPage from "./dom/renderWeatherDataPage.js";
 import renderErrorPage from "./dom/renderErrorPage.js";
 import renderFetchingDataPage from "./dom/renderFetchingDataPage.js";
 import renderLocatingPage from "./dom/renderLocatingPage.js";
+import renderSettingsPage from "./dom/renderSettingsPage.js";
 import { initAppData, showHomeLocation } from "../appData.js";
 import PubSub from "pubsub-js";
 // temporary code
@@ -40,6 +41,11 @@ export default function initWebpage() {
   PubSub.subscribe("RENDER LOCATING", (msg) => {
     console.log(msg);
     renderLocatingPage(resultsDiv);
+  });
+
+  PubSub.subscribe("RENDER SETTINGS", (msg) => {
+    console.log(msg);
+    renderSettingsPage(resultsDiv);
   });
 
   if (!showHomeLocation()) renderSelectLocationPage(resultsDiv);

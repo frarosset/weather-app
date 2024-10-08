@@ -21,11 +21,13 @@ import {
 } from "../../appData.js";
 import { setAnimation, icons, forcePlayAnimation } from "./animations.js";
 import { resetHomeLocation } from "../../appData.js";
+import PubSub from "pubsub-js";
 
 const blockName = "select-location-page";
 const cssClass = {
   header: "header",
   h1: "h1",
+  settingsBtn: "settings-btn",
   searchDiv: "search-div",
   searchInput: "search-input",
   searchIcon: "search-icon",
@@ -69,9 +71,32 @@ function initPageHeader() {
   const header = initHeader(getCssClass("header"));
 
   const h1 = initH1(getCssClass("h1"), null, "WEATHER APP");
-  header.append(h1);
+  header.append(h1, initSettingsButton());
 
   return header;
+}
+
+function initSettingsButton() {
+  const settingsBtnCallback = () => {
+    forcePlayAnimation(animation, 1);
+    PubSub.publish("RENDER SETTINGS");
+  };
+
+  const settingsBtn = initButton(
+    getCssClass("settingsBtn"),
+    settingsBtnCallback
+  );
+  const animation = setAnimation(settingsBtn, icons.settings, false, false);
+
+  settingsBtn.addEventListener("mouseenter", () => {
+    forcePlayAnimation(animation, 1);
+  });
+
+  settingsBtn.addEventListener("mouseleave", () => {
+    forcePlayAnimation(animation, -1);
+  });
+
+  return settingsBtn;
 }
 
 function initSearchDiv() {

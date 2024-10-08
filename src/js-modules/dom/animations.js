@@ -7,6 +7,7 @@ import heart from "../../assets/useAnimations/heart.json";
 import bookmark from "../../assets/useAnimations/bookmark.json";
 import chevronLeft from "../../assets/useAnimations/chevron-left.json";
 import explore from "../../assets/useAnimations/explore.json";
+import settings from "../../assets/useAnimations/settingsV2.json";
 
 // Page animations
 import fetchingAnimation from "../../assets/LottieFiles/fetching.json";
@@ -166,6 +167,7 @@ export const icons = {
   bookmark: bookmark,
   chevronLeft: chevronLeft,
   explore: explore,
+  settings: settings,
 };
 
 export { errorAnimation, fetchingAnimation, locatingAnimation };
