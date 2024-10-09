@@ -837,9 +837,9 @@ input[type="checkbox"]::before {
 
 /* WEATHER ERROR PAGE ------------------------------------------------------------ */
 
-body > div:nth-child(1):has(> .error-page),
-body > div:nth-child(1):has(> .fetching-page),
-body > div:nth-child(1):has(> .locating-page) {
+main:has(> .error-page),
+main:has(> .fetching-page),
+main:has(> .locating-page) {
   flex: 1;
   overflow: hidden;
 }
