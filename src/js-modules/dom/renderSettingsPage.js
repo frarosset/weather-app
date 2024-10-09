@@ -25,6 +25,7 @@ const cssClass = {
   backBtn: "back-btn",
   unitsFieldset: "units-fieldset",
   unitsItem: "units-item",
+  enableAnimationsItem: "enable-animations-item",
 };
 const getCssClass = (element) => `${blockName}__${cssClass[element]}`;
 
@@ -106,10 +107,8 @@ function initUnitSystem() {
 }
 
 function initEnableAnimations() {
-  //[value, label]
-
   const item = initRadioItem(
-    getCssClass("unitsItem"),
+    getCssClass("enableAnimationsItem"),
     "animations",
     "enabled",
     "Enable animations",
