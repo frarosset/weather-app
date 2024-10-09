@@ -138,6 +138,7 @@ body {
   display: flex;
   flex-direction: column;
   align-items: center;
+  overflow: auto;
 }
 
 body > * {
@@ -147,6 +148,8 @@ body > * {
 main {
   width: 100%;
   max-width: var(--max-width);
+  min-height: 100dvh;
+  flex-shrink: 0;
   margin: 0 auto;
 }
 
