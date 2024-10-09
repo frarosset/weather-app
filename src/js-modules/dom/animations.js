@@ -6,6 +6,7 @@ import search from "../../assets/useAnimations/searchToX.json";
 import heart from "../../assets/useAnimations/heart.json";
 import bookmark from "../../assets/useAnimations/bookmark.json";
 import chevronLeft from "../../assets/useAnimations/chevron-left.json";
+import chevronRight from "../../assets/useAnimations/chevron-right.json";
 import explore from "../../assets/useAnimations/explore.json";
 import settings from "../../assets/useAnimations/settingsV2.json";
 
@@ -166,6 +167,7 @@ export const icons = {
   heart: heart,
   bookmark: bookmark,
   chevronLeft: chevronLeft,
+  chevronRight: chevronRight,
   explore: explore,
   settings: settings,
 };
