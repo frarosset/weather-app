@@ -7,10 +7,10 @@
   --col-grey: rgb(180, 180, 180);
   --col-dark-grey: rgb(80, 80, 80);
   --col-white: rgb(255, 255, 255);
-  --col-rain: rgb(100, 160, 240);
+  --col-rain: rgb(0, 102, 204);
   --col-white-alpha: rgb(255, 255, 255, var(--alpha));
-  --col-alert: rgb(161, 19, 26);
-  --col-alert-bg: rgb(250, 217, 212, 0.8);
+  --col-alert: var(--col-white);
+  --col-alert-bg: rgba(220, 53, 69, 0.6);
 
   /* Colors (background)*/
   --bg-col: rgb(227, 248, 242);
@@ -516,6 +516,7 @@ input[type="checkbox"]::before {
 .weather-data-page__alerts-h3 {
   grid-area: titleh3;
   color: var(--col-alert);
+  font-weight: normal;
   font-size: var(--h3-alert-font-size);
   line-height: 1;
   align-self: center;
