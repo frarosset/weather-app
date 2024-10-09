@@ -6,6 +6,7 @@ import renderLocatingPage from "./dom/renderLocatingPage.js";
 import renderSettingsPage from "./dom/renderSettingsPage.js";
 import { initAppData, showHomeLocation } from "../appData.js";
 import PubSub from "pubsub-js";
+import initMainFooter from "./dom/initMainFooter.js";
 import setCreditFooter from "../js-utilities/creditFooter.js";
 
 export default function initWebpage() {
@@ -16,6 +17,8 @@ export default function initWebpage() {
 
   document.body.appendChild(main);
   if (!showHomeLocation()) renderSelectLocationPage(main);
+
+  document.body.appendChild(initMainFooter());
 
   // Add credit footer at the bottom
   setCreditFooter();
