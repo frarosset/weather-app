@@ -268,16 +268,29 @@ a:visited {
 }
 
 /* SETTINGS PAGE --------------------------------------------------------- */
+/* See also: https://moderncss.dev/pure-css-custom-styled-radio-buttons/*/
 
 .settings-page__h2 {
   text-align: center;
 }
 
 .settings-page__units-fieldset {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5em;
+}
+
+.settings-page__enable-animations-item-div,
+.settings-page__units-fieldset {
   border-radius: var(--radius);
   padding: var(--block-padding);
   background-color: var(--block-bg-col);
   border: none;
+}
+
+.settings-page__enable-animations-item-label,
+.settings-page__units-item-label {
+  width: 100%;
 }
 
 .settings-page__units-fieldset-legend {
@@ -288,13 +301,63 @@ a:visited {
   font-weight: bold;
 }
 
+.settings-page__enable-animations-item-div,
 .settings-page__units-item-div {
-  display: flex;
+  display: grid;
+  grid-template-columns: 1em auto;
   gap: 0.5em;
+  font-size: var(--select-location-text-size);
 }
 
-.settings-page__units-item-label {
-  font-size: var(--select-location-text-size);
+input[type="radio"],
+input[type="checkbox"] {
+  user-select: none;
+  cursor: pointer;
+  -webkit-appearance: none;
+  appearance: none;
+  background-color: var(--col-white);
+  margin: 0;
+  font: inherit;
+  color: var(--col-white);
+  width: 1.15em;
+  height: 1.15em;
+  border: 0.15em solid var(--col-white);
+  transform: translateY(-0.075em);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+input[type="radio"]::before,
+input[type="checkbox"]::before {
+  content: "";
+  width: 0.65em;
+  height: 0.65em;
+  transform: scale(0);
+  transition: 120ms transform ease-in-out;
+  box-shadow: inset 1em 1em var(--col-txt);
+  /* Windows High Contrast Mode */
+  background-color: CanvasText;
+}
+
+input[type="radio"]:checked::before,
+input[type="checkbox"]:checked::before {
+  transform: scale(1);
+}
+
+input[type="radio"]:focus,
+input[type="checkbox"]:focus {
+  border-color: var(--col-txt);
+  outline: none;
+}
+
+input[type="radio"],
+input[type="radio"]::before {
+  border-radius: 50%;
+}
+input[type="checkbox"],
+input[type="checkbox"]::before {
+  border-radius: 20%;
 }
 
 /* WEATHER DATA PAGE ------------------------------------------------------------ */
