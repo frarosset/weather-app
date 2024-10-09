@@ -1,7 +1,7 @@
 import * as lottie from "lottie-web";
 
 // Icons
-import alert from "../../assets/LottieFiles/alert.json";
+import alert from "../../assets/useAnimations/alertCircle.json";
 import search from "../../assets/useAnimations/searchToX.json";
 import heart from "../../assets/useAnimations/heart.json";
 import bookmark from "../../assets/useAnimations/bookmark.json";

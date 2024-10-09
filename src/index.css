@@ -488,7 +488,12 @@ input[type="checkbox"]::before {
   background-color: var(--col-alert-bg);
   border-radius: var(--radius);
   padding: var(--block-padding);
-  gap: var(--block-padding) var(--block-alt-gap);
+  gap: var(--block-padding) 0;
+
+  grid-template-areas:
+    " titleh3 icon"
+    "list list";
+  grid-template-columns: 1fr max-content;
 }
 
 .weather-data-page__alerts-icon-div {
@@ -498,12 +503,23 @@ input[type="checkbox"]::before {
   height: var(--h3-icon-size);
 }
 
+.weather-data-page__alerts-icon-div path svg {
+  height: 100%;
+  width: 100%;
+}
+
+.weather-data-page__alerts-icon-div path {
+  fill: var(--col-alert);
+  stroke: var(--col-alert);
+}
+
 .weather-data-page__alerts-h3 {
   grid-area: titleh3;
   color: var(--col-alert);
   font-size: var(--h3-alert-font-size);
   line-height: 1;
   align-self: center;
+  margin-left: var(--block-padding-inner);
 }
 
 .weather-data-page__alerts-list {
