@@ -76,6 +76,8 @@
   --block-gap-larger: 0.8em;
   --select-location-padding: 0.5em 1em;
   --select-location-gap: 1em;
+  --footer-padding: 3rem;
+  --footer-gap: 2rem;
 
   /* Images / icons size */
 
@@ -369,6 +371,7 @@ input[type="checkbox"]::before {
   display: flex;
   flex-direction: column;
   gap: var(--page-gap);
+  padding-bottom: var(--footer-padding);
 }
 
 .weather-data-page__header {
@@ -938,6 +941,38 @@ main:has(> .locating-page) {
 .weather-data-page.night .weather-data-page__toggle-bookmarked-btn path {
   fill: var(--col-txt-alt);
   stroke: var(--col-txt-alt);
+}
+
+/* Main footer */
+.main-footer {
+  background-color: var(--block-bg-col);
+  margin: 0 auto;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: var(--footer-gap);
+  padding: var(--footer-padding);
+}
+
+.main-footer__api-credit {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.main-footer__api-credit-img {
+  width: min(15rem, calc(60 * var(--max-width)));
+  height: auto;
+}
+
+.main-footer__img-credit {
+  font-size: var(--txt-small-fontsize);
+  color: var(--col-dark-grey);
+}
+
+.main-footer__img-credit a {
+  font-weight: bold;
 }
 
 /* Customize scrollbars */
