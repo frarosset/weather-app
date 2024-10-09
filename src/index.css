@@ -54,8 +54,7 @@
   --select-location-text-size: 1.2em;
 
   /* Text clamping: number of lines */
-  /* --main-itm-project-description-max-lines: 6;
-    --main-itm-announcements-description-max-lines: 3; */
+  --alert-max-lines: 4;
 
   /* Maximum width (including dashboard margin) */
   --max-width: min(1440px, 100%);
@@ -523,6 +522,12 @@ input[type="checkbox"]::before {
   gap: var(--block-gap);
 }
 
+.weather-data-page__alert-header {
+  display: flex;
+  justify-content: space-between;
+  height: min-content;
+}
+
 .weather-data-page__alert-h4 {
   font-size: var(--h4-alert-font-size);
 }
@@ -548,6 +553,14 @@ input[type="checkbox"]::before {
   -moz-hyphens: auto;
   -ms-hyphens: auto;
   hyphens: auto;
+}
+
+.weather-data-page__alert-li.clamp .weather-data-page__alert-descr-p {
+  display: -webkit-box;
+  -webkit-box-orient: vertical;
+  overflow: auto;
+  line-clamp: var(--alert-max-lines);
+  -webkit-line-clamp: var(--alert-max-lines);
 }
 
 /* GENERIC BLOCKS */
@@ -897,10 +910,11 @@ main:has(> .locating-page) {
 .settings-page__back-btn,
 .error-page__back-btn,
 .weather-data-page__back-btn,
+.weather-data-page__alert-open-link-btn,
 .weather-data-page__toggle-home-btn,
 .weather-data-page__toggle-bookmarked-btn {
   width: var(--generic-icon-size);
-  height: min-content;
+  height: var(--generic-icon-size);
   border: none;
   background: none;
 }
@@ -913,6 +927,7 @@ main:has(> .locating-page) {
 .settings-page__back-btn svg,
 .error-page__back-btn svg,
 .weather-data-page__back-btn svg,
+.weather-data-page__alert-open-link-btn svg,
 .weather-data-page__toggle-home-btn svg,
 .weather-data-page__toggle-bookmarked-btn svg {
   height: 100%;
@@ -932,6 +947,7 @@ main:has(> .locating-page) {
 .settings-page__back-btn path,
 .error-page__back-btn path,
 .weather-data-page__back-btn path,
+.weather-data-page__alert-open-link-btn path,
 .weather-data-page__toggle-bookmarked-btn path {
   fill: var(--col-txt);
   stroke: var(--col-txt);

@@ -49,9 +49,11 @@ const cssClass = {
   alertsH3: "alerts-h3",
   alertsList: "alerts-list",
   alertLi: "alert-li",
+  alertHeader: "alert-header",
   alertH4: "alert-h4",
   alertDateP: "alert-date-p",
   alertDescrP: "alert-descr-p",
+  alertOpenLinkBtn: "alert-open-link-btn",
   weatherInsightDiv: "weather-insight-div",
   weatherInsightH3: "weather-insight-h3",
   weatherInsightP: "weather-insight-p",
@@ -266,7 +268,17 @@ function initAlertsDiv(data) {
   data.alerts.forEach((alert) => {
     const alertLi = initLiAsChildInList(alertsList, getCssClass("alertLi"));
 
+    alertLi.classList.add("clamp");
+    const clampBtnCallback = () => {
+      alertLi.classList.toggle("clamp");
+    };
+    alertLi.addEventListener("click", clampBtnCallback);
+
     const alertH4 = initH4(getCssClass("alertH4"), null, alert.event);
+
+    const alertHeading = initHeader(getCssClass("alertHeader"));
+    alertHeading.append(alertH4);
+
     const alertDateStr = `${formatRelativeTz(alert.onset, data.current.datetime)} ➜ ${formatRelativeTz(alert.ends, data.current.datetime)}`;
     const alertDateP = initP(getCssClass("alertDateP"), null, alertDateStr);
     const alertDescrP = initP(
@@ -275,8 +287,31 @@ function initAlertsDiv(data) {
       alert.description
     );
 
-    alertLi.append(alertH4, alertDateP, alertDescrP);
-    alertLi.addEventListener("click", () => window.open(alert.link));
+    alertLi.append(alertHeading, alertDateP, alertDescrP);
+
+    if (alert.link != null) {
+      const alertOpenLinkBtnCallback = () => {
+        forcePlayAnimation(animation, 1);
+        window.open(alert.link);
+      };
+
+      const alertOpenLinkBtn = initButton(
+        getCssClass("alertOpenLinkBtn"),
+        alertOpenLinkBtnCallback
+      );
+      const animation = setAnimation(
+        alertOpenLinkBtn,
+        icons.chevronRight,
+        false,
+        false
+      );
+
+      alertOpenLinkBtn.addEventListener("mouseenter", () => {
+        forcePlayAnimation(animation, 1);
+      });
+
+      alertHeading.append(alertOpenLinkBtn);
+    }
   });
 
   div.append(alertsIconDiv, alertsH3, alertsList);
