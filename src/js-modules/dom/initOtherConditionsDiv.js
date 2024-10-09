@@ -141,7 +141,7 @@ function initPrecipitationContent(subdata) {
 }
 
 function initSnowContent(subdata) {
-  const snow = subdata.snowSrt;
+  const snow = subdata.snowStr;
   const snowdepth = subdata.snowdepthStr;
 
   if (snow == null) return null;

@@ -9,7 +9,7 @@ const baseUrl =
   "https://weather.visualcrossing.com/VisualCrossingWebServices/rest/services/timeline";
 
 export const getApiUrl = (location, unitGroup = unitGroupDefault) =>
-  `${baseUrl}/${encodeURIComponent(location)}?unitGroup=${unitGroup}&key=${apiKey}`;
+  `${baseUrl}/${encodeURIComponent(location)}?unitGroup=${unitGroup}&key=${apiKey}&iconSet=icons2`;
 
 // fix location: if location is '', the 'today' location is used instead and no error is thrown, so use ' ' instead
 export const getApiUrlBasic = (location, unitGroup = unitGroupDefault) =>
