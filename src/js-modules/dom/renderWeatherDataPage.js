@@ -120,6 +120,7 @@ function initPageHeader(data) {
   const btnDiv = initDiv(getCssClass("btnDiv"));
   btnDiv.append(
     initBackButton(),
+    initLastUpdateTime(data),
     initToggleHomeButton(data),
     initToggleBookmarkedButton(data)
   );
@@ -152,6 +153,14 @@ function initBackButton() {
   // });
 
   return backBtn;
+}
+
+function initLastUpdateTime(data) {
+  return initP(
+    getCssClass("lastUpdateTime"),
+    null,
+    `${formatTz(data.current.datetime, "E d LLL, H:mm")}`
+  );
 }
 
 function initToggleHomeButton(data) {
