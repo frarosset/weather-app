@@ -58,7 +58,7 @@
     --main-itm-announcements-description-max-lines: 3; */
 
   /* Maximum width (including dashboard margin) */
-  /* --max-width: min(1440px, 100%); */
+  --max-width: min(1440px, 100%);
 
   /* Radius */
   --radius: 30px;
@@ -144,8 +144,7 @@ body > * {
   width: 100%;
 }
 
-.header-container,
-.main-container {
+main {
   width: 100%;
   max-width: var(--max-width);
   margin: 0 auto;
