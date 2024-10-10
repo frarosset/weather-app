@@ -4,8 +4,6 @@ import {
   initHeader,
   initH2,
   initH3,
-  initOl,
-  initLiAsChildInList,
   initButton,
 } from "../../js-utilities/commonDomComponents.js";
 import { resetContent } from "../../js-utilities/commonDomUtilities.js";
@@ -18,6 +16,7 @@ import {
 import { initWeatherDataOtherConditionsDiv } from "./initWeatherDataOtherConditionsDiv.js";
 import { initWeatherDataAlertsDiv } from "./initWeatherDataAlertsDiv.js";
 import { initWeatherDataHourlyDiv } from "./initWeatherDataHourlyDiv.js";
+import { initWeatherDataDailyDiv } from "./initWeatherDataDailyDiv.js";
 import applyDynamicBackground from "../dynamic-background/applyDynamicBackground.js";
 import {
   isHomeLocation,
@@ -50,16 +49,6 @@ const cssClass = {
   weatherInsightDiv: "weather-insight-div",
   weatherInsightH3: "weather-insight-h3",
   weatherInsightP: "weather-insight-p",
-  dailyForecastDiv: "daily-forecasts-div",
-  dailyForecastH3: "daily-forecasts-h3",
-  dailyForecastList: "daily-forecasts-list",
-  dayForecastLi: "day-forecasts-li",
-  dayForecastDay: "day-forecasts-day",
-  dayForecastDate: "day-forecasts-date",
-  dayForecastTempHigh: "day-forecasts-temp-high",
-  dayForecastTempLow: "day-forecasts-temp-low",
-  dayForecastIconDiv: "day-forecasts-icon-div",
-  dayForecastPrecipProb: "day-forecasts-precip-prob",
 };
 const getCssClass = (element) => `${blockName}__${cssClass[element]}`;
 
@@ -88,7 +77,7 @@ export function createWeatherDataPage(data) {
   div.append(
     initWeatherInsightDiv(data),
     initWeatherDataHourlyDiv(data, formatTz),
-    initNextDaysDiv(data),
+    initWeatherDataDailyDiv(data, formatTz),
     initWeatherDataOtherConditionsDiv(data.current, formatTz)
   );
 
@@ -274,87 +263,4 @@ function initWeatherInsightDiv(data) {
   div.append(weatherInsightH3, weatherInsightP);
 
   return div;
-}
-
-function initNextDaysDiv(data) {
-  const div = initDiv(getCssClass("dailyForecastDiv"));
-
-  const dailyForecastH3 = initH3(
-    getCssClass("dailyForecastH3"),
-    null,
-    "Daily forecast"
-  );
-
-  const dailyForecastList = initOl(getCssClass("dailyForecastList"));
-
-  // Allow horizontal scrolling through mouse scroll
-  dailyForecastList.addEventListener("wheel", horizontalScrollCallback);
-
-  data.days.forEach((dayForecast, idx) => {
-    const dayForecastLi = initLiAsChildInList(
-      dailyForecastList,
-      getCssClass("dayForecastLi")
-    );
-
-    const dayForecastDay = initP(
-      getCssClass("dayForecastDay"),
-      null,
-      idx === 0 ? "Today" : formatTz(dayForecast.datetime, "E")
-    );
-
-    const dayForecastDate = initP(
-      getCssClass("dayForecastDate"),
-      null,
-      idx === 0 ? "" : formatTz(dayForecast.datetime, "d LLL")
-    );
-
-    const dayForecastTempHigh = initP(
-      getCssClass("dayForecastTempHigh"),
-      null,
-      dayForecast.tempmaxStr
-    );
-
-    const dayForecastTempLow = initP(
-      getCssClass("dayForecastTempLow"),
-      null,
-      dayForecast.tempminStr
-    );
-
-    const dayForecastIconDiv = initDiv(getCssClass("dayForecastIconDiv"));
-    setAnimation(dayForecastIconDiv, weatherIcons[dayForecast.icon]);
-
-    const dayForecastPrecipProb = initP(
-      getCssClass("dayForecastPrecipProb"),
-      null,
-      dayForecast.precipprob > 0 ? dayForecast.precipprobStr : ""
-    );
-
-    dayForecastLi.append(
-      dayForecastDay,
-      dayForecastDate,
-      dayForecastTempHigh,
-      dayForecastTempLow,
-      dayForecastIconDiv,
-      dayForecastPrecipProb
-    );
-  });
-
-  div.append(dailyForecastH3, dailyForecastList);
-
-  return div;
-}
-
-// Helper functions
-
-function horizontalScrollCallback(e) {
-  const noScrollLeft = e.currentTarget.scrollLeft === 0 && e.deltaY < 0;
-  const noScrollRight =
-    e.currentTarget.scrollLeft === e.currentTarget.scrollWidth && e.deltaY > 0;
-
-  if (noScrollLeft || noScrollRight) {
-    return;
-  }
-
-  e.currentTarget.scrollLeft += e.deltaY;
-  e.preventDefault();
 }
