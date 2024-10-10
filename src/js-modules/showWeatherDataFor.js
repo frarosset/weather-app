@@ -17,6 +17,20 @@ export function showWeatherDataFor(location) {
     });
 }
 
+export function showWeatherDataForWithoutLoadingScreen(location) {
+  return getData(location)
+    .then((dataObj) => {
+      PubSub.publish("RENDER WEATHER DATA", dataObj);
+      return dataObj;
+    })
+    .then((dataObj) => {
+      setLastLocation(dataObj.location);
+    })
+    .catch((errorObj) => {
+      PubSub.publish("RENDER ERROR PAGE", errorObj);
+    });
+}
+
 export function showWeatherDataForCurrentPosition() {
   if (!navigator.geolocation) {
     const error = new Error("Geolocation is not supported by this browser.");

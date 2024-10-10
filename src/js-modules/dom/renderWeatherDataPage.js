@@ -28,6 +28,7 @@ import {
   removeBookmarkedLocation,
 } from "../../appData.js";
 import PubSub from "pubsub-js";
+import { showWeatherDataForWithoutLoadingScreen } from "../showWeatherDataFor.js";
 
 const blockName = "weather-data-page";
 const cssClass = {
@@ -36,8 +37,10 @@ const cssClass = {
   locationDiv: "location-div",
   locationH2: "location-h2",
   btnDiv: "btn-div",
+  lastUpdateTime: "last-update-time",
   toggleHomeBtn: "toggle-home-btn",
   backBtn: "back-btn",
+  refreshBtn: "refresh-btn",
   toggleBookmarkedBtn: "toggle-bookmarked-btn",
   conditionsP: "conditions-p",
   tempP: "temp-p",
@@ -122,7 +125,8 @@ function initPageHeader(data) {
     initBackButton(),
     initLastUpdateTime(data),
     initToggleHomeButton(data),
-    initToggleBookmarkedButton(data)
+    initToggleBookmarkedButton(data),
+    initRefreshButton(data)
   );
 
   // Info about location
@@ -153,6 +157,25 @@ function initBackButton() {
   // });
 
   return backBtn;
+}
+
+function initRefreshButton(data) {
+  const refreshBtnCallback = () => {
+    showWeatherDataForWithoutLoadingScreen(data.location);
+  };
+
+  const refreshBtn = initButton(getCssClass("refreshBtn"), refreshBtnCallback);
+  const animation = setAnimation(refreshBtn, icons.refresh, false, false);
+
+  refreshBtn.addEventListener("mouseenter", () => {
+    forcePlayAnimation(animation, 1);
+  });
+
+  // refreshBtn.addEventListener("mouseleave", () => {
+  //   forcePlayAnimation(animation, -1);
+  // });
+
+  return refreshBtn;
 }
 
 function initLastUpdateTime(data) {
