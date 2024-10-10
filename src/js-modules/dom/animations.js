@@ -210,13 +210,19 @@ export function freezeAllAnimations(unfreeze = false) {
   }
 }
 
-export function forcePlayAnimation(animation, direction = 1) {
+export function forcePlayAnimation(animation, direction = 1, rewind = false) {
   animation.setDirection(direction);
 
   if (isFrozen) {
     const goToFrame =
       direction == 1 ? animation.totalFrames - 1 : animation.firstFrame;
     animation.goToAndStop(goToFrame, true);
+  } else if (rewind) {
+    const fromToFrames = [animation.firstFrame, animation.totalFrames - 1];
+    if (direction == -1) {
+      fromToFrames.reverse();
+    }
+    animation.playSegments(fromToFrames, true);
   } else {
     animation.play();
   }
