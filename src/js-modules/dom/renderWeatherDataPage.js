@@ -3,7 +3,6 @@ import {
   initP,
   initHeader,
   initH2,
-  initH3,
   initButton,
 } from "../../js-utilities/commonDomComponents.js";
 import { resetContent } from "../../js-utilities/commonDomUtilities.js";
@@ -15,6 +14,7 @@ import {
 } from "./animations.js";
 import { initWeatherDataOtherConditionsDiv } from "./initWeatherDataOtherConditionsDiv.js";
 import { initWeatherDataAlertsDiv } from "./initWeatherDataAlertsDiv.js";
+import { initWeatherDataWeatherInsightDiv } from "./initWeatherDataWeatherInsightDiv.js";
 import { initWeatherDataHourlyDiv } from "./initWeatherDataHourlyDiv.js";
 import { initWeatherDataDailyDiv } from "./initWeatherDataDailyDiv.js";
 import applyDynamicBackground from "../dynamic-background/applyDynamicBackground.js";
@@ -46,9 +46,6 @@ const cssClass = {
   iconDiv: "icon-div",
   feelsLikeP: "feels-like-p",
   highLowTempP: "high-low-temp-p",
-  weatherInsightDiv: "weather-insight-div",
-  weatherInsightH3: "weather-insight-h3",
-  weatherInsightP: "weather-insight-p",
 };
 const getCssClass = (element) => `${blockName}__${cssClass[element]}`;
 
@@ -75,7 +72,7 @@ export function createWeatherDataPage(data) {
   }
 
   div.append(
-    initWeatherInsightDiv(data),
+    initWeatherDataWeatherInsightDiv(data.descriptionWeek),
     initWeatherDataHourlyDiv(data.next24Hours, formatTz),
     initWeatherDataDailyDiv(data.days, formatTz),
     initWeatherDataOtherConditionsDiv(data.current, formatTz)
@@ -241,26 +238,6 @@ function initMainCurrentConditionsDiv(data) {
   );
 
   div.append(conditionsP, tempP, iconDiv, feelsLikeP, highLowTempP);
-
-  return div;
-}
-
-function initWeatherInsightDiv(data) {
-  const div = initDiv(getCssClass("weatherInsightDiv"));
-
-  const weatherInsightH3 = initH3(
-    getCssClass("weatherInsightH3"),
-    null,
-    "Weather insight"
-  );
-
-  const weatherInsightP = initP(
-    getCssClass("weatherInsightP"),
-    null,
-    data.descriptionWeek
-  );
-
-  div.append(weatherInsightH3, weatherInsightP);
 
   return div;
 }
