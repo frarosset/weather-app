@@ -149,31 +149,22 @@ function initBackButton() {
   const animation = setAnimation(backBtn, icons.chevronLeft, false, false);
 
   backBtn.addEventListener("mouseenter", () => {
-    forcePlayAnimation(animation, 1);
+    forcePlayAnimation(animation, 1, "true");
   });
-
-  // backBtn.addEventListener("mouseleave", () => {
-  //   forcePlayAnimation(animation, -1);
-  // });
 
   return backBtn;
 }
 
 function initRefreshButton(data) {
   const refreshBtnCallback = () => {
-    showWeatherDataForWithoutLoadingScreen(data.location);
+    forcePlayAnimation(animation, 1);
+    showWeatherDataForWithoutLoadingScreen(data.location).then(() => {
+      animation.stop();
+    });
   };
 
   const refreshBtn = initButton(getCssClass("refreshBtn"), refreshBtnCallback);
-  const animation = setAnimation(refreshBtn, icons.refresh, false, false);
-
-  refreshBtn.addEventListener("mouseenter", () => {
-    forcePlayAnimation(animation, 1);
-  });
-
-  // refreshBtn.addEventListener("mouseleave", () => {
-  //   forcePlayAnimation(animation, -1);
-  // });
+  const animation = setAnimation(refreshBtn, icons.refresh, true, false);
 
   return refreshBtn;
 }
@@ -339,7 +330,7 @@ function initAlertsDiv(data) {
       );
 
       alertOpenLinkBtn.addEventListener("mouseenter", () => {
-        forcePlayAnimation(animation, 1);
+        forcePlayAnimation(animation, 1, "true");
       });
 
       alertHeading.append(alertOpenLinkBtn);

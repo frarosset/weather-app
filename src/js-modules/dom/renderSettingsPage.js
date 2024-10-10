@@ -68,12 +68,8 @@ function initBackButton() {
   const animation = setAnimation(backBtn, icons.chevronLeft, false, false);
 
   backBtn.addEventListener("mouseenter", () => {
-    forcePlayAnimation(animation, 1);
+    forcePlayAnimation(animation, 1, "true");
   });
-
-  //   backBtn.addEventListener("mouseleave", () => {
-  //     forcePlayAnimation(animation, -1);
-  //   });
 
   return backBtn;
 }
