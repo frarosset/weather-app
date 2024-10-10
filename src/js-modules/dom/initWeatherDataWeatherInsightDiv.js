@@ -15,11 +15,6 @@ const getCssClass = (element) => `${blockName}__${cssClass[element]}`;
 // Subdata might be, eg, data.days
 
 export function initWeatherDataWeatherInsightDiv(str) {
-  const div = initWeatherInsightDiv(str, "");
-  return div;
-}
-
-function initWeatherInsightDiv(str) {
   const div = initDiv(getCssClass("weatherInsightDiv"));
 
   const weatherInsightH3 = initH3(

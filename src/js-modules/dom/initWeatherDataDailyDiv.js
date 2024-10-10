@@ -29,7 +29,7 @@ let formatTz = null;
 
 export function initWeatherDataDailyDiv(subdata, formatTzFcn) {
   formatTz = formatTzFcn;
-  const div = initDailyDiv(subdata, "");
+  const div = initDailyDiv(subdata);
   formatTz = null;
   return div;
 }

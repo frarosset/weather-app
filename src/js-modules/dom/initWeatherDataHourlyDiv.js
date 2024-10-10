@@ -27,7 +27,7 @@ let formatTz = null;
 
 export function initWeatherDataHourlyDiv(subdata, formatTzFcn) {
   formatTz = formatTzFcn;
-  const div = initHourlyDiv(subdata, "");
+  const div = initHourlyDiv(subdata);
   formatTz = null;
   return div;
 }

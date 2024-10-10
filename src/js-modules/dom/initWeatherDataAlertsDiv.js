@@ -29,7 +29,7 @@ let formatRelativeTz = null;
 
 export function initWeatherDataAlertsDiv(data) {
   formatRelativeTz = data.formatRelativeTz;
-  const div = initAlertsDiv(data, "");
+  const div = initAlertsDiv(data);
   formatRelativeTz = null;
   return div;
 }
