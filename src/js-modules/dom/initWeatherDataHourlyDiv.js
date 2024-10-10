@@ -23,14 +23,16 @@ const getCssClass = (element) => `${blockName}__${cssClass[element]}`;
 
 let formatTz = null;
 
-export function initWeatherDataHourlyDiv(data, formatTzFcn) {
+// Subdata might be, eg, data.next24Hours, or data.days[dayIdx].hours.
+
+export function initWeatherDataHourlyDiv(subdata, formatTzFcn) {
   formatTz = formatTzFcn;
-  const div = initHourlyDiv(data, "");
+  const div = initHourlyDiv(subdata, "");
   formatTz = null;
   return div;
 }
 
-function initHourlyDiv(data) {
+function initHourlyDiv(subdata) {
   const div = initDiv(getCssClass("hourlyForecastDiv"));
 
   const hourlyForecastH3 = initH3(
@@ -43,7 +45,7 @@ function initHourlyDiv(data) {
 
   allowHorizontalScrollThroughMouseScroll(hourlyForecastList);
 
-  data.next24Hours.forEach((hourForecast, idx) => {
+  subdata.forEach((hourForecast, idx) => {
     const hourForecastLi = initLiAsChildInList(
       hourlyForecastList,
       getCssClass("hourForecastLi")
