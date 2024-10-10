@@ -49,3 +49,21 @@ export function resetContent(contentDiv) {
   contentDiv.setAttribute("class", "");
   window.scrollTo(0, 0);
 }
+
+export function allowHorizontalScrollThroughMouseScroll(element) {
+  const horizontalScrollCallback = (e) => {
+    const noScrollLeft = e.currentTarget.scrollLeft === 0 && e.deltaY < 0;
+    const noScrollRight =
+      e.currentTarget.scrollLeft === e.currentTarget.scrollWidth &&
+      e.deltaY > 0;
+
+    if (noScrollLeft || noScrollRight) {
+      return;
+    }
+
+    e.currentTarget.scrollLeft += e.deltaY;
+    e.preventDefault();
+  };
+
+  element.addEventListener("wheel", horizontalScrollCallback);
+}

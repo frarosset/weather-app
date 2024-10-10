@@ -17,6 +17,7 @@ import {
 } from "./animations.js";
 import { initWeatherDataOtherConditionsDiv } from "./initWeatherDataOtherConditionsDiv.js";
 import { initWeatherDataAlertsDiv } from "./initWeatherDataAlertsDiv.js";
+import { initWeatherDataHourlyDiv } from "./initWeatherDataHourlyDiv.js";
 import applyDynamicBackground from "../dynamic-background/applyDynamicBackground.js";
 import {
   isHomeLocation,
@@ -49,14 +50,6 @@ const cssClass = {
   weatherInsightDiv: "weather-insight-div",
   weatherInsightH3: "weather-insight-h3",
   weatherInsightP: "weather-insight-p",
-  hourlyForecastDiv: "hourly-forecasts-div",
-  hourlyForecastH3: "hourly-forecasts-h3",
-  hourlyForecastList: "hourly-forecasts-list",
-  hourForecastLi: "hour-forecasts-li",
-  hourForecastHour: "hour-forecasts-hour",
-  hourForecastTemp: "hour-forecasts-temp",
-  hourForecastIconDiv: "hour-forecasts-icon-div",
-  hourForecastPrecipProb: "hour-forecasts-precip-prob",
   dailyForecastDiv: "daily-forecasts-div",
   dailyForecastH3: "daily-forecasts-h3",
   dailyForecastList: "daily-forecasts-list",
@@ -94,7 +87,7 @@ export function createWeatherDataPage(data) {
 
   div.append(
     initWeatherInsightDiv(data),
-    initNext24HoursDiv(data),
+    initWeatherDataHourlyDiv(data, formatTz),
     initNextDaysDiv(data),
     initWeatherDataOtherConditionsDiv(data.current, formatTz)
   );
@@ -279,60 +272,6 @@ function initWeatherInsightDiv(data) {
   );
 
   div.append(weatherInsightH3, weatherInsightP);
-
-  return div;
-}
-
-function initNext24HoursDiv(data) {
-  const div = initDiv(getCssClass("hourlyForecastDiv"));
-
-  const hourlyForecastH3 = initH3(
-    getCssClass("hourlyForecastH3"),
-    null,
-    "Hourly forecast"
-  );
-
-  const hourlyForecastList = initOl(getCssClass("hourlyForecastList"));
-
-  // Allow horizontal scrolling through mouse scroll
-  hourlyForecastList.addEventListener("wheel", horizontalScrollCallback);
-
-  data.next24Hours.forEach((hourForecast, idx) => {
-    const hourForecastLi = initLiAsChildInList(
-      hourlyForecastList,
-      getCssClass("hourForecastLi")
-    );
-
-    const hourForecastHour = initP(
-      getCssClass("hourForecastHour"),
-      null,
-      idx === 0 ? "Now" : formatTz(hourForecast.datetime, "H:mm")
-    );
-
-    const hourForecastTemp = initP(
-      getCssClass("hourForecastTemp"),
-      null,
-      hourForecast.tempStr
-    );
-
-    const hourForecastIconDiv = initDiv(getCssClass("hourForecastIconDiv"));
-    setAnimation(hourForecastIconDiv, weatherIcons[hourForecast.icon]);
-
-    const hourForecastPrecipProb = initP(
-      getCssClass("hourForecastPrecipProb"),
-      null,
-      hourForecast.precipprob > 0 ? hourForecast.precipprobStr : ""
-    );
-
-    hourForecastLi.append(
-      hourForecastHour,
-      hourForecastTemp,
-      hourForecastIconDiv,
-      hourForecastPrecipProb
-    );
-  });
-
-  div.append(hourlyForecastH3, hourlyForecastList);
 
   return div;
 }
