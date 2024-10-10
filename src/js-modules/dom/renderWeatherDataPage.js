@@ -17,7 +17,7 @@ import {
   icons,
   forcePlayAnimation,
 } from "./animations.js";
-import { initOtherCurrentConditionsDiv } from "./initOtherConditionsDiv.js";
+import { initWeatherDataOtherConditionsDiv } from "./initWeatherDataOtherConditionsDiv.js";
 import applyDynamicBackground from "../dynamic-background/applyDynamicBackground.js";
 import {
   isHomeLocation,
@@ -110,7 +110,7 @@ export function createWeatherDataPage(data) {
     initWeatherInsightDiv(data),
     initNext24HoursDiv(data),
     initNextDaysDiv(data),
-    initOtherCurrentConditionsDiv(data)
+    initWeatherDataOtherConditionsDiv(data.current, formatTz)
   );
 
   return div;

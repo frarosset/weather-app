@@ -36,9 +36,9 @@ const getCssClass = (element) => `${blockName}__${cssClass[element]}`;
 
 let formatTz = null;
 
-export function initOtherCurrentConditionsDiv(data) {
-  formatTz = data.formatTz;
-  const div = initOtherConditionsDiv(data.current, "");
+export function initWeatherDataOtherConditionsDiv(subdata, formatTzFcn) {
+  formatTz = formatTzFcn;
+  const div = initOtherConditionsDiv(subdata, "");
   formatTz = null;
   return div;
 }
