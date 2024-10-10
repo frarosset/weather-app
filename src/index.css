@@ -45,7 +45,8 @@
   --weather-icon-size: 9em;
   --weather-icon-mini-size: 2.5em;
   --weather-icon-mid-size: 5em;
-  --temp-font-size: 5em;
+  --temp-font-size: 5rem;
+  --temp-font-size-small: 4rem;
   --other-condition-value-fontsize: 3.5em;
   --other-condition-unit-fontsize: 1em;
   --other-condition-small-fontsize: 0.8em;
@@ -381,31 +382,44 @@ input[type="checkbox"]::before {
   gap: var(--page-gap);
 }
 
-.weather-data-page__back-btn {
-  margin-right: auto;
-  /* margin-right: var(--generic-icon-size);
-  flex-basis: calc(var(--generic-icon-size));
-  flex-shrink: 0; */
-}
 .weather-data-page__btn-div {
   display: grid;
+  grid-template-areas: "back time time time home bookmarked refresh";
   grid-template-columns:
-    var(--generic-icon-size) 1fr
-    var(--generic-icon-size) var(--generic-icon-size);
+    var(--generic-icon-size) var(--generic-icon-size) var(--generic-icon-size)
+    1fr
+    var(--generic-icon-size) var(--generic-icon-size) var(--generic-icon-size);
   grid-template-rows: max(var(--h1-font-size), var(--generic-icon-size));
   align-items: center;
   justify-items: center;
   line-height: 1;
-
   width: 100%;
 }
 
+@media only screen and (min-width: 641px) {
+  .weather-data-page__btn-div {
+    grid-template-areas: "back . . time home bookmarked refresh";
+  }
+}
+
+.weather-data-page__last-update-time {
+  grid-area: time;
+}
+
+.weather-data-page__back-btn {
+  grid-area: back;
+}
+
+.weather-data-page__refresh-btn {
+  grid-area: refresh;
+}
+
 .weather-data-page__toggle-home-btn {
-  grid-column: 3;
+  grid-area: home;
 }
 
 .weather-data-page__toggle-bookmarked-btn {
-  grid-column: 4;
+  grid-area: bookmarked;
 }
 
 .weather-data-page__location {
@@ -456,9 +470,15 @@ input[type="checkbox"]::before {
 .weather-data-page__temp-p {
   grid-area: temp;
   justify-self: right;
-  font-size: var(--temp-font-size);
+  font-size: var(--temp-font-size-small);
   letter-spacing: -5px;
   font-weight: bold;
+}
+
+@media only screen and (min-width: 641px) {
+  .weather-data-page__temp-p {
+    font-size: var(--temp-font-size);
+  }
 }
 
 .weather-data-page__icon-div {
@@ -927,6 +947,7 @@ main:has(> .locating-page) {
 .settings-page__back-btn,
 .error-page__back-btn,
 .weather-data-page__back-btn,
+.weather-data-page__refresh-btn,
 .weather-data-page__alert-open-link-btn,
 .weather-data-page__toggle-home-btn,
 .weather-data-page__toggle-bookmarked-btn {
@@ -944,6 +965,7 @@ main:has(> .locating-page) {
 .settings-page__back-btn svg,
 .error-page__back-btn svg,
 .weather-data-page__back-btn svg,
+.weather-data-page__refresh-btn svg,
 .weather-data-page__alert-open-link-btn svg,
 .weather-data-page__toggle-home-btn svg,
 .weather-data-page__toggle-bookmarked-btn svg {
@@ -964,6 +986,7 @@ main:has(> .locating-page) {
 .settings-page__back-btn path,
 .error-page__back-btn path,
 .weather-data-page__back-btn path,
+.weather-data-page__refresh-btn path,
 .weather-data-page__alert-open-link-btn path,
 .weather-data-page__toggle-bookmarked-btn path {
   fill: var(--col-txt);
@@ -971,6 +994,7 @@ main:has(> .locating-page) {
 }
 
 .weather-data-page.night .weather-data-page__back-btn path,
+.weather-data-page.night .weather-data-page__refresh-btn path,
 .weather-data-page.night .weather-data-page__toggle-bookmarked-btn path {
   fill: var(--col-txt-alt);
   stroke: var(--col-txt-alt);

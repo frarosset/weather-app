@@ -9,6 +9,7 @@ import chevronLeft from "../../assets/useAnimations/chevron-left.json";
 import chevronRight from "../../assets/useAnimations/chevron-right.json";
 import explore from "../../assets/useAnimations/explore.json";
 import settings from "../../assets/useAnimations/settingsV2.json";
+import refresh from "../../assets/useAnimations/refresh.json";
 
 // Page animations
 import fetchingAnimation from "../../assets/LottieFiles/fetching.json";
@@ -170,6 +171,7 @@ export const icons = {
   chevronRight: chevronRight,
   explore: explore,
   settings: settings,
+  refresh: refresh,
 };
 
 export { errorAnimation, fetchingAnimation, locatingAnimation };
