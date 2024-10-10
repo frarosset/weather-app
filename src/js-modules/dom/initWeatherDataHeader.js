@@ -33,7 +33,7 @@ let formatTz = null;
 
 export function initWeatherDataHeader(data, formatTzFcn) {
   formatTz = formatTzFcn;
-  const div = initPageHeader(data, "");
+  const div = initPageHeader(data);
   formatTz = null;
   return div;
 }

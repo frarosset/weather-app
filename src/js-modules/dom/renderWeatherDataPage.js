@@ -1,7 +1,7 @@
-import { initDiv, initP } from "../../js-utilities/commonDomComponents.js";
+import { initDiv } from "../../js-utilities/commonDomComponents.js";
 import { resetContent } from "../../js-utilities/commonDomUtilities.js";
-import { setAnimation, weatherIcons } from "./animations.js";
 import { initWeatherDataHeader } from "./initWeatherDataHeader.js";
+import { initWeatherDataMainCurrentConditionsDiv } from "./initWeatherDataMainCurrentConditionsDiv.js";
 import { initWeatherDataOtherConditionsDiv } from "./initWeatherDataOtherConditionsDiv.js";
 import { initWeatherDataAlertsDiv } from "./initWeatherDataAlertsDiv.js";
 import { initWeatherDataWeatherInsightDiv } from "./initWeatherDataWeatherInsightDiv.js";
@@ -10,17 +10,6 @@ import { initWeatherDataDailyDiv } from "./initWeatherDataDailyDiv.js";
 import applyDynamicBackground from "../dynamic-background/applyDynamicBackground.js";
 
 const blockName = "weather-data-page";
-const cssClass = {
-  currentConditions: "current-condition-div",
-  locationDiv: "location-div",
-  locationH2: "location-h2",
-  conditionsP: "conditions-p",
-  tempP: "temp-p",
-  iconDiv: "icon-div",
-  feelsLikeP: "feels-like-p",
-  highLowTempP: "high-low-temp-p",
-};
-const getCssClass = (element) => `${blockName}__${cssClass[element]}`;
 
 let formatTz = null;
 
@@ -39,7 +28,7 @@ export function createWeatherDataPage(data) {
 
   div.append(
     initWeatherDataHeader(data, formatTz),
-    initMainCurrentConditionsDiv(data)
+    initWeatherDataMainCurrentConditionsDiv(data)
   );
 
   const alertDiv = initWeatherDataAlertsDiv(data);
@@ -53,34 +42,6 @@ export function createWeatherDataPage(data) {
     initWeatherDataDailyDiv(data.days, formatTz),
     initWeatherDataOtherConditionsDiv(data.current, formatTz)
   );
-
-  return div;
-}
-
-function initMainCurrentConditionsDiv(data) {
-  const div = initDiv(getCssClass("currentConditions"));
-
-  const conditionsP = initP(
-    getCssClass("conditionsP"),
-    null,
-    data.current.conditionsStr
-  );
-  const tempP = initP(getCssClass("tempP"), null, data.current.tempStr);
-  const iconDiv = initDiv(getCssClass("iconDiv"));
-  setAnimation(iconDiv, weatherIcons[data.current.icon]);
-
-  const feelsLikeP = initP(
-    getCssClass("feelsLikeP"),
-    null,
-    `Feels like ${data.current.feelslikeStr}`
-  );
-  const highLowTempP = initP(
-    getCssClass("highLowTempP"),
-    null,
-    `High: ${data.days[0].tempmaxStr} - Low: ${data.days[0].tempminStr}`
-  );
-
-  div.append(conditionsP, tempP, iconDiv, feelsLikeP, highLowTempP);
 
   return div;
 }
