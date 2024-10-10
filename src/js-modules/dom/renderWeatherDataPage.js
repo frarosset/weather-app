@@ -77,7 +77,7 @@ export function createWeatherDataPage(data) {
   div.append(
     initWeatherInsightDiv(data),
     initWeatherDataHourlyDiv(data, formatTz),
-    initWeatherDataDailyDiv(data, formatTz),
+    initWeatherDataDailyDiv(data.days, formatTz),
     initWeatherDataOtherConditionsDiv(data.current, formatTz)
   );
 

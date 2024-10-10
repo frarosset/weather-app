@@ -36,6 +36,8 @@ const getCssClass = (element) => `${blockName}__${cssClass[element]}`;
 
 let formatTz = null;
 
+// Subdata might be, eg, data.current, data.days[dayIdx], or data.days[dayIdx].hours[hourIdx].
+
 export function initWeatherDataOtherConditionsDiv(subdata, formatTzFcn) {
   formatTz = formatTzFcn;
   const div = initOtherConditionsDiv(subdata, "");

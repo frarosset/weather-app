@@ -25,14 +25,16 @@ const getCssClass = (element) => `${blockName}__${cssClass[element]}`;
 
 let formatTz = null;
 
-export function initWeatherDataDailyDiv(data, formatTzFcn) {
+// Subdata might be, eg, data.days
+
+export function initWeatherDataDailyDiv(subdata, formatTzFcn) {
   formatTz = formatTzFcn;
-  const div = initDailyDiv(data, "");
+  const div = initDailyDiv(subdata, "");
   formatTz = null;
   return div;
 }
 
-function initDailyDiv(data) {
+function initDailyDiv(subdata) {
   const div = initDiv(getCssClass("dailyForecastDiv"));
 
   const dailyForecastH3 = initH3(
@@ -46,7 +48,7 @@ function initDailyDiv(data) {
   // Allow horizontal scrolling through mouse scroll
   allowHorizontalScrollThroughMouseScroll(dailyForecastList);
 
-  data.days.forEach((dayForecast, idx) => {
+  subdata.forEach((dayForecast, idx) => {
     const dayForecastLi = initLiAsChildInList(
       dailyForecastList,
       getCssClass("dayForecastLi")
