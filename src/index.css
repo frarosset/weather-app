@@ -5,7 +5,7 @@
   --alpha: 0.3;
   --col-black: rgb(20, 20, 20);
   --col-light-grey: rgb(211, 211, 211);
-  --col-dark-grey: rgb(95, 95, 95);
+  --col-dark-grey: rgb(65, 65, 65);
   --col-white: rgb(255, 255, 255);
   --col-rain: rgb(0, 102, 204);
   --col-white-alpha: rgb(255, 255, 255, var(--alpha));
@@ -119,6 +119,7 @@ html:has(.weather-data-page) {
   padding: 0;
   margin: 0;
   vertical-align: baseline;
+  -webkit-tap-highlight-color: transparent;
 }
 
 body {
