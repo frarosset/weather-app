@@ -1,3 +1,4 @@
+import PubSub from "pubsub-js";
 import {
   initDiv,
   initH3,
@@ -86,6 +87,10 @@ function initDailyDiv(subdata) {
       null,
       dayForecast.precipprob > 0 ? dayForecast.precipprobStr : ""
     );
+
+    dayForecastLi.addEventListener("click", () => {
+      PubSub.publish("RENDER WEATHER DATA IN NEXT DAYS", idx);
+    });
 
     dayForecastLi.append(
       dayForecastDay,

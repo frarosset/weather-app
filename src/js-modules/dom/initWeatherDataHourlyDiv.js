@@ -25,14 +25,18 @@ let formatTz = null;
 
 // Subdata might be, eg, data.next24Hours, or data.days[dayIdx].hours.
 
-export function initWeatherDataHourlyDiv(subdata, formatTzFcn) {
+export function initWeatherDataHourlyDiv(
+  subdata,
+  formatTzFcn,
+  startFromNow = false
+) {
   formatTz = formatTzFcn;
-  const div = initHourlyDiv(subdata);
+  const div = initHourlyDiv(subdata, startFromNow);
   formatTz = null;
   return div;
 }
 
-function initHourlyDiv(subdata) {
+function initHourlyDiv(subdata, startFromNow) {
   const div = initDiv(getCssClass("hourlyForecastDiv"));
 
   const hourlyForecastH3 = initH3(
@@ -54,7 +58,9 @@ function initHourlyDiv(subdata) {
     const hourForecastHour = initP(
       getCssClass("hourForecastHour"),
       null,
-      idx === 0 ? "Now" : formatTz(hourForecast.datetime, "H:mm")
+      idx === 0 && startFromNow
+        ? "Now"
+        : formatTz(hourForecast.datetime, "H:mm")
     );
 
     const hourForecastTemp = initP(

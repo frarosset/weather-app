@@ -26,6 +26,7 @@ const cssClass = {
   backBtn: "back-btn",
   refreshBtn: "refresh-btn",
   toggleBookmarkedBtn: "toggle-bookmarked-btn",
+  dailyForecastP: "daily-forecast-p",
 };
 const getCssClass = (element) => `${blockName}__${cssClass[element]}`;
 
@@ -38,13 +39,20 @@ export function initWeatherDataHeader(data, formatTzFcn) {
   return div;
 }
 
+export function initWeatherDataHeaderNextDays(data, formatTzFcn) {
+  formatTz = formatTzFcn;
+  const div = initPageHeaderNextDays(data);
+  formatTz = null;
+  return div;
+}
+
 function initPageHeader(data) {
   const header = initHeader(getCssClass("header"));
 
   // Toggle back, home, bookmarked button
   const btnDiv = initDiv(getCssClass("btnDiv"));
   btnDiv.append(
-    initBackButton(),
+    initBackButton("RENDER SELECT LOCATION DATA", null),
     initLastUpdateTime(data),
     initToggleHomeButton(data),
     initToggleBookmarkedButton(data),
@@ -61,10 +69,31 @@ function initPageHeader(data) {
   return header;
 }
 
-function initBackButton() {
+function initPageHeaderNextDays(data) {
+  const header = initHeader(getCssClass("header"));
+
+  // Toggle back, home, bookmarked button
+  const btnDiv = initDiv(getCssClass("btnDiv"));
+  btnDiv.append(
+    initBackButton("RENDER WEATHER DATA FROM NEXT DAYS", data),
+    initDailyForecastP()
+  );
+
+  // Info about location
+  const locationDiv = initDiv(getCssClass("locationDiv"));
+  const locationH2 = initH2(getCssClass("locationH2"), null, data.location);
+  locationDiv.append(locationH2);
+
+  header.append(btnDiv, locationDiv);
+
+  return header;
+}
+
+function initBackButton(pubSubToken, data) {
   const backBtnCallback = () => {
     forcePlayAnimation(animation, 1);
-    PubSub.publish("RENDER SELECT LOCATION DATA");
+    PubSub.unsubscribe("RENDER WEATHER DATA IN NEXT DAYS");
+    PubSub.publish(pubSubToken, data);
   };
 
   const backBtn = initButton(getCssClass("backBtn"), backBtnCallback);
@@ -97,6 +126,10 @@ function initLastUpdateTime(data) {
     null,
     `${formatTz(data.current.datetime, "E d LLL, H:mm")}`
   );
+}
+
+function initDailyForecastP() {
+  return initP(getCssClass("dailyForecastP"), null, "Daily forecast");
 }
 
 function initToggleHomeButton(data) {
