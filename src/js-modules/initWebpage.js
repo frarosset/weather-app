@@ -10,6 +10,8 @@ import initMainFooter from "./dom/initMainFooter.js";
 import setCreditFooter from "../js-utilities/creditFooter.js";
 
 export default function initWebpage() {
+  window.scrollTo(0, 0);
+
   initAppData();
 
   const main = document.createElement("main");

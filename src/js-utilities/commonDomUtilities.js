@@ -54,7 +54,8 @@ export function allowHorizontalScrollThroughMouseScroll(element) {
   const horizontalScrollCallback = (e) => {
     const noScrollLeft = e.currentTarget.scrollLeft === 0 && e.deltaY < 0;
     const noScrollRight =
-      e.currentTarget.scrollLeft === e.currentTarget.scrollWidth &&
+      e.currentTarget.scrollLeft ===
+        e.currentTarget.scrollWidth - e.currentTarget.clientWidth &&
       e.deltaY > 0;
 
     if (noScrollLeft || noScrollRight) {
