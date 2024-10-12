@@ -4,15 +4,13 @@ import { setAnimation, weatherIcons } from "./animations.js";
 const blockName = "weather-data-page";
 const cssClass = {
   currentConditions: "current-condition-div",
-  dailyConditions: "daily-condiiton-div",
-  locationDiv: "location-div",
-  locationH2: "location-h2",
+  dailyConditions: "daily-condition-div",
   conditionsP: "conditions-p",
   tempP: "temp-p",
   iconDiv: "icon-div",
   feelsLikeP: "feels-like-p",
   highLowTempP: "high-low-temp-p",
-  dateP: "dateP",
+  dateP: "date-p",
   highTempP: "high-temp-p",
   lowTempP: "low-temp-p",
 };

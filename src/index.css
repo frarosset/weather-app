@@ -4,8 +4,8 @@
   /* Colors (palette)*/
   --alpha: 0.3;
   --col-black: rgb(20, 20, 20);
-  --col-grey: rgb(180, 180, 180);
-  --col-dark-grey: rgb(80, 80, 80);
+  --col-light-grey: rgb(211, 211, 211);
+  --col-dark-grey: rgb(105, 105, 105);
   --col-white: rgb(255, 255, 255);
   --col-rain: rgb(0, 102, 204);
   --col-white-alpha: rgb(255, 255, 255, var(--alpha));
@@ -21,6 +21,7 @@
     var(--col-dark-grey)
   );
   --block-bg-color: var(--col-white-alpha);
+  --main-grey: var(--col-dark-grey);
 
   /* Colors (text/icons)*/
   --col-txt: var(--col-black);
@@ -47,6 +48,7 @@
   --weather-icon-mid-size: 5em;
   --temp-font-size: 5rem;
   --temp-font-size-small: 4rem;
+  --temp-font-size-smaller: 3rem;
   --other-condition-value-fontsize: 3.5em;
   --other-condition-unit-fontsize: 1em;
   --other-condition-small-fontsize: 0.8em;
@@ -258,7 +260,7 @@ a:visited {
   border-bottom: 1px solid var(--bg-col);
 }
 .select-location-page__search-input::placeholder {
-  color: var(--col-grey);
+  color: var(--col-light-grey);
 }
 .select-location-page__search-input:focus {
   /* border: none; */
@@ -396,6 +398,10 @@ input[type="checkbox"]::before {
   width: 100%;
 }
 
+.weather-data-page.daily .weather-data-page__btn-div {
+  grid-template-areas: "back daily-forecast daily-forecast daily-forecast daily-forecast daily-forecast .";
+}
+
 @media only screen and (min-width: 641px) {
   .weather-data-page__btn-div {
     grid-template-areas: "back . . time home bookmarked refresh";
@@ -404,6 +410,10 @@ input[type="checkbox"]::before {
 
 .weather-data-page__last-update-time {
   grid-area: time;
+}
+
+.weather-data-page__daily-forecast-p {
+  grid-area: daily-forecast;
 }
 
 .weather-data-page__back-btn {
@@ -439,22 +449,18 @@ input[type="checkbox"]::before {
   --alpha: 0.5;
   --col-white-alpha: rgb(255, 255, 255, var(--alpha));
   --block-bg-color: var(--col-white-alpha);
+  --main-grey: var(--col-light-grey);
 }
 
 .weather-data-page.night .weather-data-page__header,
-.weather-data-page.night .weather-data-page__current-condition-div {
+.weather-data-page.night .weather-data-page__current-condition-div,
+.weather-data-page.night .weather-data-page__daily-condition-div {
   color: var(--col-txt-alt);
 }
 
-.weather-data-page__current-condition-div {
+.weather-data-page__current-condition-div,
+.weather-data-page__daily-condition-div {
   display: grid;
-  grid-template-areas:
-    "conditions conditions"
-    "icon temp"
-    "feelslike feelslike"
-    "lowhightemp lowhightemp";
-  grid-template-rows: max-content max-content max-content max-content;
-  grid-template-columns: max-content max-content;
   padding: var(--block-alt-padding);
   gap: var(--block-alt-gap) 0px;
   align-items: center;
@@ -463,27 +469,100 @@ input[type="checkbox"]::before {
   line-height: 1;
 }
 
+.weather-data-page__current-condition-div {
+  grid-template-areas:
+    "conditions conditions"
+    "icon temp"
+    "feelslike feelslike"
+    "lowhightemp lowhightemp";
+  grid-template-rows: max-content max-content max-content max-content;
+  grid-template-columns: max-content max-content;
+}
+
+.weather-data-page__daily-condition-div {
+  grid-template-areas:
+    "date date"
+    "conditions conditions"
+    "icon hightemp"
+    "icon lowtemp";
+  grid-template-rows: max-content max-content max-content max-content;
+  grid-template-columns: max-content max-content;
+}
+
 .weather-data-page__conditions-p {
   grid-area: conditions;
+  color: var(--main-grey);
+}
+
+.weather-data-page__date-p {
+  grid-area: date;
+  font-weight: bold;
 }
 
 .weather-data-page__temp-p {
   grid-area: temp;
-  justify-self: right;
+  justify-self: start;
   font-size: var(--temp-font-size-small);
-  letter-spacing: -5px;
+  letter-spacing: -4px;
   font-weight: bold;
 }
 
+.weather-data-page__high-temp-p {
+  grid-area: hightemp;
+  justify-self: start;
+  align-self: end;
+  font-size: var(--temp-font-size-small);
+  letter-spacing: -4px;
+  font-weight: bold;
+}
+
+.weather-data-page__low-temp-p {
+  margin-top: calc(-1 * var(--block-alt-gap) / 2);
+  grid-area: lowtemp;
+  justify-self: start;
+  align-self: start;
+  font-size: var(--temp-font-size-smaller);
+  letter-spacing: -3px;
+  color: var(--main-grey);
+}
+
 @media only screen and (min-width: 641px) {
-  .weather-data-page__temp-p {
+  .weather-data-page__daily-condition-div {
+    grid-template-areas:
+      "date date date"
+      "conditions conditions conditions"
+      "icon hightemp lowtemp";
+    grid-template-rows: max-content max-content max-content;
+    grid-template-columns: max-content max-content max-content;
+  }
+
+  .weather-data-page__temp-p,
+  .weather-data-page__high-temp-p {
     font-size: var(--temp-font-size);
+    letter-spacing: -5px;
+  }
+
+  .weather-data-page__low-temp-p {
+    margin-top: 0;
+    font-size: var(--temp-font-size-small);
+    letter-spacing: -4px;
+  }
+
+  .weather-data-page__low-temp-p,
+  .weather-data-page__high-temp-p {
+    align-self: center;
+  }
+
+  .weather-data-page__low-temp-p::before {
+    content: "\00a0/\00a0";
+    font-size: var(--temp-font-size-small);
+    letter-spacing: -4px;
   }
 }
 
 .weather-data-page__icon-div {
   grid-area: icon;
-  justify-self: left;
+  justify-self: end;
   width: var(--weather-icon-size);
   height: var(--weather-icon-size);
 }
@@ -618,6 +697,15 @@ input[type="checkbox"]::before {
 .weather-data-page__hourly-forecasts-h3,
 .weather-data-page__daily-forecasts-h3 {
   font-size: var(--h3-font-size);
+}
+
+.weather-data-page.daily .weather-data-page__daily-forecasts-div {
+  background: none;
+  padding: 0;
+}
+
+.weather-data-page.daily .weather-data-page__daily-forecasts-h3 {
+  display: none;
 }
 
 /* HOURLY / DAILY FORECASTS */
