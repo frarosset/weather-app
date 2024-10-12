@@ -5,16 +5,18 @@
   --alpha: 0.3;
   --col-black: rgb(20, 20, 20);
   --col-light-grey: rgb(211, 211, 211);
-  --col-dark-grey: rgb(105, 105, 105);
+  --col-dark-grey: rgb(95, 95, 95);
   --col-white: rgb(255, 255, 255);
   --col-rain: rgb(0, 102, 204);
   --col-white-alpha: rgb(255, 255, 255, var(--alpha));
+  --col-white-alpha-x2: rgb(255, 255, 255, calc(var(--alpha) * 2));
   --col-alert: var(--col-white);
   --col-alert-bg: rgba(220, 53, 69, 0.6);
 
   /* Colors (background)*/
   --bg-col: rgb(227, 248, 242);
   --block-bg-col: rgb(215, 240, 233);
+  --col-highlight: rgb(188, 224, 232);
   --weather-data-page-bg: linear-gradient(
     to bottom,
     var(--bg-col),
@@ -754,6 +756,7 @@ input[type="checkbox"]::before {
   background-color: var(--col-white-alpha);
   border-radius: calc(var(--radius-inner));
   padding: var(--block-padding-inner);
+  user-select: none;
 }
 
 .weather-data-page__hour-forecasts-temp,
@@ -1118,6 +1121,33 @@ main:has(> .locating-page) {
 
 .main-footer__img-credit a {
   font-weight: bold;
+}
+
+/* Hover */
+
+.weather-data-page__day-forecasts-li:active,
+.select-location-page__current-location-div:active,
+.select-location-page__home-div:active,
+.select-location-page__bookmarked-div:active {
+  background-color: var(--col-highlight);
+  transition: 0.5s;
+}
+.weather-data-page__day-forecasts-li:active {
+  background-color: var(--col-white-alpha-x2);
+  transition: 0.5s;
+}
+@media not all and (hover: none) {
+  .weather-data-page__day-forecasts-li:hover,
+  .select-location-page__current-location-div:hover,
+  .select-location-page__home-div:hover,
+  .select-location-page__bookmarked-div:hover {
+    background-color: var(--col-highlight);
+    transition: 0.5s;
+  }
+  .weather-data-page__day-forecasts-li:hover {
+    background-color: var(--col-white-alpha-x2);
+    transition: 0.5s;
+  }
 }
 
 /* Customize scrollbars */
