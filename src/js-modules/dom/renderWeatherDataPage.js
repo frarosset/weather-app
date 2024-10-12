@@ -21,6 +21,7 @@ const tokenNameRenderFromNextDays = "RENDER WEATHER DATA FROM NEXT DAYS";
 const tokenNameRenderInNextDays = "RENDER WEATHER DATA IN NEXT DAYS";
 
 export default function renderWeatherDataPage(parentDiv, data) {
+  window.scrollTo(0, 0);
   const div = createWeatherDataPage(data);
   div.classList.toggle("night", !data.current.isDay);
   applyDynamicBackground(`--${blockName}-bg`, data);
@@ -35,6 +36,7 @@ export default function renderWeatherDataPage(parentDiv, data) {
 }
 
 export function renderWeatherDataPageFromNextDays(oldDiv, data) {
+  window.scrollTo(0, 0);
   const div = createWeatherDataPage(data);
   div.classList.add(...oldDiv.classList);
   div.classList.remove("daily");
@@ -48,6 +50,7 @@ export function renderWeatherDataPageFromNextDays(oldDiv, data) {
 }
 
 export function renderWeatherDataPageNextDays(oldDiv, data, dayIdx) {
+  window.scrollTo(0, 0);
   const div = createWeatherDataPageNextDays(data, dayIdx);
   div.classList.add(...oldDiv.classList);
   div.classList.add("daily");

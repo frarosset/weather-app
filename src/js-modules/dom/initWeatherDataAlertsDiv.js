@@ -49,6 +49,11 @@ function initAlertsDiv(data) {
 
     alertLi.classList.add("clamp");
     const clampBtnCallback = () => {
+      if ([...alertLi.classList].includes("clamp")) {
+        alertLi.pageYOffset = window.scrollY;
+      } else {
+        window.scrollTo(0, alertLi.pageYOffset);
+      }
       alertLi.classList.toggle("clamp");
     };
     alertLi.addEventListener("click", clampBtnCallback);
