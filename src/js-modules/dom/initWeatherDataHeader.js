@@ -27,6 +27,8 @@ const cssClass = {
   refreshBtn: "refresh-btn",
   toggleBookmarkedBtn: "toggle-bookmarked-btn",
   dailyForecastP: "daily-forecast-p",
+  locationDiv: "location-div",
+  locationH2: "location-h2",
 };
 const getCssClass = (element) => `${blockName}__${cssClass[element]}`;
 
