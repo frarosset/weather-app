@@ -107,11 +107,26 @@ export function createWeatherDataPageNextDays(data, dayIdx) {
     initWeatherDataOtherConditionsDiv(data.days[dayIdx], data.formatTz)
   );
 
+  toggleDisplayedDayOnDailyDiv(div, dayIdx);
+
   return div;
+}
+
+function toggleDisplayedDayOnDailyDiv(div, dayIdx) {
+  // this strictly depends on the structure set by createWeatherDataPageNextDays
+  const dayLiChildren = div.children[1].children[1].children;
+  if (div.dayIdx != null) {
+    dayLiChildren[div.dayIdx].classList.remove("displayed");
+  }
+  div.dayIdx = dayIdx;
+  dayLiChildren[div.dayIdx].classList.add("displayed");
 }
 
 export function updateWeatherDataPageNextDays(div, data, dayIdx) {
   const divChildren = div.children;
+
+  // set the current day displayed
+  toggleDisplayedDayOnDailyDiv(div, dayIdx);
 
   divChildren[2].replaceWith(
     initWeatherDataMainDailyConditionsDiv(

@@ -134,6 +134,7 @@ body {
   /* or max-width -- this avoids horizontal scroll bars */
 
   touch-action: manipulation; /* disable double tap to zoom on some browsers*/
+  user-select: none;
 }
 
 /*****************************************************/
@@ -1124,7 +1125,6 @@ main:has(> .locating-page) {
 }
 
 /* Hover */
-
 .weather-data-page__day-forecasts-li:active,
 .select-location-page__current-location-div:active,
 .select-location-page__home-div:active,
@@ -1135,6 +1135,11 @@ main:has(> .locating-page) {
 .weather-data-page__day-forecasts-li:active {
   background-color: var(--col-white-alpha-x2);
   transition: 0.5s;
+}
+.weather-data-page__day-forecasts-li.displayed {
+  background-color: var(--col-white);
+  transition: 0.5s;
+  pointer-events: none;
 }
 @media not all and (hover: none) {
   .weather-data-page__day-forecasts-li:hover,
